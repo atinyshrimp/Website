@@ -15,7 +15,7 @@
 	font-weight: 400;
 }
 
-/************ Default Css ************/
+/************ Default CSS ************/
 * {
   margin: 0;
   padding: 0;
@@ -81,7 +81,7 @@ p.success {
 p.danger {
 	color: red;
 }
-/************ Navbar Css ************/
+/************ Navbar CSS ************/
 nav.navbar {
   padding: 18px 0;
   position: fixed;
@@ -230,7 +230,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 	border-color: transparent;
 }
 
-/************ Banner Css ************/
+/************ Banner CSS ************/
 .banner {
   margin-top: 0;
   padding: 260px 0 100px 0;
@@ -300,7 +300,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-right: 0.08em solid #666;
 }
 
-/* Skills */
+/************ Skills CSS ************/
 .skill {
   padding: 0 0 50px 0;;
   position: relative;
@@ -345,7 +345,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   z-index: -4;
 }
 
-/************ Projects Css ************/
+/************ Projects CSS ************/
 .project {
   padding: 80px 0;
   position: relative;
