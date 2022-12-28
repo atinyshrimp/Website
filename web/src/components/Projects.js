@@ -21,14 +21,14 @@ export const Projects = () => {
             imgUrl: projImg1,
         },
         {
-            title: "Business Startup",
-            description: "Design & Development",
+            title: "Prison Break",
+            description: "Python",
             imgUrl: projImg1,
         }
     ];
 
     return (
-        <section className="project" id="project">
+        <section className="project" id="projects">
             <Container>
                 <Row>
                     <Col>
@@ -43,7 +43,7 @@ export const Projects = () => {
                                     <Nav.Link eventKey="second">Tab Two</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="third">Tab Three</Nav.Link>
+                                    <Nav.Link eventKey="third" disabled>Tab Three</Nav.Link>
                                 </Nav.Item>
                             </Nav>
                             <Tab.Content>
