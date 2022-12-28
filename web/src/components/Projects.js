@@ -6,23 +6,31 @@ import projImg1 from "../assets/img/project-img1.png";
 export const Projects = () => {
     const projects = [
         {
-            title: "Business Startup",
-            description: "Design & Development",
+            title: "Image processing app",
+            description: "C#",
             imgUrl: projImg1,
         },
         {
-            title: "Business Startup",
-            description: "Design & Development",
-            imgUrl: projImg1,
-        },
-        {
-            title: "Business Startup",
-            description: "Design & Development",
+            title: "Scrabble",
+            description: "C#",
             imgUrl: projImg1,
         },
         {
             title: "Prison Break",
             description: "Python",
+            imgUrl: projImg1,
+        }
+    ];
+
+    const schoolProjects = [
+        {
+            title: "PIX2",
+            description: "",
+            imgUrl: projImg1,
+        },
+        {
+            title: "PIX1 - Leowind",
+            description: "",
             imgUrl: projImg1,
         }
     ];
@@ -37,10 +45,10 @@ export const Projects = () => {
                         <Tab.Container id="projects-tabs" defaultActiveKey="first">
                             <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                 <Nav.Item>
-                                    <Nav.Link eventKey="first">Tab One</Nav.Link>
+                                    <Nav.Link eventKey="first">Softwares</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Nav.Link eventKey="second">Tab Two</Nav.Link>
+                                    <Nav.Link eventKey="second">School Projects</Nav.Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Nav.Link eventKey="third" disabled>Tab Three</Nav.Link>
@@ -61,7 +69,21 @@ export const Projects = () => {
                                         }
                                     </Row>
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="second">Lorem Ipsum</Tab.Pane>
+                                <Tab.Pane eventKey="second">
+                                <Row>
+                                        {
+                                            schoolProjects.map((project, index) => {
+                                                return (
+                                                    <ProjectCard 
+                                                    key={index}
+                                                    {...project}
+                                                    />
+                                                )
+                                            })
+                                        }
+                                    </Row>
+
+                                </Tab.Pane>
                                 <Tab.Pane eventKey="third">Lorem Ipsum</Tab.Pane>
                             </Tab.Content>
                         </Tab.Container>

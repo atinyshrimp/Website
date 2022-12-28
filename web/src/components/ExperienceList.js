@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import FadeInSection from './FadeInSection';
+import { Box, Tab, Tabs, Typography } from '@mui/material';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -14,7 +10,7 @@ function TabPanel(props) {
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      // aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -41,6 +37,16 @@ function a11yProps(index) {
 
 const professionalExp = {
   /* most recent to oldest */
+  SNCF: {
+    title: "Research Engineer Intern @",
+    duration: "jun 2022 - aug. 2022",
+    desc: [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+
   "Avenir APEI": {
     title: "Volunteer @",
     duration: "",
@@ -61,11 +67,12 @@ const professionalExp = {
 const educationExp = {
   /* most to recent to oldest */
   ESILV: {
-    title: "",
-    duration: "",
+    title: "Master's degree @",
+    duration: "since Sept. 2020",
     desc: [
-      "a",
-      "b"
+      "Soft Skills formation",
+      "Yearly projects in accordance with the modules seen throughout the year",
+      "Double degree with the Management school, EMLV (e.g. tab under 'ESILV')"
     ]
   },
   
@@ -79,11 +86,13 @@ const educationExp = {
   },
 
   "Lycée Jules Verne": {
-    title: "",
-    duration: "",
+    title: "High School Diploma @",
+    duration: "sept. 2017 - jun 2020",
     desc: [
-      "a",
-      "b"
+      "Obtained with distinctions",
+      "Class president in 11th & 12th year",
+      "Série SVT",
+      "Spécialité ISN (Informatique & Sciences du Numérique)"
     ]
   }
 };
@@ -101,14 +110,13 @@ export const ProfessionalList = () => {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
+      sx={{ flexGrow: 1, bgcolor: 'none', display: 'flex', height: 500 }}
     >
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
           {Object.keys(list).map((key, i) => (
@@ -145,19 +153,17 @@ export const EducationList = () => {
     setValue(newValue);
   };
 
-
   var list = educationExp;
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
+      sx={{ flexGrow: 1, bgcolor: 'none', display: 'flex', height: 500 }}
     >
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
         sx={{ borderRight: 1, borderColor: 'divider' }}
       >
           {Object.keys(list).map((key, i) => (

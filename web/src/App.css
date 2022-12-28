@@ -279,9 +279,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   transition: 0.3s ease-in-out;
   line-height: 1;
 }
-.banner button:hover svg {
-  margin-left: 25px;
-}
+
+/* .banner button:hover svg {
+  margin-top: 15px;
+} */
+
 .banner img {
   animation: updown 3s linear infinite;
 }
@@ -350,12 +352,15 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding: 80px 0;
   position: relative;
   background-color: black;
+  min-height: 60vh;
 }
+
 .experience h2 {
 	font-size: 45px;
 	font-weight: 700;
   text-align: center;
 }
+
 .experience p {
   color: #B8B8B8;
   font-size: 18px;
@@ -425,7 +430,106 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/************ Experience Tabs CSS ************/
+:root {
+  --slate: #8892b0;
+  --green-bright: #64ffda;
+  --lightest-slate: #ccd6f6;
+  --lightest-navy:  #233554;
+}
+.list-title {
+  font-family: "NTR", sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--lightest-slate);
+}
 
+.list-location {
+  font-family: "NTR", sans-serif;
+  font-size: 28px;
+  color: var(--green-bright);
+  font-weight: bold;
+}
+
+.list-duration {
+  font-family: "NTR", sans-serif;
+  font-size: 18px;
+  color: var(--slate);
+}
+
+#vertical-tabpanel {
+  margin-top: -28px;
+  padding-left: 25px;
+  text-align: left !important;
+}
+
+.experience .Row {
+  text-align: left;
+}
+.MuiTab-wrapper {
+  font-size: 16px;
+  text-align: left;
+  align-items: flex-start !important;
+  font-family: "NTR", sans-serif;
+}
+
+.MuiTypography-root {
+  text-align: left;
+}
+
+.MuiButtonBase-root {
+  outline: none !important;
+  color: var(--lightest-slate) !important;
+}
+
+.PrivateTabIndicator-colorSecondary-5 {
+  background-color: var(--green-bright) !important;
+}
+.jss5 {
+  background-color: var(--green-bright) !important;
+}
+.makeStyles-tabs-2 {
+  border-right: 1px solid var(--lightest-navy) !important;
+}
+#experience .MuiTab-root {
+  padding: 6px 20px;
+}
+.MuiButtonBase-root:focus {
+  color: var(--green-bright) !important;
+}
+
+ul {
+  list-style: none;
+  margin-left: -40px;
+}
+
+.description li::before {
+  content: "▹ ";
+  color: var(--green-bright);
+  position: absolute;
+  left: 0;
+}
+
+.description li {
+  position: relative;
+  padding-left: 30px;
+  padding-bottom: 16px;
+  font-size: 18px;
+  color: var(--slate);
+}
+
+.description {
+  padding-top: 24px;
+  max-width: 650px;
+  font-family: "NTR", sans-serif;
+  font-size: 20px;
+}
+
+.description a,
+.description b {
+  font-size: 19px;
+  font-weight: bold;
+}
 
 /************ Projects CSS ************/
 .project {
