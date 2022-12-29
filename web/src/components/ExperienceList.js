@@ -11,6 +11,7 @@ function TabPanel(props) {
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
+      display='flex'
       {...other}
     >
       {value === index && (
@@ -109,15 +110,13 @@ export const ProfessionalList = () => {
   var list = professionalExp;
 
   return (
-    <Box
-      sx={{ flexGrow: 29, bgcolor: 'none', display: 'flex', height: 500 }}
-    >
+    <div id="projBox">
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: 'divider', float: 'left' }}
       >
           {Object.keys(list).map((key, i) => (
               <Tab label={key} {...a11yProps(i)} />
@@ -141,7 +140,7 @@ export const ProfessionalList = () => {
               </ul>
           </TabPanel>
       ))}
-    </Box>
+    </div>
   );
   
 }
@@ -156,15 +155,13 @@ export const EducationList = () => {
   var list = educationExp;
 
   return (
-    <Box
-      sx={{ flexGrow: 29, bgcolor: 'none', display: 'flex', height: 500 }}
-    >
+    <div id="projBox">
       <Tabs
         orientation="vertical"
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        sx={{ borderRight: 1, borderColor: 'divider' }}
+        sx={{ borderRight: 1, borderColor: 'divider', float: 'left' }}
       >
           {Object.keys(list).map((key, i) => (
               <Tab label={key} {...a11yProps(i)} />
@@ -188,7 +185,7 @@ export const EducationList = () => {
               </ul>
           </TabPanel>
       ))}
-    </Box>
+    </div>
   );
   
 }

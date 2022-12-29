@@ -351,8 +351,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .experience {
   padding: 80px 0;
   position: relative;
-  background-color: black;
-  min-height: 60vh;
+  background-color: none;
 }
 
 .experience h2 {
@@ -366,13 +365,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
-  margin: 14px auto 30px auto;
-  text-align: center;
-  width: 56%;
+  /* margin: 14px auto 30px auto; */
+  width: 100%;
+  padding-left: 2em;
 }
 .experience .nav.nav-pills {
   width: 75%;
-  margin: 0 auto;
+  margin: 1.75em auto;
   border-radius: 50px;
   background-color: rgb(255 255 255 / 10%);
   overflow: hidden;
@@ -460,6 +459,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 #vertical-tabpanel {
   margin-top: -28px;
   padding-left: 25px;
+  text-align: left !important;
 }
 
 .MuiTab-wrapper {
@@ -484,11 +484,31 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-right: 1px solid var(--lightest-navy) !important;
 }
 #experience .MuiTab-root {
-  justify-content: left !important;
   padding: 6px 20px;
 }
+
+.tab-content {
+  display: flex;
+}
+
+[role=tabpanel] {
+  width: 100%;
+}
+
 .MuiButtonBase-root:focus {
   color: var(--green-bright) !important;
+}
+
+#projBox {
+  float: left;
+  display: flex;
+  flex-grow: 1;
+  background-color: none;
+  height: 22rem;
+}
+
+.MuiBox-root {
+  padding: 0 !important ;
 }
 
 ul {
@@ -522,7 +542,7 @@ ul {
 .project {
   padding: 80px 0;
   position: relative;
-  background-color: black;
+  background-color: none;
 }
 .project h2 {
 	font-size: 45px;

@@ -67,8 +67,8 @@ export const ProjectCard = ({ title, description, imgUrl}) => {
         <Col sm={6} md={4}>
             <div className="proj-imgbx">
                 <img src={imgUrl} />
-                <div className="proj-txtx" onClick={() => handleOpen()}>
-                    <h4>{title}</h4>
+                <div className="proj-txtx">
+                    <h4 onClick={() => handleOpen()}>{title}</h4>
                     <span>{description}</span>
                 </div>
                 <Modal
@@ -81,6 +81,7 @@ export const ProjectCard = ({ title, description, imgUrl}) => {
                         <Box sx={style}>
                             <h4 id="modal-title">{title}</h4>
                             <span id="modal-text">Lorem Ipsum</span>
+                            {/* find a way to render an HTML file directly */}
                         </Box>
                     </Fade>
                 </Modal>
