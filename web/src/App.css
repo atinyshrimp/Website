@@ -367,7 +367,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.5em;
   /* margin: 14px auto 30px auto; */
   width: 100%;
-  padding-left: 2em;
+  padding-left: 3.5em;
 }
 .experience .nav.nav-pills {
   width: 75%;
@@ -488,6 +488,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .tab-content {
+  padding-top: 2rem;
   display: flex;
 }
 
@@ -504,10 +505,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: flex;
   flex-grow: 1;
   background-color: none;
-  height: 22rem;
+  height: 19rem;
 }
 
-.MuiBox-root {
+.experience .MuiBox-root {
   padding: 0 !important ;
 }
 
