@@ -460,21 +460,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 #vertical-tabpanel {
   margin-top: -28px;
   padding-left: 25px;
-  text-align: left !important;
 }
 
-.experience .Row {
-  text-align: left;
-}
 .MuiTab-wrapper {
   font-size: 16px;
   text-align: left;
   align-items: flex-start !important;
   font-family: "NTR", sans-serif;
-}
-
-.MuiTypography-root {
-  text-align: left;
 }
 
 .MuiButtonBase-root {
@@ -492,6 +484,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-right: 1px solid var(--lightest-navy) !important;
 }
 #experience .MuiTab-root {
+  justify-content: left !important;
   padding: 6px 20px;
 }
 .MuiButtonBase-root:focus {
@@ -523,12 +516,6 @@ ul {
   max-width: 650px;
   font-family: "NTR", sans-serif;
   font-size: 20px;
-}
-
-.description a,
-.description b {
-  font-size: 19px;
-  font-weight: bold;
 }
 
 /************ Projects CSS ************/
@@ -641,6 +628,7 @@ ul {
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 1.1em;
+  cursor: pointer;
 }
 .proj-txtx span {
   font-style: italic;

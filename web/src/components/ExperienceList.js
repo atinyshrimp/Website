@@ -10,7 +10,7 @@ function TabPanel(props) {
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
-      // aria-labelledby={`vertical-tab-${index}`}
+      aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
       {value === index && (
@@ -110,7 +110,7 @@ export const ProfessionalList = () => {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'none', display: 'flex', height: 500 }}
+      sx={{ flexGrow: 29, bgcolor: 'none', display: 'flex', height: 500 }}
     >
       <Tabs
         orientation="vertical"
@@ -157,7 +157,7 @@ export const EducationList = () => {
 
   return (
     <Box
-      sx={{ flexGrow: 1, bgcolor: 'none', display: 'flex', height: 500 }}
+      sx={{ flexGrow: 29, bgcolor: 'none', display: 'flex', height: 500 }}
     >
       <Tabs
         orientation="vertical"

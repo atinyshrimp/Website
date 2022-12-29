@@ -1,5 +1,5 @@
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
-import { EducationList, ExperienceList, ProfessionalList } from "./ExperienceList";
+import { EducationList, ProfessionalList } from "./ExperienceList";
 import education from "../assets/img/graduation-cap.svg"
 import professional from "../assets/img/briefcase.svg"
 
@@ -10,7 +10,6 @@ export const Experience = () => {
                 <Row>
                     <Col>
                         <h2>Experiences</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
                         <Tab.Container id="exp-tabs" defaultActiveKey="first">
                             <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                 <Nav.Item>
@@ -34,7 +33,7 @@ export const Experience = () => {
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="second">
                                     <Row>
-                                        <ProfessionalList/>
+                                        <ProfessionalList />
                                     </Row>
                                 </Tab.Pane>
                             </Tab.Content>
