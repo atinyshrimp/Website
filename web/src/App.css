@@ -665,3 +665,22 @@ ul {
   right: 0;
   z-index: -4;
 }
+
+/************ Footer CSS ************/
+#credits {
+  margin: 8rem 0 4.0rem 0; 
+  text-align: center;
+}
+
+#credits a {
+  text-decoration: none;
+  color: #AA367C;
+}
+
+#credits a:hover {
+  color: #be5996;
+}
+
+#credits a:active {
+  color: #711b4f;
+}
