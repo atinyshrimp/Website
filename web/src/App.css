@@ -500,7 +500,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: var(--green-bright) !important;
 }
 
-#projBox {
+#expBox {
   float: left;
   display: flex;
   flex-grow: 1;

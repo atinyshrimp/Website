@@ -110,7 +110,7 @@ export const ProfessionalList = () => {
   var list = professionalExp;
 
   return (
-    <div id="projBox">
+    <div id="expBox">
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -155,7 +155,7 @@ export const EducationList = () => {
   var list = educationExp;
 
   return (
-    <div id="projBox">
+    <div id="expBox">
       <Tabs
         orientation="vertical"
         variant="scrollable"
