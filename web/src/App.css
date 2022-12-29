@@ -81,6 +81,7 @@ p.success {
 p.danger {
 	color: red;
 }
+
 /************ Navbar CSS ************/
 nav.navbar {
   padding: 18px 0;
@@ -657,6 +658,7 @@ ul {
   font-size: 15px;
   letter-spacing: 0.8px;
 }
+
 .background-image-right {
   top: 20%;
   position: absolute;
@@ -666,10 +668,30 @@ ul {
   z-index: -4;
 }
 
+
+#projects .background-image-left {
+  top: 20%;
+  position: absolute;
+  bottom: 0;
+  width: 35%;
+  right: 0;
+  z-index: -4;
+}
+
 /************ Footer CSS ************/
+footer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0 !important; 
+  padding-bottom: 0 !important;
+}
+
 #credits {
-  margin: 8rem 0 4.0rem 0; 
+  margin: 100px 0 0 0 !important; 
   text-align: center;
+  width: 100%;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
 }
 
 #credits a {
