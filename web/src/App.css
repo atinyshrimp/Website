@@ -651,12 +651,31 @@ ul {
   letter-spacing: 0.8px;
   line-height: 1.1em;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
+.proj-txtx h4:hover {
+  font-size: 34px;
+}
+
 .proj-txtx span {
   font-style: italic;
   font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.8px;
+}
+
+.link-icons {
+  padding-top: 1rem;
+}
+
+.link-icons a {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  margin-right: 6px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .background-image-right {

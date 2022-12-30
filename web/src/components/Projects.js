@@ -9,16 +9,22 @@ export const Projects = () => {
             title: "Image processing app",
             description: "C#",
             imgUrl: projImg1,
+            git: "https://github.com/atinyzen/Image-processing-tool",
+            link: ""
         },
         {
             title: "Scrabble",
             description: "C#",
             imgUrl: projImg1,
+            git: "",
+            link: ""
         },
         {
             title: "Prison Break",
             description: "Python",
             imgUrl: projImg1,
+            git: "",
+            link: ""
         }
     ];
 
@@ -27,11 +33,15 @@ export const Projects = () => {
             title: "PIX2",
             description: "",
             imgUrl: projImg1,
+            git: "",
+            link: "https://www.esilv.fr/formations/projets/projet-dimagination-et-dexploration-2/"
         },
         {
             title: "PIX1 - Leowind",
             description: "",
             imgUrl: projImg1,
+            git: "",
+            link: "https://www.esilv.fr/formations/projets/projet-dimagination-et-dexploration-1/"
         }
     ];
 

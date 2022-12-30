@@ -1,12 +1,14 @@
-import { Fade } from "@mui/material"
 import PropTypes from "prop-types";
 import clsx from "clsx";
+import { ModalUnstyled } from "@mui/base";
+import { Fade } from "@mui/material"
 import { Box, styled } from "@mui/system";
 import React, { useState } from "react"
 import { Col } from "react-bootstrap"
-import { ModalUnstyled } from "@mui/base";
+import github from "../assets/img/github.svg";
+import extLink from "../assets/img/link-alt.svg";
 
-export const ProjectCard = ({ title, description, imgUrl}) => {
+export const ProjectCard = ({ title, description, imgUrl, git, link }) => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
@@ -51,25 +53,36 @@ export const ProjectCard = ({ title, description, imgUrl}) => {
     `;
 
     const style = (theme) => ({
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: 400,
-        height: 'fit-content',
-        backgroundColor:  '#0A1929',
-        border: '2px solid currentColor',
-        boxShadow: 24,
-        padding: '16px 32px 24px 32px',
-      });
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: 400,
+      height: 'fit-content',
+      backgroundColor:  '#0A1929',
+      border: '2px solid currentColor',
+      boxShadow: 24,
+      padding: '16px 32px 24px 32px',
+    });
 
-    return (
+    
+      return (
         <Col sm={6} md={4}>
             <div className="proj-imgbx">
                 <img src={imgUrl} />
                 <div className="proj-txtx">
                     <h4 onClick={() => handleOpen()}>{title}</h4>
                     <span>{description}</span>
+                    <div className="link-icons">
+                      <a href={git} target="_blank" id="github"
+                      style={{display: git === "" ? 'none' : ''}}>
+                        <img src={github}/>
+                      </a>
+                      <a href={link} target="_blank" id="link"
+                      style={{display: link === "" ? "none" : ""}}>
+                        <img src={extLink}/>
+                      </a>
+                    </div>
                 </div>
                 <Modal
                 open={open}
@@ -88,4 +101,5 @@ export const ProjectCard = ({ title, description, imgUrl}) => {
             </div>
         </Col>
     )
+    document.getElementById('github').style.display = git != "" ? "none" : "";
 }
