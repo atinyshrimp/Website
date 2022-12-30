@@ -65,7 +65,6 @@ export const ProjectCard = ({ title, description, imgUrl, git, link }) => {
       padding: '16px 32px 24px 32px',
     });
 
-    
       return (
         <Col sm={6} md={4}>
             <div className="proj-imgbx">
@@ -92,14 +91,13 @@ export const ProjectCard = ({ title, description, imgUrl, git, link }) => {
                 >
                     <Fade in={open} timeout={300}>
                         <Box sx={style}>
-                            <h4 id="modal-title">{title}</h4>
-                            <span id="modal-text">Lorem Ipsum</span>
-                            {/* find a way to render an HTML file directly */}
+                          <h4 id="modal-title">{title}</h4>
+                          <span id="modal-text">Lorem Ipsum</span>
+                          {/* find a way to render an HTML file directly */}
                         </Box>
                     </Fade>
                 </Modal>
             </div>
         </Col>
     )
-    document.getElementById('github').style.display = git != "" ? "none" : "";
 }
