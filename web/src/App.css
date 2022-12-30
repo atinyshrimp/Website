@@ -679,7 +679,7 @@ ul {
 }
 
 /************ Footer CSS ************/
-footer {
+.footer {
   display: flex;
   align-items: center;
   margin-bottom: 0 !important; 

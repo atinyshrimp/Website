@@ -1,4 +1,4 @@
-import { Fade, Modal } from "@mui/material"
+import { Fade } from "@mui/material"
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { Box, styled } from "@mui/system";
