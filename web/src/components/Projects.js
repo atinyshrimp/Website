@@ -10,21 +10,33 @@ export const Projects = () => {
             description: "C#",
             imgUrl: projImg1,
             git: "https://github.com/atinyzen/Image-processing-tool",
-            link: ""
+            link: "",
+            article:`
+            <div class='modal-header'>
+                <h4>Image processing app</h4>
+            </div>
+            <hr>
+            <span>Short description</span>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Facere odit est dolore accusantium corporis.</p>
+            `
         },
         {
             title: "Scrabble",
             description: "C#",
             imgUrl: projImg1,
             git: "",
-            link: ""
+            link: "",
+            article: `
+            `
         },
         {
             title: "Prison Break",
             description: "Python",
             imgUrl: projImg1,
             git: "",
-            link: ""
+            link: "",
+            article: `
+            `
         }
     ];
 
@@ -34,14 +46,18 @@ export const Projects = () => {
             description: "",
             imgUrl: projImg1,
             git: "",
-            link: "https://www.esilv.fr/formations/projets/projet-dimagination-et-dexploration-2/"
+            link: "https://www.esilv.fr/formations/projets/projet-dimagination-et-dexploration-2/",
+            article: `
+            `
         },
         {
             title: "PIX1 - Leowind",
             description: "",
             imgUrl: projImg1,
             git: "",
-            link: "https://www.esilv.fr/formations/projets/projet-dimagination-et-dexploration-1/"
+            link: "https://www.esilv.fr/formations/projets/projet-dimagination-et-dexploration-1/",
+            article: `
+            `
         }
     ];
 
