@@ -62,7 +62,7 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
     backgroundColor:  '#0A1929',
     border: '2px solid currentColor',
     boxShadow: 24,
-    padding: '16px 32px 24px 32px',
+    padding: '24px 32px 24px 32px',
   });
 
   return (
