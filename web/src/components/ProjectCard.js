@@ -56,9 +56,9 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
     position: 'absolute',
     top: '50%',
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -45%)',
     width: 800,
-    height: 'fit-content',
+    height: 720,
     backgroundColor:  '#0A1929',
     border: '2px solid currentColor',
     boxShadow: 24,
@@ -73,11 +73,11 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
             <h4 onClick={() => handleOpen()}>{title}</h4>
             <span>{description}</span>
             <div className="link-icons">
-              <a href={git} target="_blank"
+              <a href={git} target="_blank" id="github"
               style={{display: git === "" ? 'none' : ''}}>
                 <img src={github}/>
               </a>
-              <a href={link} target="_blank"
+              <a href={link} target="_blank" id="link"
               style={{display: link === "" ? "none" : ""}}>
                 <img src={extLink}/>
               </a>
@@ -91,8 +91,9 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
         >
           <Fade in={open} timeout={300} >
             <Box sx={style} >
-              {/* <Article html={article} /> */}
               <div id="modal" slot={ModalStyle} dangerouslySetInnerHTML={{__html: article}}>
+                {/* <h4 id="modal-title">{title}</h4>
+                <span id="modal-text">Lorem Ipsum</span> */}
               </div>
             </Box>
           </Fade>
