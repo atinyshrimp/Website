@@ -58,7 +58,7 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 800,
-    height: 600,
+    height: 'fit-content',
     backgroundColor:  '#0A1929',
     border: '2px solid currentColor',
     boxShadow: 24,
@@ -73,23 +73,16 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
             <h4 onClick={() => handleOpen()}>{title}</h4>
             <span>{description}</span>
             <div className="link-icons">
-              <a href={git} target="_blank" id="github"
+              <a href={git} target="_blank"
               style={{display: git === "" ? 'none' : ''}}>
                 <img src={github}/>
               </a>
-              <a href={link} target="_blank" id="link"
+              <a href={link} target="_blank"
               style={{display: link === "" ? "none" : ""}}>
                 <img src={extLink}/>
               </a>
             </div>
         </div>
-        {/* <Modal show={open} onHide={() => handleClose()}>
-          <Modal.Header closeButton>
-            <Modal.Title>{title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body dangerouslySetInnerHTML={{__html: article}}></Modal.Body>
-          <Modal.Footer />
-        </Modal> */}
         <Modal
         open={open}
         onClose={handleClose}
@@ -100,8 +93,6 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
             <Box sx={style} >
               {/* <Article html={article} /> */}
               <div id="modal" slot={ModalStyle} dangerouslySetInnerHTML={{__html: article}}>
-                {/* <h4 id="modal-title">{title}</h4>
-                <span id="modal-text">Lorem Ipsum</span> */}
               </div>
             </Box>
           </Fade>
