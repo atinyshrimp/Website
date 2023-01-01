@@ -40,27 +40,36 @@ const professionalExp = {
   /* most recent to oldest */
   SNCF: {
     title: "Research Engineer Intern @",
-    duration: "jun 2022 - aug. 2022",
+    duration: "JUN 2022 - AUG 2022",
     desc: [
-      "a",
-      "b",
-      "c"
+      "Made an inventory of the standards used by type of conductor",
+      "Identified canceled standards and researched alternative standards",
+      "Specified test types and sanctions for technical validation by type of conductor",
+      "Synthesized (e.g.: Excel table) the standards and the technical validation tests by type of conductor",
+      "Mapped out the gathered information in a Word document shared and used by the whole research section"
     ]
   },
 
   "Avenir APEI": {
     title: "Volunteer @",
-    duration: "",
+    duration: "APR 2021",
     desc: [
-      "a",
-      "b"
+      "70-hour volunteer work",
+      "Acted as a holiday camp activity leader to mentally handicapped children during Easter holidays",
+      "Welcomed the children and their parents in the morning & sent them away in the evening",
+      "Supervised the different activities carried out during the day"
     ]
   },
 
   "Visages du Monde": {
     title: "Intern @",
-    duration: "",
-    desc: []
+    duration: "NOV 2016 - DEC 2016",
+    desc: [
+      "Greeted visitors of the media library",
+      "Informed visitors about the operation of the media library",
+      "Put away the medias in their respective storage",
+      "Redacted an article for the media library's website"
+    ]
   }
   
 };
@@ -68,32 +77,33 @@ const professionalExp = {
 const educationExp = {
   /* most to recent to oldest */
   ESILV: {
-    title: "Master's degree @",
-    duration: "since Sept. 2020",
+    title: "Master's degree in Engineering @",
+    duration: "SEPT 2020 - NOW",
     desc: [
-      "Soft Skills formation",
+      "Following a continuous Soft Skills formation",
       "Yearly projects in accordance with the modules seen throughout the year",
-      "Double degree with the Management school, EMLV (e.g. tab under 'ESILV')"
+      "Completing a double degree with the Management school, EMLV (e.g. tab under 'ESILV')"
     ]
   },
   
   EMLV: {
+    /* International Business, Digital HR, Corporate Finance or Finance & Investment */
     title: "Master's degree @",
-    duration: "since Sept. 2020",
+    duration: "SEPT 2020 - NOW",
     desc: [
-      "a",
-      "b"
+      "Followed courses in Accounting, Fundamental Marketing, Corporate Strategy and Supply Chain Management",
+      "Following courses in Entrepreneurship and International & European Law"
     ]
   },
 
   "Lycée Jules Verne": {
     title: "High School Diploma @",
-    duration: "sept. 2017 - jun 2020",
+    duration: "SEPT 2017 - JUN 2020",
     desc: [
       "Obtained with distinctions",
-      "Class president in 11th & 12th year",
-      "Série SVT",
-      "Spécialité ISN (Informatique & Sciences du Numérique)"
+      "Class representative in 11th & 12th year",
+      "Baccaulauréat S-SVT (Science stream, biology focus)",
+      "Chose Computer Science & Digital Sciences (ISN) specialty in 12th grade"
     ]
   }
 };
