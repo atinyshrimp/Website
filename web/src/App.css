@@ -15,6 +15,51 @@
 	font-weight: 400;
 }
 
+:root {
+  --bdazzled-blue: #2C5784;
+  --bistre: #251101;
+  --glossy-grape: #A499BE;
+  --green-bright: #64ffda;
+  --independence: #414361;
+  --lightest-navy:  #233554;
+  --lightest-slate: #ccd6f6;
+  --middle-blue-green: #99D5C9;
+  --midnight: #5B1865;
+  --oxford-blue: #05204A;
+  --rich-black: #02020A;
+  --slate: #8892b0;
+  --spanish-bistre: #717744;
+  --taupe-grey: #988B8E;
+  --tyrian-purple: #470024;
+}
+
+/* width */
+::-webkit-scrollbar {
+  background-color: #B8B8B8;
+  width: 5px;
+}
+
+/* track */
+::-webkit-scrollbar-track {
+  background-color: #0A1929;
+}
+
+/* handle */
+::-webkit-scrollbar-thumb {
+  background-color: #215286;
+  border-radius: 3px;
+}
+ /* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #B8B8B8;
+}
+
+/* handle when clicked */
+::-webkit-scrollbar-thumb:active {
+  background-color: #7e7c7c;
+}
+
+
 /************ Default CSS ************/
 * {
   margin: 0;
@@ -140,13 +185,13 @@ span.navbar-text {
     width: 42px;
     height: 42px;
     position: absolute;
-    background-color: #ffffff;
+    background-color: var(--lightest-slate);
     border-radius: 50%;
     transform: scale(0);
-	transition: 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
 .social-icon a:hover::before {
-    transform: scale(1);
+  transform: scale(1);
 }
 .social-icon a img {
 	width: 40%;
@@ -175,7 +220,7 @@ span.navbar-text {
   width: 0%;
   height: 100%;
   position: absolute;
-  background-color: #fff;
+  background-color: var(--lightest-slate);
   left: 0;
   top: 0;
   z-index: -1;
@@ -193,7 +238,7 @@ span.navbar-text {
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
 	outline: none;
-    box-shadow: none;
+  box-shadow: none;
 }
 nav.navbar .navbar-toggler-icon {
   width: 24px;
@@ -286,23 +331,19 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1;
 }
 
-/* .banner button:hover svg {
-  margin-top: 15px;
-} */
-
 .banner img {
   animation: updown 3s linear infinite;
 }
 @keyframes updown {
-    0% {
-        transform: translateY(-20px);
-    }
-    50% {
-        transform: translateY(20px);
-    }
-    100% {
-        transform: translateY(-20px);
-    }
+  0% {
+      transform: translateY(-20px);
+  }
+  50% {
+      transform: translateY(20px);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
 }
 .txt-rotate > .wrap {
   border-right: 0.08em solid #666;
@@ -410,21 +451,21 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .experience .nav.nav-pills .nav-link::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
 }
 .experience .nav.nav-pills .nav-link.active::before {
-    width: 100% !important;
+  width: 100% !important;
 }
 .experience .nav.nav-pills .nav-link.active {
-    border: 1px solid rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
 }
 .nav-link#exp-tabs-tab-first {
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -436,12 +477,6 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 /************ Experience Tabs CSS ************/
-:root {
-  --slate: #8892b0;
-  --green-bright: #64ffda;
-  --lightest-slate: #ccd6f6;
-  --lightest-navy:  #233554;
-}
 .list-title {
   font-family: "NTR", sans-serif;
   font-size: 28px;
@@ -452,7 +487,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .list-location {
   font-family: "NTR", sans-serif;
   font-size: 28px;
-  color: var(--green-bright);
+  color: var(--midnight);
   font-weight: bold;
 }
 
@@ -590,21 +625,21 @@ ul {
   z-index: 0;
 }
 .project .nav.nav-pills .nav-link::before {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 100%;
-    background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-    top: 0;
-    left: 0;
-    z-index: -1;
-    transition: 0.3s ease-in-out;
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
 }
 .project .nav.nav-pills .nav-link.active::before {
-    width: 100% !important;
+  width: 100% !important;
 }
 .project .nav.nav-pills .nav-link.active {
-    border: 1px solid rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 1);
 }
 .nav-link#projects-tabs-tab-first {
   border: 1px solid rgba(255, 255, 255, 0.5);

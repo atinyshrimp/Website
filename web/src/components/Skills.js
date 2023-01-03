@@ -1,9 +1,10 @@
 import { Col, Container, Row } from "react-bootstrap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import meter1 from "../assets/img/meter1.svg";
-import meter2 from "../assets/img/meter2.svg";
-import meter3 from "../assets/img/meter3.svg";
+import meter1 from "../assets/img/users.svg";
+import meter2 from "../assets/img/world.svg";
+import meter3 from "../assets/img/laptop-code.svg";
+import meter4 from "../assets/img/browser.svg";
 import colorSharp from "../assets/img/color-sharp.png";
 
 export const Skills= () => {
@@ -34,25 +35,29 @@ export const Skills= () => {
                     <Col>
                         <div className="skill-bx">
                             <h2>Skills</h2>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry
-                                <br></br>Lorem Ipsum is simply dummy text of the printing and typesetting industry
+                            <p>What I can do
+                                <br></br>(also what I am currently learning to do)
                             </p>
                             <Carousel responsive={responsive} infinite={true} className="skill-slider">
                                 <div className="item">
-                                    <img src={meter1} alt="Image" />
-                                    <h5>Accounting</h5>
+                                    <img src={meter1} alt="Image" style={{color: '#fff'}}/>
+                                    <h4>Team Management</h4>
+                                    <h6>Budgeting, Organization</h6>
                                 </div>
                                 <div className="item">
                                     <img src={meter2} alt="Image" />
-                                    <h5>Languages</h5>
+                                    <h4>Languages</h4>
+                                    <h6>French, English, Korean, Japanese</h6>
                                 </div>
                                 <div className="item">
                                     <img src={meter3} alt="Image" />
-                                    <h5>C#, Python</h5>
+                                    <h4>Programming</h4>
+                                    <h6>C#, Python</h6> 
                                 </div>
                                 <div className="item">
-                                    <img src={meter1} alt="Image" />
-                                    <h5>Web Development</h5>
+                                    <img src={meter4} alt="Image" />
+                                    <h4>Web Development</h4>
+                                    <h6>HTML, CSS, JavaScript (React.js)</h6>
                                 </div>
                             </Carousel>
                         </div>
