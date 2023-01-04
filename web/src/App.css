@@ -186,7 +186,7 @@ span.navbar-text {
     width: 42px;
     height: 42px;
     position: absolute;
-    background-color: var(--lightest-slate);
+    background-color: #fff;
     border-radius: 50%;
     transform: scale(0);
     transition: 0.3s ease-in-out;
@@ -221,7 +221,7 @@ span.navbar-text {
   width: 0%;
   height: 100%;
   position: absolute;
-  background-color: var(--lightest-slate);
+  background-color: #fff;
   left: 0;
   top: 0;
   z-index: -1;
@@ -291,7 +291,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-weight: 700;
   letter-spacing: 0.8px;
   padding: 8px 10px;
-  background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%);
+  background: linear-gradient(to left, #654ea3, #eaafc8);
+  /* background: linear-gradient(90.21deg, rgba(170, 54, 124, 0.5) -5.91%, rgba(74, 47, 189, 0.5) 111.58%); */
   border: 1px solid rgba(255, 255, 255, 0.5);
   font-size: 20px;
   margin-bottom: 16px;
@@ -486,7 +487,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .list-location {
   font-family: "NTR", sans-serif;
   font-size: 28px;
-  color: var(--glossy-grape);
+  color: var(--midnight);
   font-weight: bold;
 }
 
@@ -559,7 +560,7 @@ ul {
 
 .description li::before {
   content: "▹ ";
-  color: var(--green-bright);
+  color: var(--midnight);
   position: absolute;
   left: 0;
 }
