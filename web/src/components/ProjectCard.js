@@ -57,8 +57,8 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -45%)',
-    width: 800,
-    height: 720,
+    width: '47.87vw', /* 800 */
+    height: '84.01vh', /* 720 */
     backgroundColor:  '#0A1929',
     border: '2px solid currentColor',
     boxShadow: 24,

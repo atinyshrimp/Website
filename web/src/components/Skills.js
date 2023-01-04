@@ -5,6 +5,7 @@ import meter1 from "../assets/img/users.svg";
 import meter2 from "../assets/img/world.svg";
 import meter3 from "../assets/img/laptop-code.svg";
 import meter4 from "../assets/img/browser.svg";
+import meter5 from "../assets/img/cubes.svg";
 import colorSharp from "../assets/img/color-sharp.png";
 
 export const Skills= () => {
@@ -40,19 +41,24 @@ export const Skills= () => {
                             </p>
                             <Carousel responsive={responsive} infinite={true} className="skill-slider">
                                 <div className="item">
-                                    <img src={meter1} alt="Image" style={{color: '#fff'}}/>
-                                    <h4>Team Management</h4>
-                                    <h6>Budgeting, Organization</h6>
-                                </div>
-                                <div className="item">
                                     <img src={meter2} alt="Image" />
                                     <h4>Languages</h4>
                                     <h6>French, English, Korean, Japanese</h6>
                                 </div>
                                 <div className="item">
+                                    <img src={meter5} alt="Image" />
+                                    <h4>3D Modeling</h4>
+                                    <h6>SolidWorks, Blender</h6>
+                                </div>
+                                <div className="item">
                                     <img src={meter3} alt="Image" />
                                     <h4>Programming</h4>
                                     <h6>C#, Python</h6> 
+                                </div>
+                                <div className="item">
+                                    <img src={meter1} alt="Image" style={{color: '#fff'}}/>
+                                    <h4>Team Management</h4>
+                                    <h6>Budgeting, Organization</h6>
                                 </div>
                                 <div className="item">
                                     <img src={meter4} alt="Image" />

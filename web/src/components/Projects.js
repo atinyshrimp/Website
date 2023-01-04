@@ -37,8 +37,7 @@ export const Projects = () => {
             <hr>
             <div class='modal-content'>
                 <i id='description'>
-                    A project for my 2nd year of engineering school<br>
-                    It is able to apply filters, convolution matrices to Bitmap images, and more.
+                    A project able to apply filters, convolution matrices to Bitmap images, and more.
                 </i>
                 <br>
                 <div id='content'>
@@ -191,7 +190,7 @@ export const Projects = () => {
                 <Row>
                     <Col>
                         <h2>Projects</h2>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                        <p>Click on the title of the project to get more insight on it</p>
                         <Tab.Container id="projects-tabs" defaultActiveKey="first">
                             <Nav variant="pills" className="nav-pills mb-5 justify-content-center align-items-center" id="pills-tab">
                                 <Nav.Item>

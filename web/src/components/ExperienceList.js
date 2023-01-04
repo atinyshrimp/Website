@@ -2,15 +2,36 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Tab, Tabs, Typography } from '@mui/material';
 
+const isHorizontal = window.innerWidth < 600;
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
-  return (
-    <div
+  if (!isHorizontal)
+  {
+    return (
+      <div
+        role="tabpanel"
+        hidden={value !== index}
+        id={`vertical-tabpanel-${index}`}
+        aria-labelledby={`vertical-tab-${index}`}
+        display='flex'
+        {...other}
+      >
+        {value === index && (
+          <Box sx={{ p: 3 }}>
+            <Typography>{children}</Typography>
+          </Box>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <div
       role="tabpanel"
       hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-with-tab-${index}`}
       display='flex'
       {...other}
     >
@@ -20,7 +41,8 @@ function TabPanel(props) {
         </Box>
       )}
     </div>
-  );
+    );
+  }
 }
 
 TabPanel.propTypes = {
@@ -30,10 +52,18 @@ TabPanel.propTypes = {
 };
 
 function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
+  if (!isHorizontal)
+  {
+    return {
+      id: `vertical-tab-${index}`,
+      'aria-controls': `vertical-tabpanel-${index}`,
+    };
+  } else {
+    return {
+      id: `full-width-tab-${index}`,
+      "aria-controls": `full-width-tabpanel-${index}`
+    };
+  }
 }
 
 const professionalExp = {
@@ -120,16 +150,16 @@ export const ProfessionalList = () => {
   var list = professionalExp;
 
   return (
-    <div id="expBox">
+    <Box id="expBox">
       <Tabs
-        orientation="vertical"
-        variant="scrollable"
+        orientation={!isHorizontal ? "vertical" : null}
+        variant={isHorizontal ? "fullWidth" : "scrollable"}
         value={value}
         onChange={handleChange}
         sx={{ borderRight: 1, borderColor: 'divider', float: 'left' }}
       >
           {Object.keys(list).map((key, i) => (
-              <Tab label={key} {...a11yProps(i)} />
+              <Tab label={isHorizontal ? `0${i}.` : key} {...a11yProps(i)} />
           ))}
       </Tabs>
       {Object.keys(list).map((key, i) => (
@@ -150,7 +180,7 @@ export const ProfessionalList = () => {
               </ul>
           </TabPanel>
       ))}
-    </div>
+    </Box>
   );
   
 }
@@ -167,15 +197,15 @@ export const EducationList = () => {
   return (
     <div id="expBox">
       <Tabs
-        orientation="vertical"
-        variant="scrollable"
+        orientation={!isHorizontal ? "vertical" : null}
+        variant={isHorizontal ? "fullWidth" : "scrollable"}
         value={value}
         onChange={handleChange}
         sx={{ borderRight: 1, borderColor: 'divider', float: 'left' }}
       >
           {Object.keys(list).map((key, i) => (
-              <Tab label={key} {...a11yProps(i)} />
-          ))}
+              <Tab label={isHorizontal ? `0${i}.` : key} {...a11yProps(i)} />
+              ))}
       </Tabs>
       {Object.keys(list).map((key, i) => (
           <TabPanel value={value} index={i}>
