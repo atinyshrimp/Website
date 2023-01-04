@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap"
 import { Download } from "react-bootstrap-icons";
-import headerImg from "../assets/img/header-img.svg";
+import headerImg from "../assets/img/Totoro.png";
 
 export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
@@ -45,11 +45,11 @@ export const Banner = () => {
             <Container>
                 <Row className="align-items-center">
                     <Col xs={12} md={6} xl={7}>
-                        <span className="tagline">Welcome to my Portfolio</span>
+                        <span className="tagline">she/her | INFJ-A</span>
                         <h1>{"Hi I'm Joyce ! "}
                         {/* <span>{text}</span> */}
                         </h1>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry</p>
+                        <p>I am a 20 year old engineering student located in France. My interests are video games, volleyball, playing music, and learning about languages & cultures</p>
                         <button onClick={() => console.log('connect')}>Get My Resume !<Download size={25}/></button>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
