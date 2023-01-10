@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap"
 import { Download } from "react-bootstrap-icons";
 import headerImg from "../assets/img/Totoro.png";
+import { CromerHourglass } from "./CromerHourglass";
 
 export const Banner = () => {
     const [loopNum, setLoopNum] = useState(0);
@@ -53,7 +54,8 @@ export const Banner = () => {
                         <button onClick={() => console.log('connect')}>Get My Resume !<Download size={25}/></button>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
-                        <img src={headerImg} alt="Header Img" />
+                        <CromerHourglass />
+                        {/* <img src={headerImg} alt="Header Img" /> */}
                     </Col>
                 </Row>
             </Container>
