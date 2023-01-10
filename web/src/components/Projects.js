@@ -199,9 +199,9 @@ export const Projects = () => {
                                 <Nav.Item>
                                     <Nav.Link eventKey="second">School Projects</Nav.Link>
                                 </Nav.Item>
-                                <Nav.Item>
+                                {/* <Nav.Item>
                                     <Nav.Link eventKey="third" disabled>Games</Nav.Link>
-                                </Nav.Item>
+                                </Nav.Item> */}
                             </Nav>
                             <Tab.Content>
                                 <Tab.Pane eventKey="first">
@@ -233,9 +233,8 @@ export const Projects = () => {
                                     </Row>
 
                                 </Tab.Pane>
-                                <Tab.Pane eventKey="third">
+                                {/* <Tab.Pane eventKey="third">
                                     <Row>
-                                        {/* to do when I will have published a game */}
                                     </Row>
                                     <div id="info">
                                         <a href="https://peaceandjoyce.itch.io/" target="_blank">
@@ -243,7 +242,7 @@ export const Projects = () => {
                                         </a>
                                         <div>The games are available here !</div>
                                     </div>
-                                </Tab.Pane>
+                                </Tab.Pane> */}
                             </Tab.Content>
                         </Tab.Container>
                     </Col>

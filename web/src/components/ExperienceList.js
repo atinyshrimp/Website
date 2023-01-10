@@ -156,7 +156,7 @@ export const ProfessionalList = () => {
         variant={isHorizontal ? "fullWidth" : "scrollable"}
         value={value}
         onChange={handleChange}
-        sx={{ borderRight: 1, borderColor: 'divider', float: 'left' }}
+        sx={{ borderRight: 1, borderColor: 'divider', float: 'left', '& .MuiTabs-indicator': {backgroundColor: '#A499BE'} }}
       >
           {Object.keys(list).map((key, i) => (
               <Tab label={isHorizontal ? `0${i}.` : key} {...a11yProps(i)} />
@@ -201,7 +201,7 @@ export const EducationList = () => {
         variant={isHorizontal ? "fullWidth" : "scrollable"}
         value={value}
         onChange={handleChange}
-        sx={{ borderRight: 1, borderColor: 'divider', float: 'left' }}
+        sx={{ borderRight: 1, borderColor: 'divider', float: 'left', '& .MuiTabs-indicator': {backgroundColor: '#A499BE'} }}
       >
           {Object.keys(list).map((key, i) => (
               <Tab label={isHorizontal ? `0${i}.` : key} {...a11yProps(i)} />
