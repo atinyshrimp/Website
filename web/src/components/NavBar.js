@@ -48,9 +48,9 @@ export const NavBar = () => {
                         <a href="https://www.github.com/atinyzen" target="_blank"><img src={navIcon3} alt="" /></a> 
                         <a href="mailto:joyce.lapilus@edu.devinci.fr" target="_blank"><img src={navIcon2} alt="" /></a> 
                     </div>
-                    <button className="vvd" onClick={() => console.log('connect')}>
+                    {/* <button className="vvd" onClick={() => console.log('connect')}>
                         <span>Let's Connect</span>
-                    </button>
+                    </button> */}
                 </span>
                 </Navbar.Collapse>
             </Container>

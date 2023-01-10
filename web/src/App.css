@@ -313,7 +313,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1.5em;
   width: 96%;
 }
-.banner button {
+.banner a {
   color: #fff;
   font-weight: 700;
   font-size: 20px;
@@ -321,6 +321,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   letter-spacing: 0.8px;
   display: flex;
   align-items: center;
+
+  text-decoration: none;
 }
 .banner button svg {
   font-size: 25px;
@@ -345,6 +347,12 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .txt-rotate > .wrap {
   border-right: 0.08em solid #666;
+}
+
+@media only screen and (max-width: 600px) {
+  .col-xl-5 {
+    padding-top: 3rem;
+  }
 }
 
 /************ Skills CSS ************/

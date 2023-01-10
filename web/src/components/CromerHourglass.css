@@ -1,22 +1,18 @@
-/* * {
-    border: 0;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-  :root {
+/* https://codepen.io/jkantner/details/wvWXyKG */
+
+:root {
     --bg: #e3e4e8;
     --fg: #2e3138;
-    --primary: #255ff4;
+    --primary: #2C5784;
     font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
   }
-  body {
+  .col-xl-5 {
     background: var(--bg);
     display: grid;
     font: 1em/1.5 sans-serif;
-    height: 100vh;
+    height: fit-content;
     place-items: center;
-  } */
+  }
   
   .hourglass, .hourglass:before, .hourglass:after {
     animation-duration: 5s;
@@ -113,7 +109,7 @@
   /* Dark mode */
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #17181c;
+      --bg: #02020a;
       --fg: #c7cad1;
     }
   }

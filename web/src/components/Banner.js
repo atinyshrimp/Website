@@ -51,7 +51,8 @@ export const Banner = () => {
                         {/* <span>{text}</span> */}
                         </h1>
                         <p>I am a 20 year old engineering student located in France. My interests are video games, volleyball, playing music, and learning about languages & cultures</p>
-                        <button onClick={() => console.log('connect')}>Get My Resume !<Download size={25}/></button>
+                        <a href="https://www.canva.com/design/DAFFFv0OScQ/Pid8hqsGuFsxCtusjXvW-w/view?utm_content=DAFFFv0OScQ&utm_campaign=designshare&utm_medium=link&utm_source=homepage_design_menu"
+                        target="_blank">Get My Resume !<Download size={25}/></a>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
                         <CromerHourglass />
