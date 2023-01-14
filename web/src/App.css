@@ -82,10 +82,14 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin: 0;
+  margin: 0 !important;
   padding: 0;
-  line-height: normal;
+  line-height: normal !important;
 }
+
+h4 { font-size: larger !important;}
+
+h6 { font-size: 0.67em !important; }
 
 p, a, li, button, ul {
   margin: 0;
@@ -393,11 +397,20 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 80%;
   margin: 0 auto;
   position: relative;
+  padding-bottom: 1rem;
 }
 
 .skill-slider .item img {
   width: 50%;
   margin: 0 auto 15px auto;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: calc(2% + 1px);
+}
+
+.react-multiple-carousel__arrow--right {
+  right: calc(2% + 1px);
 }
 
 .background-image-left {
@@ -520,13 +533,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .MuiTab-wrapper {
-  font-size: 16px;
   text-align: left;
   align-items: flex-start !important;
   font-family: "NTR", sans-serif;
 }
 
 .MuiButtonBase-root {
+  font-size: 16px !important;
   outline: none !important;
   color: var(--lightest-slate) !important;
 }
@@ -744,10 +757,6 @@ ul {
   letter-spacing: 0.8px;
 }
 
-.link-icons {
-  padding-top: 1rem;
-}
-
 .link-icons a {
   width: 20px;
   height: 20px;
@@ -836,8 +845,10 @@ ul {
 
 .modal-content {
   display: inline;
-  height: 88%;
+  height: calc(83% + 1vh);
+  max-height: 80vh;
   overflow-y: hidden;
+  font-size: 16px;
 }
 
 #content {
@@ -873,11 +884,11 @@ ul {
 
 @media only screen and (max-width: 600px) {
   .modal-content {
-    max-height: 70%;
+    max-height: 70vh;
   }
 
   #content {
-    max-height: inherit;
+    max-height: calc(inherit + 5vh);
   }
 }
 
@@ -890,6 +901,7 @@ ul {
 
 #credits {
   margin: 100px 0 0 0 !important; 
+  font-size: 16px;
   text-align: center;
   width: 100%;
 }
