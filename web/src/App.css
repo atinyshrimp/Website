@@ -739,7 +739,7 @@ ul {
   opacity: 1;
 }
 .proj-txtx h4 {
-  font-size: 30px;
+  font-size: 30px !important;
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 1.1em;
@@ -747,7 +747,7 @@ ul {
   transition: 0.3s ease-in-out;
 }
 .proj-txtx h4:hover {
-  font-size: 34px;
+  font-size: 34px !important;
 }
 
 .proj-txtx span {
@@ -758,8 +758,8 @@ ul {
 }
 
 .link-icons a {
-  width: 20px;
-  height: 20px;
+  width: 1.5rem;
+  /* height: 20px; */
   display: inline-flex;
   margin-right: 6px;
   align-items: center;
