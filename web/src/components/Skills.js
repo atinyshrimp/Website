@@ -37,18 +37,18 @@ export const Skills= () => {
                         <div className="skill-bx">
                             <h2>Skills</h2>
                             <p>What I can do
-                                <br></br>(also what I am currently learning to do)
+                                <br></br><span>(also what I am currently learning to do)</span>
                             </p>
                             <Carousel responsive={responsive} infinite={true} className="skill-slider">
                                 <div className="item">
                                     <img src={meter5} alt="Image" />
                                     <h4>3D Modeling</h4>
-                                    <h6>SolidWorks, Blender</h6>
+                                    <h6>SolidWorks, <span>Blender</span></h6>
                                 </div>
                                 <div className="item">
                                     <img src={meter2} alt="Image" />
                                     <h4>Languages</h4>
-                                    <h6>French, English, Korean, Japanese</h6>
+                                    <h6>French, English, <span>Korean</span>, <span>Japanese</span></h6>
                                 </div>
                                 <div className="item">
                                     <img src={meter3} alt="Image" />
@@ -62,7 +62,7 @@ export const Skills= () => {
                                 </div>
                                 <div className="item">
                                     <img src={meter4} alt="Image" />
-                                    <h4>Web Development</h4>
+                                    <h4><span>Web Development</span></h4>
                                     <h6>HTML, CSS, JavaScript (React.js)</h6>
                                 </div>
                             </Carousel>

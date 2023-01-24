@@ -380,6 +380,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   margin-top: -60px;
 }
 
+.skill-bx span {
+  color: var(--middle-blue-green);
+}
+
 .skill h2 {
   font-size: 45px;
   font-weight: 700;
