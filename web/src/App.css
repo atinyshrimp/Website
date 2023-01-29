@@ -855,14 +855,18 @@ ul {
 .modal-content {
   display: inline;
   height: calc(83% + 1vh);
-  max-height: 80vh;
-  overflow-y: hidden;
+    /* max-height: 80vh;
+    overflow-y: hidden; */
   font-size: 16px;
 }
 
 #content {
   height: 100%;
   overflow-y: auto;
+}
+
+#content p {
+  max-height: 51.04vh;
 }
 
 /* width */
