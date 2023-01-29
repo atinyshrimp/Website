@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Website/static/css/main.3dcd9759.css",
-    "main.js": "/Website/static/js/main.31e8dddd.js",
+    "main.css": "/Website/static/css/main.99324b7c.css",
+    "main.js": "/Website/static/js/main.9001f0a7.js",
     "static/js/787.d1d4a2c2.chunk.js": "/Website/static/js/787.d1d4a2c2.chunk.js",
-    "static/media/bmp_app.png": "/Website/static/media/bmp_app.61963b148fe02c9b4589.png",
+    "static/media/bmp_app.png": "/Website/static/media/bmp_app.8a4e25a36049ca11a16d.png",
     "static/media/Totoro.png": "/Website/static/media/Totoro.e82efd616417b2609638.png",
     "static/media/color-sharp.png": "/Website/static/media/color-sharp.bea361cfef80fefc2d1e.png",
     "static/media/color-sharp2.png": "/Website/static/media/color-sharp2.c87586c6c2f549cb4aa6.png",
-    "static/media/scrabble_img.png": "/Website/static/media/scrabble_img.c15d41622fd5454e4832.png",
     "static/media/pix2.jpg": "/Website/static/media/pix2.17ac2f77a930b7fcce7c.jpg",
-    "static/media/prison-break.png": "/Website/static/media/prison-break.80956f02dec3eb75fdfa.png",
+    "static/media/prison-break1.png": "/Website/static/media/prison-break1.e04837132910b59a9b65.png",
     "static/media/pix1.jpg": "/Website/static/media/pix1.ff1640ca5212707af7b2.jpg",
     "static/media/CentraNo2-Bold.ttf": "/Website/static/media/CentraNo2-Bold.2faff7f7d3fc92a2fcd9.ttf",
     "static/media/CentraNo2-Medium.ttf": "/Website/static/media/CentraNo2-Medium.f94be5b326d78bb32b95.ttf",
     "static/media/CentraNo2-Book.ttf": "/Website/static/media/CentraNo2-Book.2b143fa4b734a3584043.ttf",
     "static/media/project-img1.png": "/Website/static/media/project-img1.d593db3f12901bc685c2.png",
+    "static/media/scrabble_img1.png": "/Website/static/media/scrabble_img1.670a1831179bb9166aab.png",
     "static/media/logo_esilv.png": "/Website/static/media/logo_esilv.f40189bd7865731189fe.png",
     "static/media/revicons.eot": "/Website/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/Website/static/media/revicons.57fd05d4ae650374c8de.ttf",
@@ -32,12 +32,12 @@
     "static/media/users.svg": "/Website/static/media/users.7795d6f2fd5c926f934b050019e7142d.svg",
     "static/media/envelope.svg": "/Website/static/media/envelope.5314151e238c01d3e57e9cf8e06c6433.svg",
     "static/media/briefcase.svg": "/Website/static/media/briefcase.38577b0114c241938c14e0492c0359e8.svg",
-    "main.3dcd9759.css.map": "/Website/static/css/main.3dcd9759.css.map",
-    "main.31e8dddd.js.map": "/Website/static/js/main.31e8dddd.js.map",
+    "main.99324b7c.css.map": "/Website/static/css/main.99324b7c.css.map",
+    "main.9001f0a7.js.map": "/Website/static/js/main.9001f0a7.js.map",
     "787.d1d4a2c2.chunk.js.map": "/Website/static/js/787.d1d4a2c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3dcd9759.css",
-    "static/js/main.31e8dddd.js"
+    "static/css/main.99324b7c.css",
+    "static/js/main.9001f0a7.js"
   ]
 }
