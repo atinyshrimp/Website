@@ -343,6 +343,10 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   line-height: 1;
 }
 
+.download-btn {
+  padding-left: 0.5rem;
+}
+
 .banner img {
   animation: updown 3s linear infinite;
 }
@@ -369,7 +373,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 
 /************ Skills CSS ************/
 .skill {
-  padding: 0 0 50px 0;;
+  padding: 80px 0;
   position: relative;
 }
 
@@ -378,6 +382,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   border-radius: 64px;
   text-align: center;
   margin-top: -60px;
+  padding: 0.75rem 0 1rem 0;
 }
 
 .skill-bx span {
@@ -401,7 +406,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   width: 80%;
   margin: 0 auto;
   position: relative;
-  padding-bottom: 1rem;
+  /* padding-bottom: 1rem; */
 }
 
 .skill-slider .item img {
@@ -410,11 +415,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .react-multiple-carousel__arrow--left {
-  left: calc(2% + 1px);
+  left: calc(0.25% + 1px) !important;
 }
 
 .react-multiple-carousel__arrow--right {
-  right: calc(2% + 1px);
+  right: calc(0.25% + 1px) !important;
 }
 
 .background-image-left {
