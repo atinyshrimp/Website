@@ -51,7 +51,7 @@ export const Banner = () => {
                         {/* <span>{text}</span> */}
                         </h1>
                         <p>I am a 20 year old engineering student located in France. My interests are video games, volleyball, playing music, and learning about languages & cultures</p>
-                        <a href="https://www.canva.com/design/DAFYm4KK2yY/68pNPduDHFdbUpaSeHG32Q/view?utm_content=DAFYm4KK2yY&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+                        <a href="https://www.canva.com/design/DAFZcVFIdso/SujFrqK9LDfwA3yQlcS5NQ/view?utm_content=DAFZcVFIdso&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
                         target="_blank">Get My Resume !<div class="download-btn"><Download size={25}/></div></a>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
