@@ -232,9 +232,9 @@ export const Projects = () => {
             <hr>
             <div class='modal-content'>
                 <i id='description'>
-                    Goal: build a prototype that has to be counting something and displaying that counting on screen with UI
+                    Goal: build a prototype that has to be counting something and display that counting on screen with UI
                     <br>
-                    <bold>Used technologies: </bold> Unity3DS
+                    <bold>Used technologies: </bold> Unity3D
                 </i>
                 <br>
                 <div id='content'>
