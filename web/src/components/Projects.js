@@ -6,6 +6,7 @@ import pix2 from "../assets/img/pix2.jpg";
 import img_app from "../assets/img/bmp_app.png";
 import scrabble from "../assets/img/scrabble_img1.png";
 import prison_break from "../assets/img/prison-break1.png";
+import coverColorPool from "../assets/img/colorpool_cover.png";
 import colorSharp from "../assets/img/color-sharp.png";
 import github from "../assets/img/github.svg";
 import extLink from "../assets/img/link-alt.svg";
@@ -207,6 +208,45 @@ export const Projects = () => {
         }
     ];
 
+    const games = [
+        {
+            title: "Color Pool",
+            description: "Unity3D",
+            imgUrl: coverColorPool,
+            git: "",
+            link: "https://atinyzen.itch.io/color-pool",
+            article: `
+            <div class='modal-header'>
+                <div class='basic-info'>
+                    <a href="https://esilv.fr/en" target="_blank">    
+                        <img src=${itchio} />
+                    </a>
+                    <h4>Color Pool</h4>
+                </div>
+                <div class='link-icons'>
+                    <a href="https://atinyzen.itch.io/color-pool" target="_blank" id="github">
+                        <img src=${extLink}/>
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class='modal-content'>
+                <i id='description'>
+                    Goal: build a prototype that has to be counting something and displaying that counting on screen with UI
+                    <br>
+                    <bold>Used technologies: </bold> Unity3DS
+                </i>
+                <br>
+                <div id='content'>
+                    <p>
+                        <center>All info about this game are available on itch.io</center>
+                    </p>
+                </div>
+            </div>
+            `
+        }
+    ]
+
     return (
         <section className="project" id="projects">
             <Container>
@@ -222,9 +262,9 @@ export const Projects = () => {
                                 <Nav.Item>
                                     <Nav.Link eventKey="second">School Projects</Nav.Link>
                                 </Nav.Item>
-                                {/* <Nav.Item>
-                                    <Nav.Link eventKey="third" disabled>Games</Nav.Link>
-                                </Nav.Item> */}
+                                <Nav.Item>
+                                    <Nav.Link eventKey="third">Games</Nav.Link>
+                                </Nav.Item>
                             </Nav>
                             <Tab.Content>
                                 <Tab.Pane eventKey="first">
@@ -256,16 +296,26 @@ export const Projects = () => {
                                     </Row>
 
                                 </Tab.Pane>
-                                {/* <Tab.Pane eventKey="third">
+                                <Tab.Pane eventKey="third">
                                     <Row>
+                                        {
+                                            games.map((project, index) => {
+                                                return (
+                                                    <ProjectCard
+                                                    key={index}
+                                                    {...project}
+                                                    />
+                                                )
+                                            })
+                                        }
                                     </Row>
                                     <div id="info">
-                                        <a href="https://peaceandjoyce.itch.io/" target="_blank">
+                                        <a href="https://atinyzen.itch.io/" target="_blank">
                                             <img src={itchio} alt="itch.io logo" />
                                         </a>
                                         <div>The games are available here !</div>
                                     </div>
-                                </Tab.Pane> */}
+                                </Tab.Pane>
                             </Tab.Content>
                         </Tab.Container>
                     </Col>

@@ -667,7 +667,7 @@ ul {
   overflow: hidden;
 }
 .project .nav.nav-pills .nav-item {
-  width: 50%;
+  width: 33.3333%;
 }
 .project .nav.nav-pills .nav-link {
   background-color: transparent;
@@ -795,6 +795,7 @@ ul {
 }
 
 #info {
+  padding-top: 3.5rem;
   display: flex;
   justify-content: center; /* horizontal center of parent div */
   align-items: center; /* vertical center of div */
