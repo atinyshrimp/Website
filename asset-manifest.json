@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.d9dbb9d5.css",
-    "main.js": "/static/js/main.35116ebb.js",
+    "main.css": "/static/css/main.766bf876.css",
+    "main.js": "/static/js/main.a9d63c28.js",
     "static/js/787.d1d4a2c2.chunk.js": "/static/js/787.d1d4a2c2.chunk.js",
     "static/media/bmp_app.png": "/static/media/bmp_app.8a4e25a36049ca11a16d.png",
     "static/media/Totoro.png": "/static/media/Totoro.e82efd616417b2609638.png",
@@ -14,6 +14,7 @@
     "static/media/CentraNo2-Medium.ttf": "/static/media/CentraNo2-Medium.f94be5b326d78bb32b95.ttf",
     "static/media/CentraNo2-Book.ttf": "/static/media/CentraNo2-Book.2b143fa4b734a3584043.ttf",
     "static/media/project-img1.png": "/static/media/project-img1.d593db3f12901bc685c2.png",
+    "static/media/colorpool_cover.png": "/static/media/colorpool_cover.fff0f153232f993fe1a5.png",
     "static/media/scrabble_img1.png": "/static/media/scrabble_img1.670a1831179bb9166aab.png",
     "static/media/logo_esilv.png": "/static/media/logo_esilv.f40189bd7865731189fe.png",
     "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
@@ -32,12 +33,12 @@
     "static/media/users.svg": "/static/media/users.7795d6f2fd5c926f934b050019e7142d.svg",
     "static/media/envelope.svg": "/static/media/envelope.5314151e238c01d3e57e9cf8e06c6433.svg",
     "static/media/briefcase.svg": "/static/media/briefcase.38577b0114c241938c14e0492c0359e8.svg",
-    "main.d9dbb9d5.css.map": "/static/css/main.d9dbb9d5.css.map",
-    "main.35116ebb.js.map": "/static/js/main.35116ebb.js.map",
+    "main.766bf876.css.map": "/static/css/main.766bf876.css.map",
+    "main.a9d63c28.js.map": "/static/js/main.a9d63c28.js.map",
     "787.d1d4a2c2.chunk.js.map": "/static/js/787.d1d4a2c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d9dbb9d5.css",
-    "static/js/main.35116ebb.js"
+    "static/css/main.766bf876.css",
+    "static/js/main.a9d63c28.js"
   ]
 }
