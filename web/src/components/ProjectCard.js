@@ -8,7 +8,7 @@ import { Col } from "react-bootstrap"
 import github from "../assets/img/github.svg";
 import extLink from "../assets/img/link-alt.svg";
 
-export const ProjectCard = ({ title, description, imgUrl, git, link, article }) => {
+export const ProjectCard = ({ title, description, imgUrl, git, link, article, article_enabled }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -71,7 +71,7 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article }) 
       <div className="proj-imgbx">
         <img src={imgUrl} />
         <div className="proj-txtx" id="proj-txtx">
-            <h4 onClick={() => handleOpen()}>{title}</h4>
+            <h4 onClick={() => article_enabled ? handleOpen() : ""}>{title}</h4>
             <span>{description}</span>
             <div className="link-icons">
               <a href={git} target="_blank" id="github"

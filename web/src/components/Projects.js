@@ -21,6 +21,7 @@ export const Projects = () => {
             imgUrl: img_app,
             git: "https://github.com/atinyzen/Image-processing-tool",
             link: "",
+            article_enabled: false,
             article:`
             <div class='modal-header'>
                 <div class='basic-info'>
@@ -55,6 +56,7 @@ export const Projects = () => {
             imgUrl: scrabble,
             git: "",
             link: "",
+            article_enabled: false,
             article: `
             <div class='modal-header'>
                 <div class='basic-info'>
@@ -86,6 +88,7 @@ export const Projects = () => {
             imgUrl: prison_break,
             git: "",
             link: "",
+            article_enabled: false,
             article: `
             <div class='modal-header'>
                 <div class='basic-info'>
@@ -118,6 +121,7 @@ export const Projects = () => {
             imgUrl: pix2,
             git: "",
             link: "https://www.esilv.fr/en/student-projects",
+            article_enabled: false,
             article: `
             <div class='modal-header'>
                 <div class='basic-info'>
@@ -164,6 +168,7 @@ export const Projects = () => {
             imgUrl: pix1,
             git: "",
             link: "https://www.esilv.fr/en/student-projects",
+            article_enabled: false,
             article: `
             <div class='modal-header'>
                 <div class='basic-info'>
@@ -215,6 +220,7 @@ export const Projects = () => {
             imgUrl: coverColorPool,
             git: "",
             link: "https://atinyzen.itch.io/color-pool",
+            article_enabled: true,
             article: `
             <div class='modal-header'>
                 <div class='basic-info'>
