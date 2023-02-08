@@ -6,8 +6,8 @@ import img_app from "../assets/img/bmp_app.png";
 import scrabble from "../assets/img/scrabble_img1.png";
 import prison_break from "../assets/img/prison-break1.png";
 import coverColorPool from "../assets/img/colorpool_cover.png";
-import github from "../assets/img/github.png";
-import extLink from "../assets/img/link-alt.png";
+import github from "../assets/img/github.svg";
+import extLink from "../assets/img/link-alt.svg";
 import itchio from "../assets/img/itchio-textless-white.svg";
 import esilv from "../assets/img/logo_esilv.png";
 
