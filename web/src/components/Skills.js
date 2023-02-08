@@ -6,7 +6,7 @@ import meter2 from "../assets/img/world.svg";
 import meter3 from "../assets/img/laptop-code.svg";
 import meter4 from "../assets/img/browser.svg";
 import meter5 from "../assets/img/cubes.svg";
-import colorSharp from "../assets/img/color-sharp.png";
+import meter6 from "../assets/img/manette-de-jeu.svg";
 
 export const Skills= () => {
     const responsive = {
@@ -44,6 +44,11 @@ export const Skills= () => {
                                     <img src={meter5} alt="Image" />
                                     <h4>3D Modeling</h4>
                                     <h6>SolidWorks, <span>Blender</span></h6>
+                                </div>
+                                <div className="item">
+                                    <img src={meter6} alt="Image" />
+                                    <span><h4>Game Development</h4></span>
+                                    <span><h6>Unity3D</h6></span>
                                 </div>
                                 <div className="item">
                                     <img src={meter2} alt="Image" />

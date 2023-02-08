@@ -1,15 +1,13 @@
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
-import projImg1 from "../assets/img/project-img1.png";
 import pix1 from "../assets/img/pix1.jpg";
 import pix2 from "../assets/img/pix2.jpg";
 import img_app from "../assets/img/bmp_app.png";
 import scrabble from "../assets/img/scrabble_img1.png";
 import prison_break from "../assets/img/prison-break1.png";
 import coverColorPool from "../assets/img/colorpool_cover.png";
-import colorSharp from "../assets/img/color-sharp.png";
-import github from "../assets/img/github.svg";
-import extLink from "../assets/img/link-alt.svg";
+import github from "../assets/img/github.png";
+import extLink from "../assets/img/link-alt.png";
 import itchio from "../assets/img/itchio-textless-white.svg";
 import esilv from "../assets/img/logo_esilv.png";
 
