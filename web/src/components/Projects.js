@@ -30,7 +30,7 @@ export const Projects = () => {
                 </div>
                 <div class='link-icons'>
                     <a href="https://github.com/atinyzen/Image-processing-tool" target="_blank" id="github">
-                        <img src=${github}/>
+                        <img src=${github} />
                     </a>
                 </div>
             </div>
@@ -130,7 +130,7 @@ export const Projects = () => {
                 </div>
                 <div class='link-icons'>
                     <a href="https://www.esilv.fr/en/student-projects" target="_blank" id="github">
-                        <img src=${extLink}/>
+                        <img src=${extLink} />
                     </a>
                 </div>
             </div>
@@ -177,7 +177,7 @@ export const Projects = () => {
                 </div>
                 <div class='link-icons'>
                     <a href="https://www.esilv.fr/en/student-projects" target="_blank" id="github">
-                        <img src=${extLink}/>
+                        <img src=${extLink} />
                     </a>
                 </div>
             </div>
@@ -229,7 +229,7 @@ export const Projects = () => {
                 </div>
                 <div class='link-icons'>
                     <a href="https://atinyzen.itch.io/color-pool" target="_blank" id="github">
-                        <img src=${extLink}/>
+                        <img src=${extLink} />
                     </a>
                 </div>
             </div>
