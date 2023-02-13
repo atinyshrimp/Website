@@ -2,7 +2,6 @@ import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
 import { EducationList, ProfessionalList } from "./ExperienceList";
 import education from "../assets/img/graduation-cap.svg"
 import professional from "../assets/img/briefcase.svg"
-import colorSharp2 from "../assets/img/color-sharp2.png";
 
 export const Experience = () => {
     return (
@@ -42,7 +41,6 @@ export const Experience = () => {
                     </Col>
                 </Row>
             </Container>
-            {/* <img className="background-image-right" src={colorSharp2} /> */}
         </section>
     )
 }

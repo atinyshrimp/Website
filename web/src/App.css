@@ -354,7 +354,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .banner .personal-info {
-  display: table-caption;
+  display: grid;
+  justify-items: start;
 }
 @keyframes updown {
   0% {

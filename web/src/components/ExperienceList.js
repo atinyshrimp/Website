@@ -126,6 +126,15 @@ const educationExp = {
     ]
   },
 
+  CAU: {
+    title: "Academic Exchange Semester @",
+    duration: "SEPT 2022 - DEC 2022",
+    desc: [
+      "Studied on the Seoul campus of Chung-Ang University",
+      "Followed courses in Object-Oriented Programming (C++), Web Programming, Numerical Analysis & Intermediate Korean Language"
+    ]
+  },
+
   "Lycée Jules Verne": {
     title: "High School Diploma @",
     duration: "SEPT 2017 - JUN 2020",
