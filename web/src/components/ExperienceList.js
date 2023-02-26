@@ -68,7 +68,7 @@ function a11yProps(index) {
 
 const professionalExp = {
   /* most recent to oldest */
-  SNCF: {
+  "SNCF Réseau": {
     title: "Research Engineer Intern @",
     link: "https://www.sncf-reseau.com/fr",
     duration: "JUN 2022 - AUG 2022",

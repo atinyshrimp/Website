@@ -637,6 +637,10 @@ ul {
 }
 
 @media only screen and (max-width: 600px) {
+  .description {
+    padding-right: 1.5rem;
+  }
+
   .list-title {
     font-size: 22px;
   }
