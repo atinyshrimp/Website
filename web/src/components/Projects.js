@@ -5,11 +5,13 @@ import pix2 from "../assets/img/pix2.jpg";
 import img_app from "../assets/img/bmp_app.png";
 import scrabble from "../assets/img/scrabble_img1.png";
 import prison_break from "../assets/img/prison-break1.png";
+import coverCatSim from "../assets/img/catsim_thumbnail.png";
 import coverColorPool from "../assets/img/colorpool_cover.png";
 import github from "../assets/img/github.svg";
 import extLink from "../assets/img/link-alt.svg";
 import itchio from "../assets/img/itchio-textless-white.svg";
 import esilv from "../assets/img/logo_esilv.png";
+import unity from "../assets/img/U_ProfileIcon_Alpha_Negative_500x500.png";
 
 export const Projects = () => {
     const projects = [
@@ -213,6 +215,46 @@ export const Projects = () => {
 
     const games = [
         {
+            title: "CatSim",
+            description: "A simple pet simulator",
+            imgUrl: coverCatSim,
+            git: "https://github.com/atinyzen/Programmer-Theory-Repo",
+            link: "https://play.unity.com/p/63fb8d6caf7eae04a34e6471",
+            article_enabled: true,
+            article: `
+            <div class='modal-header'>
+                <div class='basic-info'>
+                    <a href="https://play.unity.com/u/lianajoycemarie" target="_blank">    
+                        <img src=${unity} />
+                    </a>
+                    <h4>CatSim</h4>
+                </div>
+                <div class='link-icons'>
+                    <a href="https://github.com/atinyzen/Programmer-Theory-Repo" target="_blank" id="github">
+                        <img src=${github} />
+                    </a>
+                    <a href="https://play.unity.com/p/63fb8d6caf7eae04a34e6471" target="_blank" id="github">
+                        <img src=${extLink} />
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class='modal-content'>
+                <i id='description'>
+                    Goal: build a game using OOP concepts and submit it
+                    <br>
+                    <bold>Used technologies: </bold> Unity3D, Unity Asset Store
+                </i>
+                <br>
+                <div id='content'>
+                    <p>
+                        <center>All info about this game is available on Unity Play</center>
+                    </p>
+                </div>
+            </div>
+            ` 
+        },
+        {
             title: "Color Pool",
             description: "Unity3D",
             imgUrl: coverColorPool,
@@ -222,7 +264,7 @@ export const Projects = () => {
             article: `
             <div class='modal-header'>
                 <div class='basic-info'>
-                    <a href="https://esilv.fr/en" target="_blank">    
+                    <a href="https://atinyzen.itch.io/" target="_blank">    
                         <img src=${itchio} />
                     </a>
                     <h4>Color Pool</h4>
@@ -243,7 +285,7 @@ export const Projects = () => {
                 <br>
                 <div id='content'>
                     <p>
-                        <center>All info about this game are available on itch.io</center>
+                        <center>All info about this game is available on itch.io</center>
                     </p>
                 </div>
             </div>
@@ -325,7 +367,6 @@ export const Projects = () => {
                     </Col>
                 </Row>
             </Container>
-            {/* <img className="background-image-left" src={colorSharp} /> */}
         </section>
     )
 }
