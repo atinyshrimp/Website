@@ -95,7 +95,7 @@ p, a, li, button, ul {
   margin: 0;
   padding: 0;
   line-height: normal;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 a:hover {
@@ -532,8 +532,19 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .list-location {
   font-family: "NTR", sans-serif;
   font-size: 28px;
-  color: var(--midnight);
   font-weight: bold;
+}
+
+.list-location a {
+  color: var(--midnight);
+}
+
+.list-location a:hover {
+  color: var(--glossy-grape);
+}
+
+.list-location a:active {
+  color: var(--tyrian-purple);
 }
 
 .list-duration {

@@ -70,6 +70,7 @@ const professionalExp = {
   /* most recent to oldest */
   SNCF: {
     title: "Research Engineer Intern @",
+    link: "https://www.sncf-reseau.com/fr",
     duration: "JUN 2022 - AUG 2022",
     desc: [
       "Made an inventory of the standards used by type of conductor",
@@ -82,6 +83,7 @@ const professionalExp = {
 
   "Avenir APEI": {
     title: "Volunteer @",
+    link: "https://www.avenirapei.org/",
     duration: "APR 2021",
     desc: [
       "70-hour volunteer work",
@@ -93,6 +95,7 @@ const professionalExp = {
 
   "Visages du Monde": {
     title: "Intern @",
+    link: "",
     duration: "NOV 2016 - DEC 2016",
     desc: [
       "Greeted visitors of the media library",
@@ -108,6 +111,7 @@ const educationExp = {
   /* most to recent to oldest */
   ESILV: {
     title: "Master's degree in Engineering @",
+    link: "https://esilv.fr",
     duration: "SEPT 2020 - NOW",
     desc: [
       "Following a continuous Soft Skills formation",
@@ -119,6 +123,7 @@ const educationExp = {
   EMLV: {
     /* International Business, Digital HR, Corporate Finance or Finance & Investment */
     title: "Master's degree @",
+    link: "https://emlv.fr",
     duration: "SEPT 2020 - NOW",
     desc: [
       "Followed courses in Accounting, Fundamental Marketing, Corporate Strategy and Supply Chain Management",
@@ -128,6 +133,7 @@ const educationExp = {
 
   CAU: {
     title: "Academic Exchange Semester @",
+    link: "https://neweng.cau.ac.kr/index.do",
     duration: "SEPT 2022 - DEC 2022",
     desc: [
       "Studied on the Seoul campus of Chung-Ang University",
@@ -137,6 +143,7 @@ const educationExp = {
 
   "Lycée Jules Verne": {
     title: "High School Diploma @",
+    link: "",
     duration: "SEPT 2017 - JUN 2020",
     desc: [
       "Obtained with distinctions",
@@ -176,7 +183,7 @@ export const ProfessionalList = () => {
               <span className='list-title'>
                   {list[key]["title"] + " "}
               </span>
-              <span className='list-location'>{key}</span>
+              <span className='list-location'><a href={list[key]["link"]} target="_blank">{key}</a></span>
               <div className='list-duration'>
                   {list[key]["duration"]}
               </div>
@@ -221,7 +228,7 @@ export const EducationList = () => {
               <span className='list-title'>
                   {list[key]["title"] + " "}
               </span>
-              <span className='list-location'>{key}</span>
+              <span className='list-location'><a href={list[key]["link"]} target="_blank">{key}</a></span>
               <div className='list-duration'>
                   {list[key]["duration"]}
               </div>
