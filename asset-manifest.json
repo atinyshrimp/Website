@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.0a959b28.css",
-    "main.js": "/static/js/main.cf2c71c4.js",
+    "main.css": "/static/css/main.1952d5f2.css",
+    "main.js": "/static/js/main.04b27442.js",
     "static/js/787.d1d4a2c2.chunk.js": "/static/js/787.d1d4a2c2.chunk.js",
     "static/media/bmp_app.png": "/static/media/bmp_app.8a4e25a36049ca11a16d.png",
     "static/media/Totoro.png": "/static/media/Totoro.e82efd616417b2609638.png",
@@ -17,6 +17,7 @@
     "static/media/scrabble_img1.png": "/static/media/scrabble_img1.670a1831179bb9166aab.png",
     "static/media/U_ProfileIcon_Alpha_Negative_500x500.png": "/static/media/U_ProfileIcon_Alpha_Negative_500x500.5d012152acecf34044fe.png",
     "static/media/logo_esilv.png": "/static/media/logo_esilv.f40189bd7865731189fe.png",
+    "static/media/progress.png": "/static/media/progress.33aae2ecd25eb22cc2eb.png",
     "static/media/revicons.eot": "/static/media/revicons.a77de540a38981833f9e.eot",
     "static/media/revicons.ttf": "/static/media/revicons.57fd05d4ae650374c8de.ttf",
     "static/media/revicons.woff": "/static/media/revicons.e8746a624ed098489406.woff",
@@ -34,12 +35,12 @@
     "static/media/users.svg": "/static/media/users.7795d6f2fd5c926f934b050019e7142d.svg",
     "static/media/envelope.svg": "/static/media/envelope.5314151e238c01d3e57e9cf8e06c6433.svg",
     "static/media/briefcase.svg": "/static/media/briefcase.38577b0114c241938c14e0492c0359e8.svg",
-    "main.0a959b28.css.map": "/static/css/main.0a959b28.css.map",
-    "main.cf2c71c4.js.map": "/static/js/main.cf2c71c4.js.map",
+    "main.1952d5f2.css.map": "/static/css/main.1952d5f2.css.map",
+    "main.04b27442.js.map": "/static/js/main.04b27442.js.map",
     "787.d1d4a2c2.chunk.js.map": "/static/js/787.d1d4a2c2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0a959b28.css",
-    "static/js/main.cf2c71c4.js"
+    "static/css/main.1952d5f2.css",
+    "static/js/main.04b27442.js"
   ]
 }
