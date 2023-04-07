@@ -1,19 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Joyce's Portfolio",
+  "name": "A simple website seving as a portfolio for Joyce LAPILUS",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "anemo_sigil.png",
       "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "type": "image/png"
     },
     {
-      "src": "logo192.png",
+      "src": "anmeo_sigil.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "anemo_sigil.png",
       "type": "image/png",
       "sizes": "512x512"
     }
