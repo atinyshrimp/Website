@@ -769,6 +769,11 @@ ul {
   top: 50%;
   opacity: 1;
 }
+
+.proj-txtx .clickable {
+  cursor: pointer;
+}
+
 .proj-txtx h4 {
   font-size: 30px !important;
   font-weight: 700;

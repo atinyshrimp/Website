@@ -71,8 +71,10 @@ export const ProjectCard = ({ title, description, imgUrl, git, link, article, ar
       <div className="proj-imgbx">
         <img src={imgUrl} />
         <div className="proj-txtx" id="proj-txtx">
-            <h4 onClick={() => article_enabled ? handleOpen() : ""}>{title}</h4>
+          <div className="clickable" onClick={() => article_enabled ? handleOpen() : ""}>
+            <h4>{title}</h4>
             <span>{description}</span>
+          </div>
             <div className="link-icons">
               <a href={git} target="_blank" id="github"
               style={{display: git === "" ? 'none' : ''}}>
