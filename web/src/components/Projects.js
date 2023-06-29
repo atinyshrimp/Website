@@ -1,7 +1,10 @@
 import { Col, Container, Nav, Row, Tab } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
+import bdd from "../assets/img/bdd_thumbnail.png";
+import dribbble from "../assets/img/dribbble-ball-mark.svg";
 import pix1 from "../assets/img/pix1.jpg";
 import pix2 from "../assets/img/pix2.jpg";
+import p2ip from "../assets/img/Cover_2.png";
 import progress from "../assets/img/progress.png";
 import img_app from "../assets/img/bmp_app.png";
 import scrabble from "../assets/img/scrabble_img1.png";
@@ -16,6 +19,42 @@ import unity from "../assets/img/U_ProfileIcon_Alpha_Negative_500x500.png";
 
 export const Projects = () => {
     const projects = [
+        {
+            title: "Database management app",
+            description: "C#",
+            imgUrl: bdd,
+            git: "https://github.com/atinyzen/BDD-Projet-BelleFleur",
+            link: "",
+            article_enabled: true,
+            article:`
+            <div class='modal-header'>
+                <div class='basic-info'>
+                    <a href="https://esilv.fr" target="_blank">    
+                        <img src=${esilv} />
+                    </a>
+                    <h4>Database management app</h4>
+                </div>
+                <div class='link-icons'>
+                    <a href="https://github.com/atinyzen/BDD-Projet-BelleFleur" target="_blank" id="github">
+                        <img src=${github} />
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class='modal-content'>
+                <i id='description'>
+                    A project made to allow a flower shop owner to manage their clients, their storage, and more.
+                </i>
+                <br>
+                <div id='content'>
+                    <p>
+                        <center>Everything you need to know is on the project's Github page :)<br>
+                        It is written in French, feel free to use a translator if needed!</center>
+                    </p>
+                </div>
+            </div>
+            `
+        },
         {
             title: "Image processing app",
             description: "C#",
@@ -118,7 +157,7 @@ export const Projects = () => {
         {
             title: "P2IP",
             description: "Start-Up project",
-            imgUrl: progress,
+            imgUrl: p2ip,
             git: "",
             link: "https://www.esilv.fr/en/student-projects",
             article_enabled: true,
@@ -131,6 +170,9 @@ export const Projects = () => {
                     <h4>P2IP - book exchange app</h4>
                 </div>
                 <div class='link-icons'>
+                    <a href="" target="_blank">
+                        <img src=${dribbble} />
+                    </a>
                     <a href="https://www.esilv.fr/en/student-projects" target="_blank">
                         <img src=${extLink} />
                     </a>
@@ -140,19 +182,26 @@ export const Projects = () => {
             <div class='modal-content'>
                 <i id='description'>
                     Goal: build a hypothetical start-up while considering positive impact on the environment<br>
-                    <bold>Used technologies: </bold> Canva, DaVinci Resolve
+                    <bold>Used technologies: </bold> Canva, DaVinci Resolve 18, Figma, PowerPoint
                     <br>
                 </i>
                 <br>
                 <div id='content'>
                     <p>
-                        My tasks consisted of the following:
+                        My tasks consisted of the following (in chronological order):
                         <ul>
                             <li>Edited a 1-minute video pitch</li>
+                            <li>Designed a mobile app prototype (the case study will be available on Dribbble soon)</li>
+                            <li>Edited a 5-minute end-of-project video</li>
+                            <li>Edited a 2-minute advertising video to promote our project</li>
                         </ul>
                         The required <bold>deliverables</bold>:
                         <ul>
                             <li>Lean canvas as a business model</li>
+                            <li>The videos mentioned above</li>
+                            <li>Advertising visuals (one used as the thumbnail, the other one used at the end of the ad video)</li>
+                            <li>A report summarizing all that we had done during six months within 15 pages</li>
+                            <li>A 1-page summary of our project</li>
                         </ul>
                     </p>
                 </div>
