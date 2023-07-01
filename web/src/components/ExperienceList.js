@@ -110,7 +110,7 @@ const professionalExp = {
 const educationExp = {
   /* most to recent to oldest */
   ESILV: {
-    title: "Master's degree in Datascience & Artificial Intelligence @",
+    title: "Master's degree in Data Science & Artificial Intelligence @",
     link: "https://esilv.fr",
     duration: "SEPT 2020 - NOW",
     desc: [
