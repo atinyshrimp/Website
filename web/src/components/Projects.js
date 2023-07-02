@@ -170,7 +170,7 @@ export const Projects = () => {
                     <h4>P2IP - book exchange app</h4>
                 </div>
                 <div class='link-icons'>
-                    <a href="" target="_blank">
+                    <a href="https://dribbble.com/shots/21626313-Book-exchange-mobile-app-Agora" target="_blank">
                         <img src=${dribbble} />
                     </a>
                     <a href="https://www.esilv.fr/en/student-projects" target="_blank">
@@ -191,7 +191,7 @@ export const Projects = () => {
                         My tasks consisted of the following (in chronological order):
                         <ul>
                             <li>Edited a 1-minute video pitch</li>
-                            <li>Designed a mobile app prototype (the case study will be available on Dribbble soon)</li>
+                            <li>Designed a mobile app prototype (the case study is available on Dribbble, see link above)</li>
                             <li>Edited a 5-minute end-of-project video</li>
                             <li>Edited a 2-minute advertising video to promote our project</li>
                         </ul>
