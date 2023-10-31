@@ -452,8 +452,8 @@ export const Projects = () => {
                                     <div id="info">
                                         <a href="https://atinyzen.itch.io/" target="_blank">
                                             <img src={itchio} alt="itch.io logo" />
+                                            <div>The games are available here !</div>
                                         </a>
-                                        <div>The games are available here !</div>
                                     </div>
                                 </Tab.Pane>
                             </Tab.Content>

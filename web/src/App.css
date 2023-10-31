@@ -821,11 +821,16 @@ ul {
   z-index: -4;
 }
 
-#info {
+#info a{
   padding-top: 3.5rem;
   display: flex;
   justify-content: center; /* horizontal center of parent div */
   align-items: center; /* vertical center of div */
+  color: #fff;
+}
+
+#info a:hover {
+  color: var(--glossy-grape);
 }
 
 #info a img {
