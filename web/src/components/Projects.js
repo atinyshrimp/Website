@@ -345,6 +345,46 @@ export const Projects = () => {
 
     const games = [
         {
+            title: "Captain SONAR",
+            description: "Captain SONAR inspired PC game",
+            imgUrl: progress,
+            git: "",
+            link: "",
+            article_enabled: true,
+            article: `
+            <div class='modal-header'>
+                <div class='basic-info'>
+                    <a href="https://play.unity.com/u/lianajoycemarie" target="_blank">    
+                        <img src=${unity} />
+                    </a>
+                    <h4>Captain SONAR</h4>
+                </div>
+                <div class='link-icons'>
+                    <a href="" target="_blank" id="github">
+                        <img src=${github} />
+                    </a>
+                    <a href="" target="_blank" id="github">
+                        <img src=${extLink} />
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class='modal-content'>
+                <i id='description'>
+                    Goal: build a PC game from an already existing board game
+                    <br>
+                    <bold>Used technologies: </bold> Unity3D, Unity Asset Store, C#
+                </i>
+                <br>
+                <div id='content'>
+                    <p>
+                        <center></center>
+                    </p>
+                </div>
+            </div>
+            ` 
+        },
+        {
             title: "CatSim",
             description: "A simple pet simulator",
             imgUrl: coverCatSim,

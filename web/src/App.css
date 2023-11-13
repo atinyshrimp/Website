@@ -825,11 +825,17 @@ ul {
   padding-bottom: 3.5rem;;
 }
 
+#info {
+  display: flex;
+  justify-content: center;
+}
+
 #info a{
   display: flex;
   justify-content: center; /* horizontal center of parent div */
   align-items: center; /* vertical center of div */
   color: #fff;
+  width: fit-content;
 }
 
 #info a:hover div {
