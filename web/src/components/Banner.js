@@ -16,7 +16,7 @@ export const Banner = () => {
                         </div>
                         <h1>{"Hi I'm Joyce ! "}</h1>
                         <p>I am a 20 year old engineering student located in France. My interests are video games, volleyball, playing music, and learning about languages & cultures !</p>
-                        <a href="https://www.canva.com/design/DAFtgK4TQTA/37acIWg-fDQpgsgUcHuwIQ/view?utm_content=DAFtgK4TQTA&utm_campaign=designshare&utm_medium=link&utm_source=publishsharelink"
+                        <a href="https://www.canva.com/design/DAFz4FS8qYo/dqMLNBEPlr__vOyWSZKP3Q/view?utm_content=DAFz4FS8qYo&utm_campaign=designshare&utm_medium=link&utm_source=editor"
                         target="_blank">Get My Resume !<div class="download-btn"><Download size={25}/></div></a>
                     </Col>
                     <Col xs={12} md={6} xl={5}>
