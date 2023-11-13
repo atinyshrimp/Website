@@ -6,6 +6,7 @@ import pix1 from "../assets/img/pix1.jpg";
 import pix2 from "../assets/img/pix2.jpg";
 import p2ip from "../assets/img/Cover_2.png";
 import progress from "../assets/img/progress.png";
+import api_proj from "../assets/img/api_prediction.png"
 import img_app from "../assets/img/bmp_app.png";
 import scrabble from "../assets/img/scrabble_img1.png";
 import prison_break from "../assets/img/prison-break1.png";
@@ -153,7 +154,42 @@ export const Projects = () => {
         }
     ];
 
+    /* 16:9 ratio for thumbnails */
     const schoolProjects = [
+        {
+            title: "Classification Prediction",
+            description: "Data Analysis, Machine Learning",
+            imgUrl: api_proj,
+            git: "https://github.com/atinyzen/Data-Analysis-Project",
+            link: "",
+            article_enabled: true,
+            article: `
+                <div class='modal-header'>
+                <div class='basic-info'>
+                    <a href="https://esilv.fr/en" target="_blank">    
+                        <img src=${esilv} />
+                    </a>
+                    <h4>Avila Bible Classification Prediction</h4>
+                </div>
+                <div class='link-icons'>
+                    <a href="https://github.com/atinyzen/Data-Analysis-Project" target="_blank" id="github">
+                        <img src=${github} />
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class='modal-content'>
+                <i id='description'>
+                    Goal: train a model from a specified dataset, use it to make predictions & transform it into an API
+                    <br>
+                    <bold>Used technologies: </bold> Python (scikit-learn, pandas, plotly, Panel), Flask
+                </i>
+                <br>
+                <div id='content'>
+                </div>
+            </div>
+            `
+        },
         {
             title: "P2IP",
             description: "Start-Up project",
