@@ -821,19 +821,26 @@ ul {
   z-index: -4;
 }
 
+#game_section {
+  padding-bottom: 3.5rem;;
+}
+
 #info a{
-  padding-top: 3.5rem;
   display: flex;
   justify-content: center; /* horizontal center of parent div */
   align-items: center; /* vertical center of div */
   color: #fff;
 }
 
-#info a:hover {
+#info a:hover div {
   color: var(--glossy-grape);
 }
 
-#info a img {
+#info a:hover svg path{
+  fill: var(--glossy-grape);
+}
+
+#info a svg {
   margin: 0 1rem 0 0;
   height: 1.75rem;
   width: auto;
