@@ -110,24 +110,25 @@ const professionalExp = {
 const educationExp = {
   /* most to recent to oldest */
   ESILV: {
-    title: "Master's degree in Data Science & Artificial Intelligence @",
+    title: "MEng in Data Science & Artificial Intelligence @",
     link: "https://esilv.fr",
     duration: "SEPT 2020 - NOW",
     desc: [
-      "Following a continuous Soft Skills formation",
+      "Following a continuous Soft Skills formation, including agile methods like Scrum, teamwork and MBTI.",
       "Yearly projects in accordance with the modules seen throughout the year",
+      "Enrolled in the UX Design track including courses such as GUI prototyping, Website Design, Game Design, etc.",
       "Completing a double degree with the Management school, EMLV (e.g. tab under 'ESILV')"
     ]
   },
   
   EMLV: {
     /* International Business, Digital HR, Corporate Finance or Finance & Investment */
-    title: "Master's degree in Finance @",
+    title: "MSc in Finance @",
     link: "https://emlv.fr",
     duration: "SEPT 2020 - NOW",
     desc: [
-      "Followed courses in Accounting, Fundamental Marketing, Corporate Strategy and Supply Chain Management",
-      "Following courses in Entrepreneurship and International & European Law"
+      "Followed courses in Accounting, Fundamental Marketing, Corporate Strategy, Supply Chain Management, Entrepreneurship and International & European Law",
+      "Following courses in Cash Management and Financial Decisions"
     ]
   },
 
