@@ -45,12 +45,9 @@ export const NavBar = () => {
                 <span className="navbar-text">
                     <div className="social-icon">
                         <a href="https://www.linkedin.com/in/joyce-lapilus" target="_blank"><img src={navIcon1} alt="" /></a>
-                        <a href="https://www.github.com/atinyzen" target="_blank"><img src={navIcon3} alt="" /></a> 
+                        <a href="https://www.github.com/atinyshrimp" target="_blank"><img src={navIcon3} alt="" /></a> 
                         <a href="mailto:joyce.lapilus@edu.devinci.fr" target="_blank"><img src={navIcon2} alt="" /></a> 
                     </div>
-                    {/* <button className="vvd" onClick={() => console.log('connect')}>
-                        <span>Let's Connect</span>
-                    </button> */}
                 </span>
                 </Navbar.Collapse>
             </Container>
