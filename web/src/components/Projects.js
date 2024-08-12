@@ -12,6 +12,7 @@ import scrabble from "../assets/img/scrabble_img1.png";
 import prison_break from "../assets/img/prison-break1.png";
 import coverCatSim from "../assets/img/catsim_thumbnail.png";
 import coverColorPool from "../assets/img/colorpool_cover.png";
+import coverCaptainSONAR from "../assets/img/captain_sonar_thumbnail.jpg";
 import github from "../assets/img/github.svg";
 import extLink from "../assets/img/link-alt.svg";
 import itchio from "../assets/img/itchio-textless-white.svg";
@@ -344,46 +345,46 @@ export const Projects = () => {
   ];
 
   const games = [
-    // {
-    //   title: "Captain SONAR",
-    //   description: "Captain SONAR inspired PC game",
-    //   imgUrl: progress,
-    //   git: "",
-    //   link: "",
-    //   article_enabled: true,
-    //   article: `
-    //         <div class='modal-header'>
-    //             <div class='basic-info'>
-    //                 <a href="https://play.unity.com/u/lianajoycemarie" target="_blank">
-    //                     <img src=${unity} />
-    //                 </a>
-    //                 <h4>Captain SONAR</h4>
-    //             </div>
-    //             <div class='link-icons'>
-    //                 <a href="" target="_blank" id="github">
-    //                     <img src=${github} />
-    //                 </a>
-    //                 <a href="" target="_blank" id="github">
-    //                     <img src=${extLink} />
-    //                 </a>
-    //             </div>
-    //         </div>
-    //         <hr>
-    //         <div class='modal-content'>
-    //             <i id='description'>
-    //                 Goal: build a PC game from an already existing board game
-    //                 <br>
-    //                 <bold>Used technologies: </bold> Unity3D, Unity Asset Store, C#
-    //             </i>
-    //             <br>
-    //             <div id='content'>
-    //                 <p>
-    //                     <center></center>
-    //                 </p>
-    //             </div>
-    //         </div>
-    //         `,
-    // },
+    {
+      title: "Captain SONAR",
+      description: "Captain SONAR inspired PC game",
+      imgUrl: coverCaptainSONAR,
+      git: "https://github.com/Bouchta003/Captain_Sonar",
+      link: "",
+      article_enabled: true,
+      article: `
+            <div class='modal-header'>
+                <div class='basic-info'>
+                    <a href="https://play.unity.com/u/lianajoycemarie" target="_blank">
+                        <img src=${unity} />
+                    </a>
+                    <h4>Captain SONAR</h4>
+                </div>
+                <div class='link-icons'>
+                    <a href="" target="_blank" id="github">
+                        <img src=${github} />
+                    </a>
+                    <a href="" target="_blank" id="github">
+                        <img src=${extLink} />
+                    </a>
+                </div>
+            </div>
+            <hr>
+            <div class='modal-content'>
+                <i id='description'>
+                    Goal: build a PC game from an already existing board game
+                    <br>
+                    <bold>Used technologies: </bold> Unity3D, Unity Asset Store, C#
+                </i>
+                <br>
+                <div id='content'>
+                    <p>
+                        <center>Project was not finished, so it was passed down to new 4th years.</center>
+                    </p>
+                </div>
+            </div>
+            `,
+    },
     {
       title: "CatSim",
       description: "A simple pet simulator",
