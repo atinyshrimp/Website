@@ -1,35 +1,35 @@
 /************ Custom Font ************/
 @font-face {
-	font-family: Centra;
-	src: url('./assets/fonts/CentraNo2-Bold.ttf');
-	font-weight: 700;
+  font-family: Centra;
+  src: url("./assets/fonts/CentraNo2-Bold.ttf");
+  font-weight: 700;
 }
 @font-face {
-	font-family: Centra;
-	src: url('./assets/fonts/CentraNo2-Medium.ttf');
-	font-weight: 500;
+  font-family: Centra;
+  src: url("./assets/fonts/CentraNo2-Medium.ttf");
+  font-weight: 500;
 }
 @font-face {
-	font-family: Centra;
-	src: url('./assets/fonts/CentraNo2-Book.ttf');
-	font-weight: 400;
+  font-family: Centra;
+  src: url("./assets/fonts/CentraNo2-Book.ttf");
+  font-weight: 400;
 }
 
 :root {
-  --bdazzled-blue: #2C5784;
+  --bdazzled-blue: #2c5784;
   --bistre: #251101;
-  --glossy-grape: #A499BE;
+  --glossy-grape: #a499be;
   --green-bright: #64ffda;
   --independence: #414361;
-  --lightest-navy:  #233554;
+  --lightest-navy: #233554;
   --lightest-slate: #ccd6f6;
-  --middle-blue-green: #99D5C9;
-  --midnight: #5B1865;
-  --oxford-blue: #05204A;
-  --rich-black: #02020A;
+  --middle-blue-green: #99d5c9;
+  --midnight: #5b1865;
+  --oxford-blue: #05204a;
+  --rich-black: #02020a;
   --slate: #8892b0;
   --spanish-bistre: #717744;
-  --taupe-grey: #988B8E;
+  --taupe-grey: #988b8e;
   --tyrian-purple: #470024;
 }
 
@@ -45,10 +45,10 @@
 
 /* handle */
 ::-webkit-scrollbar-thumb {
-  background-color:  var(--midnight);
+  background-color: var(--midnight);
   border-radius: 3px;
 }
- /* handle on hover */
+/* handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: var(--bdazzled-blue);
 }
@@ -57,7 +57,6 @@
 ::-webkit-scrollbar-thumb:active {
   background-color: var(--bistre);
 }
-
 
 /************ Default CSS ************/
 * {
@@ -78,20 +77,33 @@ body {
   /* background-color: #121212 !important; */
   background-color: var(--rich-black) !important;
   color: #fff !important;
-  font-family: 'Centra', sans-serif !important;
+  font-family: "Centra", sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0 !important;
   padding: 0;
   line-height: normal !important;
 }
 
-h4 { font-size: larger !important;}
+h4 {
+  font-size: larger !important;
+}
 
-h6 { font-size: 0.67em !important; }
+h6 {
+  font-size: 0.67em !important;
+}
 
-p, a, li, button, ul {
+p,
+a,
+li,
+button,
+ul {
   margin: 0;
   padding: 0;
   line-height: normal;
@@ -112,23 +124,25 @@ button {
   background-color: transparent;
 }
 
-input:focus, textarea:focus, select:focus {
+input:focus,
+textarea:focus,
+select:focus {
   outline: none;
 }
 
-@media (min-width:1700px) {
-	main .container {
-		max-width: 100%;
-		padding: 0 150px;
-	}
+@media (min-width: 1700px) {
+  main .container {
+    max-width: 100%;
+    padding: 0 150px;
+  }
 }
 
 p.success {
-	color: green;
+  color: green;
 }
 
 p.danger {
-	color: red;
+  color: red;
 }
 
 /************ Navbar CSS ************/
@@ -143,14 +157,14 @@ nav.navbar {
   width: 100%;
   top: 0;
   z-index: 9999;
-  transition:  0.32s ease-in-out;
+  transition: 0.32s ease-in-out;
 }
 nav.navbar.scrolled {
   padding: 0px 0;
   background-color: #121212;
 }
 nav.navbar a.navbar-brand {
-    width: 9%;
+  width: 9%;
 }
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
@@ -162,48 +176,49 @@ nav.navbar .navbar-nav .nav-link.navbar-link {
 }
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
 nav.navbar .navbar-nav a.nav-link.navbar-link.active {
-    opacity: 1;
+  opacity: 1;
 }
 span.navbar-text {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 .social-icon {
-    display: inline-block;
-    margin-left: 14px;
+  display: inline-block;
+  margin-left: 14px;
 }
 .social-icon a {
-    width: 42px;
-    height: 42px;
-    background: rgba(217, 217, 217, 0.1);
-    display: inline-flex;
-    border-radius: 50%;
-    margin-right: 6px;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    border: 1px solid rgba(255, 255, 255, 0.5);
+  width: 42px;
+  height: 42px;
+  background: rgba(217, 217, 217, 0.1);
+  display: inline-flex;
+  border-radius: 50%;
+  margin-right: 6px;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 .social-icon a::before {
-    content: "";
-    width: 42px;
-    height: 42px;
-    position: absolute;
-    background-color: #fff;
-    border-radius: 50%;
-    transform: scale(0);
-    transition: 0.3s ease-in-out;
+  content: "";
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: 0.3s ease-in-out;
 }
 .social-icon a:hover::before {
   transform: scale(1);
 }
 .social-icon a img {
-	width: 40%;
-	z-index: 1;
-	transition: 0.3s ease-in-out;
+  width: 40%;
+  z-index: 1;
+  transition: 0.3s ease-in-out;
 }
 .social-icon a:hover img {
-	filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%) hue-rotate(346deg) brightness(95%) contrast(86%);
+  filter: brightness(0) saturate(100%) invert(0%) sepia(7%) saturate(98%)
+    hue-rotate(346deg) brightness(95%) contrast(86%);
 }
 .navbar-text button {
   font-weight: 700;
@@ -212,9 +227,9 @@ span.navbar-text {
   padding: 18px 34px;
   font-size: 18px;
   margin-left: 18px;
-	position: relative;
-	background-color: transparent;
-	transition: 0.3s ease-in-out;
+  position: relative;
+  background-color: transparent;
+  transition: 0.3s ease-in-out;
 }
 .navbar-text button span {
   z-index: 1;
@@ -234,14 +249,14 @@ span.navbar-text {
   color: #121212;
 }
 .navbar-text button:hover::before {
-	content: "";
-	width: 100%;
-	height: 100%;
-	position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 nav.navbar .navbar-toggler:active,
 nav.navbar .navbar-toggler:focus {
-	outline: none;
+  outline: none;
   box-shadow: none;
 }
 nav.navbar .navbar-toggler-icon {
@@ -254,35 +269,35 @@ nav.navbar .navbar-toggler-icon {
   top: -2px;
 }
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #fff;
 }
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
-	width: 24px;
-	position: absolute;
-	height: 2px;
-	background-color: #fff;
-	top: 0;
-	left: 0;
-	content: '';
-	z-index: 2;
-	transition: all 300ms linear;
+  width: 24px;
+  position: absolute;
+  height: 2px;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: 2;
+  transition: all 300ms linear;
 }
 nav.navbar .navbar-toggler-icon:after {
-	top: 8px;
+  top: 8px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
-	transform: rotate(45deg);
-	background-color: #fff;
-	height: 2px;
+  transform: rotate(45deg);
+  background-color: #fff;
+  height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
-	transform: translateY(8px) rotate(-45deg);
-	background-color: #fff;
-	height: 2px;
+  transform: translateY(8px) rotate(-45deg);
+  background-color: #fff;
+  height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
-	border-color: transparent;
+  border-color: transparent;
 }
 
 /************ Banner CSS ************/
@@ -310,7 +325,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: block;
 }
 .banner p {
-  color: #B8B8B8;
+  color: #b8b8b8;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -359,13 +374,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 @keyframes updown {
   0% {
-      transform: translateY(-20px);
+    transform: translateY(-20px);
   }
   50% {
-      transform: translateY(20px);
+    transform: translateY(20px);
   }
   100% {
-      transform: translateY(-20px);
+    transform: translateY(-20px);
   }
 }
 .txt-rotate > .wrap {
@@ -392,7 +407,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   padding: 0.75rem 0 1rem 0;
 }
 
-.skill-bx span {
+.skill-bx span,
+.footer span {
   color: var(--middle-blue-green);
 }
 
@@ -402,7 +418,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .skill p {
-  color: #B8B8B8;
+  color: #b8b8b8;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -445,13 +461,13 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 
 .experience h2 {
-	font-size: 45px;
-	font-weight: 700;
+  font-size: 45px;
+  font-weight: 700;
   text-align: center;
 }
 
 .experience p {
-  color: #B8B8B8;
+  color: #b8b8b8;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -488,7 +504,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: inline;
 }
 
-.experience .nav.nav-pills .nav-link img{
+.experience .nav.nav-pills .nav-link img {
   height: 40px;
   float: left;
 }
@@ -498,7 +514,11 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   position: absolute;
   width: 0;
   height: 100%;
-  background: linear-gradient(to right, #eaafc8, #654ea3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
+  background: linear-gradient(
+    to right,
+    #eaafc8,
+    #654ea3
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   /* background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%); */
   top: 0;
@@ -589,7 +609,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   display: flex;
 }
 
-[role=tabpanel] {
+[role="tabpanel"] {
   width: 100%;
   /* min-height: 55vh; */
 }
@@ -660,7 +680,6 @@ ul {
   }
 }
 
-
 /************ Projects CSS ************/
 .project {
   padding: 80px 0;
@@ -668,12 +687,12 @@ ul {
   background-color: none;
 }
 .project h2 {
-	font-size: 45px;
-	font-weight: 700;
+  font-size: 45px;
+  font-weight: 700;
   text-align: center;
 }
 .project p {
-  color: #B8B8B8;
+  color: #b8b8b8;
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -822,7 +841,7 @@ ul {
 }
 
 #game_section {
-  padding-bottom: 3.5rem;;
+  padding-bottom: 3.5rem;
 }
 
 #info {
@@ -830,7 +849,7 @@ ul {
   justify-content: center;
 }
 
-#info a{
+#info a {
   display: flex;
   justify-content: center; /* horizontal center of parent div */
   align-items: center; /* vertical center of div */
@@ -842,7 +861,7 @@ ul {
   color: var(--glossy-grape);
 }
 
-#info a:hover svg path{
+#info a:hover svg path {
   fill: var(--glossy-grape);
 }
 
@@ -893,7 +912,7 @@ ul {
   align-items: center;
 }
 
-.basic-info img{
+.basic-info img {
   width: 50px;
   height: auto;
 }
@@ -901,7 +920,7 @@ ul {
 .modal-content {
   display: inline;
   height: calc(83% + 1vh);
-    /* max-height: 80vh;
+  /* max-height: 80vh;
     overflow-y: hidden; */
   font-size: 16px;
 }
@@ -922,13 +941,13 @@ ul {
 
 /* width */
 #content::-webkit-scrollbar {
-  background-color: #B8B8B8;
+  background-color: #b8b8b8;
   width: 5px;
 }
 
 /* track */
 #content::-webkit-scrollbar-track {
-  background-color: #0A1929;
+  background-color: #0a1929;
 }
 
 /* handle */
@@ -936,9 +955,9 @@ ul {
   background-color: #215286;
   border-radius: 3px;
 }
- /* handle on hover */
+/* handle on hover */
 #content::-webkit-scrollbar-thumb:hover {
-  background-color: #B8B8B8;
+  background-color: #b8b8b8;
 }
 
 /* handle when clicked */
@@ -956,7 +975,6 @@ ul {
   }
 }
 
-
 /************ Footer CSS ************/
 .footer {
   display: flex;
@@ -964,7 +982,7 @@ ul {
 }
 
 #credits {
-  margin: 100px 0 0 0 !important; 
+  margin: 100px 0 0 0 !important;
   font-size: 16px;
   text-align: center;
   width: 100%;
@@ -972,7 +990,7 @@ ul {
 
 #credits a {
   text-decoration: none;
-  color: #AA367C;
+  color: #aa367c;
 }
 
 #credits a:hover {

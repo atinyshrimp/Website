@@ -12,6 +12,9 @@ export const Footer = () => {
           </a>
         </div>
         <div>Customization built by Joyce Lapilus &copy;</div>
+        <div>
+          Last updated: <span>Aug. 13th, 2024</span>
+        </div>
       </div>
     </section>
   );
