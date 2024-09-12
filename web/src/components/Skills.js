@@ -50,7 +50,7 @@ export const Skills = () => {
                   <img src={meter5} alt="Image" />
                   <h4>3D Modeling</h4>
                   <h6>
-                    SolidWorks, <span>Blender</span>
+                    SolidWorks, <span>Autodesk 3DS Max</span>
                   </h6>
                 </div>
                 <div className="item">

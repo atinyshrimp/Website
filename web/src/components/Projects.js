@@ -390,7 +390,7 @@ export const Projects = () => {
       description: "A simple pet simulator",
       imgUrl: coverCatSim,
       git: "https://github.com/atinyshrimp/Programmer-Theory-Repo",
-      link: "https://play.unity.com/p/63fb8d6caf7eae04a34e6471",
+      link: "https://play.unity.com/en/games/88ad9f5a-092d-480c-aa98-d2fa5b16cf9a/catsim",
       article_enabled: true,
       article: `
             <div class='modal-header'>
