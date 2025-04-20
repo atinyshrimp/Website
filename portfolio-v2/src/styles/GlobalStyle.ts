@@ -55,7 +55,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Montserrat', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: var(--color-bg-primary);
-    background-image: url('/images/bg-pattern.png');
+    background-image: url('https://4kwallpapers.com/images/wallpapers/outrun-neon-dark-background-purple-3840x2160-4523.jpg');
     background-size: cover;
     background-attachment: fixed;
     color: var(--color-text-primary);
