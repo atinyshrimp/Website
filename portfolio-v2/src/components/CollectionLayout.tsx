@@ -177,28 +177,6 @@ const DrawerContent = styled(motion.div)`
   border-left: 1px solid var(--color-border);
 `;
 
-const CloseButton = styled.button`
-  position: absolute;
-  top: var(--spacing-md);
-  right: var(--spacing-md);
-  background-color: rgba(231, 76, 60, 0.1);
-  color: var(--color-skill);
-  border: 1px solid var(--color-skill);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  cursor: pointer;
-  z-index: 100;
-
-  &:hover {
-    background-color: rgba(231, 76, 60, 0.2);
-  }
-`;
-
 interface ModalDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -226,7 +204,6 @@ const ModalDrawer: React.FC<ModalDrawerProps> = ({
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
           >
-            <CloseButton onClick={onClose}>×</CloseButton>
             {children}
           </DrawerContent>
         </DrawerOverlay>

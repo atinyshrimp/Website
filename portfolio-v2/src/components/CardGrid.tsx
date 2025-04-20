@@ -149,8 +149,6 @@ const EmptyMessage = styled.div`
 const CardGrid: React.FC<CardGridProps> = ({
   cards,
   onSelectCard,
-  onAddToDeck,
-  onRemoveFromDeck,
   cardsInDeck = [],
   filterType,
   onFilterChange,

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Card, Deck as DeckType } from "../data/types";
 import { cards as allCards, getCardById, decks } from "../data/cardData";
@@ -61,6 +61,7 @@ const CollectionPage: React.FC = () => {
   );
   const [isCardDetailOpen, setIsCardDetailOpen] = useState(false);
   const [viewMode, setViewMode] = useState<"list" | "editor">("list");
+  const [viewingDeckCards, setViewingDeckCards] = useState<string[]>([]);
 
   // Define a custom deck with the user's cards
   const customDeck: DeckType = {
@@ -76,6 +77,18 @@ const CollectionPage: React.FC = () => {
   // Get the active deck
   const activeDeck =
     allDecks.find((deck) => deck.id === activeDeckId) || customDeck;
+
+  // Update viewing deck cards when active deck changes
+  useEffect(() => {
+    if (activeDeckId !== "custom") {
+      const deck = allDecks.find((d) => d.id === activeDeckId);
+      if (deck) {
+        setViewingDeckCards(deck.cards);
+      }
+    } else {
+      setViewingDeckCards(userDeck);
+    }
+  }, [activeDeckId, userDeck, allDecks]);
 
   const handleAddToDeck = (card: Card) => {
     if (!userDeck.includes(card.id)) {
@@ -118,14 +131,6 @@ const CollectionPage: React.FC = () => {
   const handleDeckSelect = (deckId: string) => {
     setActiveDeckId(deckId);
 
-    // Load the selected predefined deck
-    if (deckId !== "custom") {
-      const selectedDeck = decks.find((deck) => deck.id === deckId);
-      if (selectedDeck) {
-        setUserDeck(selectedDeck.cards);
-      }
-    }
-
     // Switch to editor view
     setViewMode("editor");
   };
@@ -148,12 +153,11 @@ const CollectionPage: React.FC = () => {
       setCustomDeckName(name);
       setCustomDeckDesc(description);
     }
-    // Note: For predefined decks, you might want to implement a different way to save changes
   };
 
-  // Get full card objects for the user's deck or active deck cards
+  // Get full card objects for the active deck cards
   const getActiveDeckCards = (): Card[] => {
-    const cardIds = activeDeck.cards;
+    const cardIds = activeDeckId === "custom" ? userDeck : viewingDeckCards;
     return cardIds
       .map((id) => getCardById(id))
       .filter((card): card is Card => card !== undefined);
@@ -161,12 +165,7 @@ const CollectionPage: React.FC = () => {
 
   // Get filtered cards based on active tab
   const getFilteredCards = () => {
-    switch (activeTab) {
-      case "cards":
-        return allCards;
-      default:
-        return allCards;
-    }
+    return allCards;
   };
 
   // Render content based on active tab
@@ -185,6 +184,7 @@ const CollectionPage: React.FC = () => {
             onGoBack={() => setViewMode("list")}
             onAddToDeck={handleAddToDeck}
             cardsInDeck={userDeck}
+            isCustomDeck={activeDeckId === "custom"}
           />
         );
       } else {

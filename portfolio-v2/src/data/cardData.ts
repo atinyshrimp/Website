@@ -9,7 +9,7 @@ export const cards: Card[] = [
       "An interactive portfolio website inspired by card deck builder games",
     type: CardType.PROJECT,
     rarity: CardRarity.LEGENDARY,
-    imageUrl: "/images/projects/card-portfolio.jpg",
+    // imageUrl: "/images/projects/card-portfolio.jpg",
     tags: ["React", "TypeScript", "Framer Motion", "Styled Components"],
     links: [
       { label: "GitHub", url: "https://github.com/username/portfolio-v2" },

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardType as CardTypeEnum } from "../data/types";
-import { getCardById, cards as allCards } from "../data/cardData";
+import { cards as allCards } from "../data/cardData";
 import CardGrid from "../components/CardGrid";
 
 interface DeckEditorProps {
@@ -16,6 +16,7 @@ interface DeckEditorProps {
   onGoBack: () => void;
   onAddToDeck: (card: Card) => void;
   cardsInDeck: string[];
+  isCustomDeck: boolean;
 }
 
 const EditorContainer = styled.div`
@@ -141,12 +142,15 @@ const DeckCards = styled.div`
 
 const CardItem = styled(motion.div)`
   display: flex;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: var(--radius-sm);
   overflow: hidden;
   border: 1px solid var(--color-border);
-  height: 70px;
+  height: 56px;
   cursor: pointer;
+  padding: 0;
+  margin-bottom: 8px;
 
   &:hover {
     transform: translateY(-2px);
@@ -155,31 +159,19 @@ const CardItem = styled(motion.div)`
 `;
 
 const CardImage = styled.div<{ imageUrl?: string; type: string }>`
-  width: 70px;
-  height: 100%;
+  width: 56px;
+  height: 56px;
   background-image: ${({ imageUrl }) =>
     imageUrl
       ? `url(${imageUrl})`
       : "linear-gradient(to bottom, #2C3E50, #1A2530)"};
   background-size: cover;
   background-position: center;
-  border-right: 1px solid
-    ${({ type }) => {
-      switch (type) {
-        case "project":
-          return "var(--color-project)";
-        case "skill":
-          return "var(--color-skill)";
-        case "experience":
-          return "var(--color-experience)";
-        default:
-          return "var(--color-border)";
-      }
-    }};
+  border-right: 1px solid var(--color-border);
 `;
 
 const CardInfo = styled.div`
-  padding: var(--spacing-xs);
+  padding: 0 12px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -190,6 +182,7 @@ const CardTitle = styled.h4`
   font-size: 0.9rem;
   margin-bottom: 2px;
   color: var(--color-text-primary);
+  font-weight: 600;
 `;
 
 const CardType = styled.div<{ type: string }>`
@@ -216,8 +209,8 @@ const CardType = styled.div<{ type: string }>`
 `;
 
 const RemoveButton = styled.button`
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: rgba(231, 76, 60, 0.2);
   color: var(--color-skill);
@@ -225,10 +218,9 @@ const RemoveButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   cursor: pointer;
-  margin: var(--spacing-xs);
-  align-self: flex-start;
+  margin-right: 10px;
 
   &:hover {
     background-color: rgba(231, 76, 60, 0.4);
@@ -347,6 +339,7 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
   onGoBack,
   onAddToDeck,
   cardsInDeck,
+  isCustomDeck,
 }) => {
   const [name, setName] = useState(deckName);
   const [description, setDescription] = useState(deckDescription);
@@ -381,7 +374,7 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
         <DeckHeader>
           <BackButton onClick={onGoBack}>Back to Decks</BackButton>
 
-          {isEditing ? (
+          {isCustomDeck && isEditing ? (
             <>
               <InputGroup>
                 <Label>Deck Name</Label>
@@ -411,9 +404,11 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
             <>
               <DeckTitle>{name}</DeckTitle>
               <DeckDescription>{description}</DeckDescription>
-              <EditNameButton onClick={() => setIsEditing(true)}>
-                Edit Deck Info
-              </EditNameButton>
+              {isCustomDeck && (
+                <EditNameButton onClick={() => setIsEditing(true)}>
+                  Edit Deck Info
+                </EditNameButton>
+              )}
               <DeckStats>
                 <StatItem>
                   <StatValue>{cards.length}</StatValue>
@@ -454,19 +449,23 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
                     <CardTitle>{card.title}</CardTitle>
                     <CardType type={card.type}>{card.type}</CardType>
                   </CardInfo>
-                  <RemoveButton
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onRemoveCard(card);
-                    }}
-                  >
-                    ×
-                  </RemoveButton>
+                  {isCustomDeck && (
+                    <RemoveButton
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onRemoveCard(card);
+                      }}
+                    >
+                      ×
+                    </RemoveButton>
+                  )}
                 </CardItem>
               ))
             ) : (
               <EmptyDeckMessage>
-                Your deck is empty. Add cards from the right panel.
+                {isCustomDeck
+                  ? "Your deck is empty. Add cards from the right panel."
+                  : "This deck has no cards."}
               </EmptyDeckMessage>
             )}
           </AnimatePresence>
@@ -475,18 +474,22 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
 
       <CardsPanel>
         <CardsPanelHeader>
-          <CardsPanelTitle>Add Cards to Your Deck</CardsPanelTitle>
+          <CardsPanelTitle>
+            {isCustomDeck ? "Add Cards to Your Deck" : "Card Collection"}
+          </CardsPanelTitle>
           <CardsPanelDescription>
-            Browse through available cards and click to add them to your deck.
+            {isCustomDeck
+              ? "Browse through available cards and click to add them to your deck."
+              : "Browse through the card collection."}
           </CardsPanelDescription>
         </CardsPanelHeader>
 
         <CardGrid
           cards={filteredCards}
           onSelectCard={onSelectCard}
-          onAddToDeck={onAddToDeck}
-          onRemoveFromDeck={onRemoveCard}
-          cardsInDeck={cardsInDeck}
+          onAddToDeck={isCustomDeck ? onAddToDeck : undefined}
+          onRemoveFromDeck={isCustomDeck ? onRemoveCard : undefined}
+          cardsInDeck={isCustomDeck ? cardsInDeck : []}
           filterType={filterType}
           onFilterChange={handleFilterChange}
         />

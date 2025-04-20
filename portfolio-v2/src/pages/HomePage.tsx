@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
 
         <ButtonContainer>
           <PrimaryButton to="/collection">View Card Collection</PrimaryButton>
-          <SecondaryButton to="/about">About Me</SecondaryButton>
+          <SecondaryButton to="/about">About this Project</SecondaryButton>
         </ButtonContainer>
       </HeroSection>
 
@@ -114,9 +114,10 @@ const HomePage: React.FC = () => {
       {/* Display just a few featured cards in a grid */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-          gap: "var(--spacing-lg)",
+          display: "flex",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: "var(--spacing-xl)",
           marginTop: "var(--spacing-xl)",
           justifyContent: "center",
           alignItems: "center",
