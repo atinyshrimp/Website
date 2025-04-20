@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 // import Header from "./components/Header";
 import HomePage from "./pages/HomePage";
 import CollectionPage from "./pages/CollectionPage";
+import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 
 const App: React.FC = () => {
@@ -148,6 +149,9 @@ const GameLayout = () => {
                     </NavTab>
                     <NavTab to="/collection" active={isActive("/collection")}>
                         Collection
+                    </NavTab>
+                    <NavTab to="/profile" active={isActive("/profile")}>
+                        Profile
                     </NavTab>
                     <NavTab to="/about" active={false}>
                         About
