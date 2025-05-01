@@ -158,6 +158,8 @@ const CardItem = styled(motion.div)`
 	overflow: hidden;
 	border: 1px solid var(--color-border);
 	height: 56px;
+	min-height: 56px; /* Add this to prevent shrinking */
+	flex-shrink: 0; /* Add this to prevent shrinking */
 	cursor: pointer;
 	padding: 0;
 	margin-bottom: 8px;
