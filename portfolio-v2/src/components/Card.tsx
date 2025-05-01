@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { Tooltip } from "react-tooltip";
+
 import {
 	Card as CardType,
 	CardRarity,
@@ -300,88 +302,51 @@ const CardComponent: React.FC<CardProps> = ({
 		return rarity.charAt(0).toUpperCase();
 	};
 
-	// Calculate mock stats based on card properties
-	const getPowerStat = (): number => {
-		if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
-			return card.skillDetails.proficiency * 15; // Scale proficiency to 0-75
-		} else if (card.type === CardTypeEnum.PROJECT) {
-			return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
-		} else {
-			return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
-		}
-	};
-
-	const getTimeStat = (): number => {
-		if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
-			return card.skillDetails.yearsOfExperience * 10; // 10 points per year
-		} else if (
-			card.type === CardTypeEnum.EXPERIENCE &&
-			card.experienceDetails
-		) {
-			// Approximate duration in years and multiply by 15
-			const duration = card.experienceDetails.endDate === "Present" ? 2 : 1;
-			return duration * 15;
-		} else {
-			return 10 + Math.floor(Math.random() * 50); // Random value between 10-60
-		}
-	};
-
-	const getValueStat = (): number => {
-		if (card.type === CardTypeEnum.PROJECT) {
-			return 50 + Math.floor(Math.random() * 30); // Random value between 50-80
-		} else if (card.type === CardTypeEnum.EXPERIENCE) {
-			return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
-		} else {
-			return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
-		}
-	};
-
-	// Calculate stats based on card properties to create the RPG feel
-	const powerStat = getPowerStat();
-	const timeStat = getTimeStat();
-	const valueStat = getValueStat();
-
 	return (
-		<CardContainer
-			rarity={card.rarity}
-			cardType={card.type}
-			isSelected={isSelected}
-			isInDeck={isInDeck}
-			onClick={onClick}
-			whileHover={{
-				translateY: -5,
-				scale: 1.05,
-				transition: { duration: 0.2 },
-			}}
-			initial={{ opacity: 0, y: 20 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.3 }}
-		>
-			<CardRarityBadge rarity={card.rarity}>
-				{getRarityLetter(card.rarity)}
-			</CardRarityBadge>
-			<CardTypeTag cardType={card.type}>{card.type}</CardTypeTag>
-			<CardImage imageUrl={card.imageUrl} />
-			<CardContent>
-				<CardTitle>{card.title}</CardTitle>
-				<CardDescription>{card.description}</CardDescription>
-				<CardStats>
-					{Object.entries(card.stats).map(([key, value]) => (
-						<StatItem
-							key={key}
-							data-tooltip-id={`stats-${card.id}`}
-							data-tooltip-content={
-								STATS[key as keyof typeof STATS].description
-							}
-							type={key}
-						>
-							<StatIcon>{STATS[key as keyof typeof STATS].icon}</StatIcon>{" "}
-							{value}
-					</StatItem>
-					))}
-				</CardStats>
-			</CardContent>
-		</CardContainer>
+		<>
+			<CardContainer
+				rarity={card.rarity}
+				cardType={card.type}
+				isSelected={isSelected}
+				isInDeck={isInDeck}
+				onClick={onClick}
+				whileHover={{
+					translateY: -5,
+					scale: 1.05,
+					transition: { duration: 0.2 },
+				}}
+				initial={{ opacity: 0, y: 20 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.3 }}
+			>
+				<CardRarityBadge rarity={card.rarity}>
+					{getRarityLetter(card.rarity)}
+				</CardRarityBadge>
+				<CardTypeTag cardType={card.type}>{card.type}</CardTypeTag>
+				<CardImage imageUrl={card.imageUrl} />
+				<CardContent>
+					<CardTitle>{card.title}</CardTitle>
+					<CardDescription>{card.description}</CardDescription>
+					<CardStats>
+						{Object.entries(card.stats).map(([key, value]) => (
+							<StatItem
+								key={key}
+								data-tooltip-id={`stats-${card.id}`}
+								data-tooltip-content={
+									STATS[key as keyof typeof STATS].description
+								}
+								type={key}
+							>
+								<StatIcon>{STATS[key as keyof typeof STATS].icon}</StatIcon>{" "}
+								{value}
+							</StatItem>
+						))}
+					</CardStats>
+				</CardContent>
+			</CardContainer>
+			{/* Tooltip for stats */}
+			<Tooltip id={`stats-${card.id}`} place="top" />
+		</>
 	);
 };
 
