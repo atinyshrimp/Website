@@ -3,535 +3,667 @@ import styled from "styled-components";
 import { Card, CardRarity, CardType as CardTypeEnum } from "../data/types";
 
 interface CardDetailProps {
-    card: Card;
-    onAddToDeck?: () => void;
-    onRemoveFromDeck?: () => void;
-    isInDeck?: boolean;
+	card: Card;
+	onAddToDeck?: () => void;
+	onRemoveFromDeck?: () => void;
+	isInDeck?: boolean;
 }
 
 const DetailContainer = styled.div<{
-    rarity: CardRarity;
-    cardType: CardTypeEnum;
+	rarity: CardRarity;
+	cardType: CardTypeEnum;
 }>`
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: var(--color-panel-bg);
-    position: relative;
-    color: var(--color-text-primary);
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	position: relative;
+	color: var(--color-text-primary);
 
-    /* Card rarity border styling */
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        pointer-events: none;
-    }
+	/* Cyberpunk angular frame */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		pointer-events: none;
+	}
+
+	/* Digital scanline effect */
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: repeating-linear-gradient(
+			to bottom,
+			transparent 0px,
+			transparent 1px,
+			rgba(32, 202, 255, 0.06) 2px,
+			rgba(32, 202, 255, 0.06) 3px
+		);
+		pointer-events: none;
+		z-index: 7;
+		opacity: 0.3;
+	}
 `;
 
 const CardHeader = styled.div`
-    position: relative;
-    padding-top: 56.25%; /* 16:9 aspect ratio */
-    overflow: hidden;
+	position: relative;
+	padding-top: 56.25%; /* 16:9 aspect ratio */
+	overflow: hidden;
 `;
 
 const CardImage = styled.div<{ imageUrl?: string }>`
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: ${({ imageUrl }) =>
-        imageUrl
-            ? `url(${imageUrl})`
-            : "linear-gradient(to bottom, #2C3E50, #1A2530)"};
-    background-size: cover;
-    background-position: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-image: ${({ imageUrl }) =>
+		imageUrl
+			? `url(${imageUrl})`
+			: "linear-gradient(135deg, #1A1E2D, #0A0E19)"};
+	background-size: cover;
+	background-position: center;
 
-    &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 50px;
-        background: linear-gradient(to top, var(--color-panel-bg), transparent);
-    }
+	/* Cyberpunk overlay gradient */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			135deg,
+			rgba(231, 76, 60, 0.2),
+			rgba(86, 204, 242, 0.2)
+		);
+		z-index: 2;
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 80px;
+		background: linear-gradient(to top, #0d1117, transparent);
+		z-index: 3;
+	}
 `;
 
 const CardInfo = styled.div`
-    padding: var(--spacing-md);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+	padding: var(--spacing-md);
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-md);
 `;
 
 const CardTitle = styled.h2`
-    font-size: 1.5rem;
-    margin-bottom: var(--spacing-xs);
-    color: var(--color-text-primary);
-    border-bottom: 2px solid var(--color-border);
-    padding-bottom: var(--spacing-xs);
-    position: relative;
+	font-size: 1.5rem;
+	margin-bottom: var(--spacing-xs);
+	color: var(--color-text-primary);
+	padding-bottom: var(--spacing-xs);
+	position: relative;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	display: inline-block;
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: linear-gradient(to right, #e74c3c, #56ccf2);
+	}
 `;
 
 const CardType = styled.div<{ cardType: CardTypeEnum }>`
-    display: inline-block;
-    padding: 2px 8px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    margin-bottom: var(--spacing-sm);
-    background-color: ${({ cardType }) => {
-        switch (cardType) {
-            case CardTypeEnum.PROJECT:
-                return "var(--color-project)";
-            case CardTypeEnum.SKILL:
-                return "var(--color-skill)";
-            case CardTypeEnum.EXPERIENCE:
-                return "var(--color-experience)";
-            default:
-                return "var(--color-project)";
-        }
-    }};
-    color: white;
+	display: inline-block;
+	padding: 4px 10px;
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	margin-bottom: var(--spacing-sm);
+	clip-path: polygon(0 0, 100% 0, 100% 50%, 90% 100%, 0 100%);
+	background-color: ${({ cardType }) => {
+		switch (cardType) {
+			case CardTypeEnum.PROJECT:
+				return "var(--color-project)";
+			case CardTypeEnum.SKILL:
+				return "var(--color-skill)";
+			case CardTypeEnum.EXPERIENCE:
+				return "var(--color-experience)";
+			default:
+				return "var(--color-project)";
+		}
+	}};
+	color: white;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 `;
 
 const CardRarityText = styled.div<{ rarity: CardRarity }>`
-    display: inline-block;
-    margin-left: var(--spacing-sm);
-    padding: 2px 8px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-radius: var(--radius-sm);
-    color: ${({ rarity }) => {
-        switch (rarity) {
-            case CardRarity.COMMON:
-                return "var(--color-common)";
-            case CardRarity.RARE:
-                return "var(--color-rare)";
-            case CardRarity.EPIC:
-                return "var(--color-epic)";
-            case CardRarity.LEGENDARY:
-                return "var(--color-legendary)";
-            default:
-                return "var(--color-common)";
-        }
-    }};
-    background-color: rgba(0, 0, 0, 0.2);
+	display: inline-block;
+	margin-left: var(--spacing-sm);
+	padding: 4px 10px;
+	font-size: 0.7rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: ${({ rarity }) => {
+		switch (rarity) {
+			case CardRarity.COMMON:
+				return "var(--color-common)";
+			case CardRarity.RARE:
+				return "var(--color-rare)";
+			case CardRarity.EPIC:
+				return "var(--color-epic)";
+			case CardRarity.LEGENDARY:
+				return "var(--color-legendary)";
+			default:
+				return "var(--color-common)";
+		}
+	}};
+	background-color: rgba(0, 0, 0, 0.3);
+	clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 50%);
 `;
 
 const CardDescription = styled.p`
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
+	font-size: 0.9rem;
+	color: var(--color-text-secondary);
+	line-height: 1.6;
 `;
 
 const TagsContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-xs);
-    margin-bottom: var(--spacing-md);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-xs);
+	margin-bottom: var(--spacing-md);
 `;
 
 const Tag = styled.span`
-    font-size: 0.8rem;
-    padding: 2px 8px;
-    border-radius: var(--radius-sm);
-    background-color: rgba(0, 0, 0, 0.2);
-    color: var(--color-text-secondary);
+	font-size: 0.8rem;
+	padding: 3px 8px;
+	background-color: rgba(0, 0, 0, 0.3);
+	color: var(--color-text-secondary);
+	position: relative;
+	border-left: 2px solid rgba(86, 204, 242, 0.5);
+	border-right: 2px solid rgba(231, 76, 60, 0.5);
 `;
 
 const StatsContainer = styled.div`
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
-    border-top: 1px solid var(--color-border);
-    padding-top: var(--spacing-md);
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: var(--spacing-md);
+	margin-bottom: var(--spacing-md);
+	padding: var(--spacing-md);
+	background: rgba(0, 0, 0, 0.2);
+	position: relative;
+	clip-path: polygon(
+		0 0,
+		100% 0,
+		100% calc(100% - 15px),
+		calc(100% - 15px) 100%,
+		0 100%
+	);
+
+	/* Horizontal line */
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		right: 10px;
+		height: 1px;
+		background: linear-gradient(
+			to right,
+			rgba(231, 76, 60, 0.3),
+			rgba(86, 204, 242, 0.3)
+		);
+	}
+
+	/* Vertical line */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 10px;
+		bottom: 10px;
+		left: 50%;
+		width: 1px;
+		background: linear-gradient(
+			to bottom,
+			rgba(231, 76, 60, 0.3),
+			rgba(86, 204, 242, 0.3)
+		);
+	}
 `;
 
 const StatItem = styled.div<{ highlight?: boolean }>`
-    display: flex;
-    flex-direction: column;
-    ${({ highlight }) =>
-        highlight &&
-        `
-    color: var(--color-accent);
-  `}
+	display: flex;
+	flex-direction: column;
+	padding: 8px 5px;
+	position: relative;
+	z-index: 1;
+	${({ highlight }) =>
+		highlight &&
+		`
+        color: var(--color-accent);
+        text-shadow: 0 0 5px rgba(86, 204, 242, 0.5);
+    `}
 `;
 
 const StatLabel = styled.span`
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-secondary);
-    margin-bottom: 2px;
+	font-size: 0.7rem;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: var(--color-text-secondary);
+	margin-bottom: 4px;
 `;
 
 const StatValue = styled.span`
-    font-size: 1rem;
-    font-weight: 600;
+	font-size: 1.1rem;
+	font-weight: 600;
 `;
 
 const ButtonsContainer = styled.div`
-    display: flex;
-    gap: var(--spacing-md);
-    margin-top: auto;
+	display: flex;
+	gap: var(--spacing-md);
+	margin-top: auto;
 `;
 
 const ActionButton = styled.button<{
-    isRemove?: boolean;
-    isExternal?: boolean;
+	isRemove?: boolean;
+	isExternal?: boolean;
 }>`
-    width: 100%;
-    padding: var(--spacing-sm);
-    background-color: ${({ isRemove, isExternal }) =>
-        isRemove
-            ? "rgba(231, 76, 60, 0.2)"
-            : isExternal
-            ? "rgba(52, 152, 219, 0.2)"
-            : "rgba(46, 204, 113, 0.2)"};
-    color: ${({ isRemove, isExternal }) =>
-        isRemove
-            ? "var(--color-skill)"
-            : isExternal
-            ? "var(--color-rare)"
-            : "var(--color-project)"};
-    border: 1px solid
-        ${({ isRemove, isExternal }) =>
-            isRemove
-                ? "var(--color-skill)"
-                : isExternal
-                ? "var(--color-rare)"
-                : "var(--color-project)"};
+	width: 100%;
+	padding: var(--spacing-sm);
+	background-color: rgba(13, 17, 23, 0.8);
+	color: ${({ isRemove, isExternal }) =>
+		isRemove ? "#e74c3c" : isExternal ? "#56ccf2" : "#2ecc71"};
+	border: 1px solid
+		${({ isRemove, isExternal }) =>
+			isRemove ? "#e74c3c" : isExternal ? "#56ccf2" : "#2ecc71"};
+	position: relative;
+	overflow: hidden;
+	transition: all 0.3s ease;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: 600;
 
-    &:hover {
-        background-color: ${({ isRemove, isExternal }) =>
-            isRemove
-                ? "rgba(231, 76, 60, 0.3)"
-                : isExternal
-                ? "rgba(52, 152, 219, 0.3)"
-                : "rgba(46, 204, 113, 0.3)"};
-    }
+	/* Clip path for cyberpunk button style */
+	clip-path: polygon(
+		0 0,
+		100% 0,
+		100% calc(100% - 8px),
+		calc(100% - 8px) 100%,
+		0 100%
+	);
+
+	/* Glowing effect on hover */
+	&:hover {
+		background-color: rgba(20, 26, 35, 0.9);
+		box-shadow: 0 0 10px
+			${({ isRemove, isExternal }) =>
+				isRemove
+					? "rgba(231, 76, 60, 0.5)"
+					: isExternal
+					? "rgba(86, 204, 242, 0.5)"
+					: "rgba(46, 204, 113, 0.5)"};
+	}
+
+	/* Scanline effect */
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			${({ isRemove, isExternal }) =>
+				isRemove
+					? "rgba(231, 76, 60, 0.8)"
+					: isExternal
+					? "rgba(86, 204, 242, 0.8)"
+					: "rgba(46, 204, 113, 0.8)"},
+			transparent
+		);
+		box-shadow: 0 0 8px
+			${({ isRemove, isExternal }) =>
+				isRemove
+					? "rgba(231, 76, 60, 0.5)"
+					: isExternal
+					? "rgba(86, 204, 242, 0.5)"
+					: "rgba(46, 204, 113, 0.5)"};
+	}
 `;
 
 const DetailSection = styled.div`
-    margin-bottom: var(--spacing-md);
+	margin-bottom: var(--spacing-md);
 `;
 
 const SectionTitle = styled.h3`
-    font-size: 1rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    margin-bottom: var(--spacing-sm);
+	font-size: 1rem;
+	position: relative;
+	display: flex;
+	align-items: center;
+	margin-bottom: var(--spacing-sm);
+	color: #56ccf2;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
 
-    &::before {
-        content: "▶";
-        font-size: 0.7rem;
-        margin-right: var(--spacing-xs);
-        color: var(--color-accent);
-    }
+	&::before {
+		content: ">";
+		margin-right: var(--spacing-xs);
+		color: #e74c3c;
+		font-weight: bold;
+	}
 `;
 
 const DetailList = styled.ul`
-    list-style: none;
-    padding-left: var(--spacing-md);
+	list-style: none;
+	padding-left: var(--spacing-md);
 `;
 
 const DetailItem = styled.li`
-    margin-bottom: var(--spacing-xs);
-    font-size: 0.85rem;
-    color: var(--color-text-secondary);
-    position: relative;
+	margin-bottom: var(--spacing-xs);
+	font-size: 0.85rem;
+	color: var(--color-text-secondary);
+	position: relative;
 
-    &::before {
-        content: "•";
-        position: absolute;
-        left: -15px;
-        color: var(--color-accent);
-    }
+	&::before {
+		content: "•";
+		position: absolute;
+		left: -15px;
+		color: var(--color-accent);
+	}
 `;
 
 const LinksContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-sm);
+	margin-top: var(--spacing-lg);
+	margin-bottom: var(--spacing-lg);
 `;
 
 const ProficiencyBar = styled.div`
-    display: flex;
-    height: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
-    margin-top: var(--spacing-xs);
-    border-radius: var(--radius-sm);
-    overflow: hidden;
+	display: flex;
+	height: 15px;
+	background-color: rgba(0, 0, 0, 0.3);
+	margin-top: var(--spacing-xs);
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: repeating-linear-gradient(
+			to right,
+			rgba(255, 255, 255, 0.05) 0px,
+			rgba(255, 255, 255, 0.05) 4px,
+			rgba(0, 0, 0, 0.3) 4px,
+			rgba(0, 0, 0, 0.3) 8px
+		);
+		pointer-events: none;
+	}
 `;
 
 const ProficiencyFill = styled.div<{ level: number }>`
-    width: ${(props) => props.level * 20}%;
-    background: linear-gradient(to right, #2ecc71, #56ccf2);
-    border-radius: var(--radius-sm);
+	width: ${(props) => props.level * 20}%;
+	background: linear-gradient(to right, #e74c3c, #56ccf2);
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 10px;
+		height: 100%;
+		background: rgba(255, 255, 255, 0.5);
+		filter: blur(5px);
+	}
 `;
 
 const CardDetail: React.FC<CardDetailProps> = ({
-    card,
-    onAddToDeck,
-    onRemoveFromDeck,
-    isInDeck,
+	card,
+	onAddToDeck,
+	onRemoveFromDeck,
+	isInDeck,
 }) => {
-    // Generate random RPG-like stat values based on card properties
-    const getPowerStat = (): number => {
-        if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
-            return card.skillDetails.proficiency * 15; // Scale proficiency to 0-75
-        } else if (card.type === CardTypeEnum.PROJECT) {
-            return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
-        } else {
-            return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
-        }
-    };
+	// Generate random RPG-like stat values based on card properties
+	const getPowerStat = (): number => {
+		if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
+			return card.skillDetails.proficiency * 15; // Scale proficiency to 0-75
+		} else if (card.type === CardTypeEnum.PROJECT) {
+			return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
+		} else {
+			return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
+		}
+	};
 
-    const getTimeStat = (): number => {
-        if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
-            return card.skillDetails.yearsOfExperience * 10; // 10 points per year
-        } else if (
-            card.type === CardTypeEnum.EXPERIENCE &&
-            card.experienceDetails
-        ) {
-            // Approximate duration in years and multiply by 15
-            const duration =
-                card.experienceDetails.endDate === "Present" ? 2 : 1;
-            return duration * 15;
-        } else {
-            return 10 + Math.floor(Math.random() * 50); // Random value between 10-60
-        }
-    };
+	const getTimeStat = (): number => {
+		if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
+			return card.skillDetails.yearsOfExperience * 10; // 10 points per year
+		} else if (
+			card.type === CardTypeEnum.EXPERIENCE &&
+			card.experienceDetails
+		) {
+			// Approximate duration in years and multiply by 15
+			const duration = card.experienceDetails.endDate === "Present" ? 2 : 1;
+			return duration * 15;
+		} else {
+			return 10 + Math.floor(Math.random() * 50); // Random value between 10-60
+		}
+	};
 
-    const getValueStat = (): number => {
-        if (card.type === CardTypeEnum.PROJECT) {
-            return 50 + Math.floor(Math.random() * 30); // Random value between 50-80
-        } else if (card.type === CardTypeEnum.EXPERIENCE) {
-            return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
-        } else {
-            return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
-        }
-    };
+	const getValueStat = (): number => {
+		if (card.type === CardTypeEnum.PROJECT) {
+			return 50 + Math.floor(Math.random() * 30); // Random value between 50-80
+		} else if (card.type === CardTypeEnum.EXPERIENCE) {
+			return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
+		} else {
+			return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
+		}
+	};
 
-    const powerStat = getPowerStat();
-    const timeStat = getTimeStat();
-    const valueStat = getValueStat();
+	const powerStat = getPowerStat();
+	const timeStat = getTimeStat();
+	const valueStat = getValueStat();
 
-    return (
-        <DetailContainer rarity={card.rarity} cardType={card.type}>
-            <CardHeader>
-                <CardImage imageUrl={card.imageUrl} />
-            </CardHeader>
+	return (
+		<DetailContainer rarity={card.rarity} cardType={card.type}>
+			<CardHeader>
+				<CardImage imageUrl={card.imageUrl} />
+			</CardHeader>
 
-            <CardInfo>
-                <div>
-                    <CardType cardType={card.type}>{card.type}</CardType>
-                    <CardRarityText rarity={card.rarity}>
-                        {card.rarity}
-                    </CardRarityText>
-                </div>
+			<CardInfo>
+				<div>
+					<CardType cardType={card.type}>{card.type}</CardType>
+					<CardRarityText rarity={card.rarity}>{card.rarity}</CardRarityText>
+				</div>
 
-                <CardTitle>{card.title}</CardTitle>
-                <CardDescription>{card.description}</CardDescription>
+				<CardTitle>{card.title}</CardTitle>
+				<CardDescription>{card.description}</CardDescription>
 
-                <TagsContainer>
-                    {card.tags.map((tag, index) => (
-                        <Tag key={index}>{tag}</Tag>
-                    ))}
-                </TagsContainer>
+				<TagsContainer>
+					{card.tags.map((tag, index) => (
+						<Tag key={index}>{tag}</Tag>
+					))}
+				</TagsContainer>
 
-                <StatsContainer>
-                    <StatItem>
-                        <StatLabel>Power</StatLabel>
-                        <StatValue>⚔️ {powerStat}</StatValue>
-                    </StatItem>
-                    <StatItem>
-                        <StatLabel>Value</StatLabel>
-                        <StatValue>💎 {valueStat}</StatValue>
-                    </StatItem>
-                    <StatItem>
-                        <StatLabel>Time</StatLabel>
-                        <StatValue>⏳ {timeStat}</StatValue>
-                    </StatItem>
-                    <StatItem highlight={true}>
-                        <StatLabel>Overall</StatLabel>
-                        <StatValue>
-                            ★{" "}
-                            {Math.floor((powerStat + valueStat + timeStat) / 3)}
-                        </StatValue>
-                    </StatItem>
-                </StatsContainer>
+				<StatsContainer>
+					<StatItem>
+						<StatLabel>Power</StatLabel>
+						<StatValue>⚔️ {powerStat}</StatValue>
+					</StatItem>
+					<StatItem>
+						<StatLabel>Value</StatLabel>
+						<StatValue>💎 {valueStat}</StatValue>
+					</StatItem>
+					<StatItem>
+						<StatLabel>Time</StatLabel>
+						<StatValue>⏳ {timeStat}</StatValue>
+					</StatItem>
+					<StatItem highlight={true}>
+						<StatLabel>Overall</StatLabel>
+						<StatValue>
+							★ {Math.floor((powerStat + valueStat + timeStat) / 3)}
+						</StatValue>
+					</StatItem>
+				</StatsContainer>
 
-                {/* Render specific details based on card type */}
-                {card.type === CardTypeEnum.PROJECT && card.projectDetails && (
-                    <>
-                        <DetailSection>
-                            <SectionTitle>Role</SectionTitle>
-                            <DetailList>
-                                <DetailItem>
-                                    {card.projectDetails.role}
-                                </DetailItem>
-                            </DetailList>
-                        </DetailSection>
+				{/* Render specific details based on card type */}
+				{card.type === CardTypeEnum.PROJECT && card.projectDetails && (
+					<>
+						{card.projectDetails.role && (
+							<DetailSection>
+								<SectionTitle>Role</SectionTitle>
+								<DetailList>
+									<DetailItem>{card.projectDetails.role}</DetailItem>
+								</DetailList>
+							</DetailSection>
+						)}
 
-                        <DetailSection>
-                            <SectionTitle>Duration</SectionTitle>
-                            <DetailList>
-                                <DetailItem>
-                                    {card.projectDetails.duration}
-                                </DetailItem>
-                            </DetailList>
-                        </DetailSection>
+						<DetailSection>
+							<SectionTitle>Duration</SectionTitle>
+							<DetailList>
+								<DetailItem>{card.projectDetails.duration}</DetailItem>
+							</DetailList>
+						</DetailSection>
 
-                        <DetailSection>
-                            <SectionTitle>Technologies</SectionTitle>
-                            <DetailList>
-                                {card.projectDetails.technologies.map(
-                                    (tech, index) => (
-                                        <DetailItem key={index}>
-                                            {tech}
-                                        </DetailItem>
-                                    )
-                                )}
-                            </DetailList>
-                        </DetailSection>
+						<DetailSection>
+							<SectionTitle>Technologies</SectionTitle>
+							<DetailList>
+								{card.projectDetails.technologies.map((tech, index) => (
+									<DetailItem key={index}>{tech}</DetailItem>
+								))}
+							</DetailList>
+						</DetailSection>
 
-                        <DetailSection>
-                            <SectionTitle>Outcomes</SectionTitle>
-                            <DetailList>
-                                {card.projectDetails.outcomes.map(
-                                    (outcome, index) => (
-                                        <DetailItem key={index}>
-                                            {outcome}
-                                        </DetailItem>
-                                    )
-                                )}
-                            </DetailList>
-                        </DetailSection>
-                    </>
-                )}
+						<DetailSection>
+							<SectionTitle>Outcomes</SectionTitle>
+							<DetailList>
+								{card.projectDetails.outcomes.map((outcome, index) => (
+									<DetailItem key={index}>{outcome}</DetailItem>
+								))}
+							</DetailList>
+						</DetailSection>
+					</>
+				)}
 
-                {card.type === CardTypeEnum.SKILL && card.skillDetails && (
-                    <>
-                        <DetailSection>
-                            <SectionTitle>Proficiency</SectionTitle>
-                            <ProficiencyBar>
-                                <ProficiencyFill
-                                    level={card.skillDetails.proficiency}
-                                />
-                            </ProficiencyBar>
-                        </DetailSection>
+				{card.type === CardTypeEnum.SKILL && card.skillDetails && (
+					<>
+						<DetailSection>
+							<SectionTitle>Proficiency</SectionTitle>
+							<ProficiencyBar>
+								<ProficiencyFill level={card.skillDetails.proficiency} />
+							</ProficiencyBar>
+						</DetailSection>
 
-                        <DetailSection>
-                            <SectionTitle>Years of Experience</SectionTitle>
-                            <DetailList>
-                                <DetailItem>
-                                    {card.skillDetails.yearsOfExperience} years
-                                </DetailItem>
-                            </DetailList>
-                        </DetailSection>
-                    </>
-                )}
+						<DetailSection>
+							<SectionTitle>Years of Experience</SectionTitle>
+							<DetailList>
+								<DetailItem>
+									{card.skillDetails.yearsOfExperience} years
+								</DetailItem>
+							</DetailList>
+						</DetailSection>
+					</>
+				)}
 
-                {card.type === CardTypeEnum.EXPERIENCE &&
-                    card.experienceDetails && (
-                        <>
-                            <DetailSection>
-                                <SectionTitle>Company</SectionTitle>
-                                <DetailList>
-                                    <DetailItem>
-                                        {card.experienceDetails.company}
-                                    </DetailItem>
-                                </DetailList>
-                            </DetailSection>
+				{card.type === CardTypeEnum.EXPERIENCE && card.experienceDetails && (
+					<>
+						<DetailSection>
+							<SectionTitle>Company</SectionTitle>
+							<DetailList>
+								<DetailItem>{card.experienceDetails.company}</DetailItem>
+							</DetailList>
+						</DetailSection>
 
-                            <DetailSection>
-                                <SectionTitle>Position</SectionTitle>
-                                <DetailList>
-                                    <DetailItem>
-                                        {card.experienceDetails.position}
-                                    </DetailItem>
-                                </DetailList>
-                            </DetailSection>
+						<DetailSection>
+							<SectionTitle>Position</SectionTitle>
+							<DetailList>
+								<DetailItem>{card.experienceDetails.position}</DetailItem>
+							</DetailList>
+						</DetailSection>
 
-                            <DetailSection>
-                                <SectionTitle>Duration</SectionTitle>
-                                <DetailList>
-                                    <DetailItem>
-                                        {`${card.experienceDetails.startDate} - ${card.experienceDetails.endDate}`}
-                                    </DetailItem>
-                                </DetailList>
-                            </DetailSection>
+						<DetailSection>
+							<SectionTitle>Duration</SectionTitle>
+							<DetailList>
+								<DetailItem>
+									{`${card.experienceDetails.startDate} - ${card.experienceDetails.endDate}`}
+								</DetailItem>
+							</DetailList>
+						</DetailSection>
 
-                            <DetailSection>
-                                <SectionTitle>Location</SectionTitle>
-                                <DetailList>
-                                    <DetailItem>
-                                        {card.experienceDetails.location}
-                                    </DetailItem>
-                                </DetailList>
-                            </DetailSection>
+						<DetailSection>
+							<SectionTitle>Location</SectionTitle>
+							<DetailList>
+								<DetailItem>{card.experienceDetails.location}</DetailItem>
+							</DetailList>
+						</DetailSection>
 
-                            <DetailSection>
-                                <SectionTitle>Key Achievements</SectionTitle>
-                                <DetailList>
-                                    {card.experienceDetails.achievements.map(
-                                        (achievement, index) => (
-                                            <DetailItem key={index}>
-                                                {achievement}
-                                            </DetailItem>
-                                        )
-                                    )}
-                                </DetailList>
-                            </DetailSection>
-                        </>
-                    )}
+						<DetailSection>
+							<SectionTitle>Key Achievements</SectionTitle>
+							<DetailList>
+								{card.experienceDetails.achievements.map(
+									(achievement, index) => (
+										<DetailItem key={index}>{achievement}</DetailItem>
+									)
+								)}
+							</DetailList>
+						</DetailSection>
+					</>
+				)}
 
-                {card.links && card.links.length > 0 && (
-                    <LinksContainer>
-                        {card.links.map((link, index) => (
-                            <ActionButton
-                                key={index}
-                                as="a"
-                                href={link.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                isExternal={true}
-                            >
-                                {link.label}
-                            </ActionButton>
-                        ))}
-                    </LinksContainer>
-                )}
+				{card.links && card.links.length > 0 && (
+					<LinksContainer>
+						{card.links.map((link, index) => (
+							<ActionButton
+								key={index}
+								as="a"
+								href={link.url}
+								target="_blank"
+								rel="noopener noreferrer"
+								isExternal={true}
+							>
+								{link.label}
+							</ActionButton>
+						))}
+					</LinksContainer>
+				)}
 
-                {onAddToDeck && onRemoveFromDeck && (
-                    <ButtonsContainer>
-                        <ActionButton
-                            onClick={isInDeck ? onRemoveFromDeck : onAddToDeck}
-                            isRemove={isInDeck}
-                        >
-                            {isInDeck ? "Remove from Deck" : "Add to Deck"}
-                        </ActionButton>
-                    </ButtonsContainer>
-                )}
-            </CardInfo>
-        </DetailContainer>
-    );
+				{onAddToDeck && onRemoveFromDeck && (
+					<ButtonsContainer>
+						<ActionButton
+							onClick={isInDeck ? onRemoveFromDeck : onAddToDeck}
+							isRemove={isInDeck}
+						>
+							{isInDeck ? "Remove from Deck" : "Add to Deck"}
+						</ActionButton>
+					</ButtonsContainer>
+				)}
+			</CardInfo>
+		</DetailContainer>
+	);
 };
 
 export default CardDetail;
