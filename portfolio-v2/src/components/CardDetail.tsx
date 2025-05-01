@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { getStringFromDate } from "../utils";
 import { Card, CardRarity, CardType as CardTypeEnum } from "../data/types";
 
 interface CardDetailProps {
@@ -609,7 +610,9 @@ const CardDetail: React.FC<CardDetailProps> = ({
 							<SectionTitle>Duration</SectionTitle>
 							<DetailList>
 								<DetailItem>
-									{`${card.experienceDetails.startDate} - ${card.experienceDetails.endDate}`}
+									{`${getStringFromDate(
+										card.experienceDetails.startDate
+									)} - ${getStringFromDate(card.experienceDetails.endDate)}`}
 								</DetailItem>
 							</DetailList>
 						</DetailSection>

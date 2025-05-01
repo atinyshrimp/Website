@@ -9,8 +9,15 @@ export const cards: Card[] = [
 			"An interactive portfolio website inspired by card deck builder games",
 		type: CardType.PROJECT,
 		rarity: CardRarity.LEGENDARY,
-		// imageUrl: "/images/projects/card-portfolio.jpg",
-		tags: ["React", "TypeScript", "Framer Motion", "Styled Components"],
+		imageUrl:
+			"https://images.unsplash.com/photo-1742743032749-187b17179e0f?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+		tags: [
+			"Frontend",
+			"React",
+			"TypeScript",
+			"Framer Motion",
+			"Styled Components",
+		],
 		links: [
 			{
 				label: "GitHub",
@@ -43,7 +50,15 @@ export const cards: Card[] = [
 		rarity: CardRarity.EPIC,
 		imageUrl:
 			"https://github.com/atinyshrimp/lego/blob/master/client/v2/assets/images/bricked_up_logo.png?raw=true",
-		tags: ["React", "Node.js", "MongoDB", "Web Scraping"],
+		tags: [
+			"Frontend",
+			"Backend",
+			"Fullstack",
+			"React",
+			"Node.js",
+			"MongoDB",
+			"Web Scraping",
+		],
 		links: [
 			{ label: "GitHub", url: "https://github.com/atinyshrimp/lego" },
 			{
@@ -135,7 +150,7 @@ export const cards: Card[] = [
 		type: CardType.PROJECT,
 		rarity: CardRarity.EPIC,
 		imageUrl: "https://placehold.co/600x400/2a3990/white/?text=Venulog",
-		tags: ["Frontend", "Backend", "Node.js", "Express", "Stripe"],
+		tags: ["Frontend", "Backend", "Fullstack", "Node.js", "Express", "Stripe"],
 		links: [
 			{
 				label: "Live Demo",
@@ -154,7 +169,7 @@ export const cards: Card[] = [
 		},
 	},
 	{
-		id: "project-5",
+		id: "project-6",
 		title: "MiDoc",
 		description:
 			"A web application that allows you to manage your medical prescriptions related to menopause",
@@ -198,7 +213,7 @@ export const cards: Card[] = [
 		},
 	},
 	{
-		id: "project-6",
+		id: "project-7",
 		title: "Captain Sonar",
 		description:
 			"A digital version of the board game Captain Sonar, a strategic team game",
@@ -304,12 +319,21 @@ export const cards: Card[] = [
 		rarity: CardRarity.LEGENDARY,
 		imageUrl:
 			"https://bank.cellar-c2.services.clever-cloud.com/file/assets/edb8d352c855fbd4e7e1496b10b059b0/lestud_logo%20%281%29.jpeg",
-		tags: ["Leadership", "Frontend", "Team Management", "Internship"],
+		tags: [
+			"Leadership",
+			"Frontend",
+			"Backend",
+			"Fullstack",
+			"Team Management",
+			"Internship",
+			"Agile Methodologies",
+			"Application Programming Interface (API)",
+		],
 		experienceDetails: {
 			company: "Selego",
 			position: "Full Stack Developer & Data Scientist",
-			startDate: "February 2025",
-			endDate: "Present",
+			startDate: new Date("2025-02-10"),
+			endDate: new Date("2025-08-15"),
 			location: "Paris, France",
 			achievements: [
 				"Increased team productivity by 30% through process improvements",
@@ -338,8 +362,8 @@ export const cards: Card[] = [
 		experienceDetails: {
 			company: "Ecole Supérieure d'Ingénieurs Léonard de Vinci",
 			position: "Master's Degree in Engineering",
-			startDate: "September 2020",
-			endDate: "August 2025",
+			startDate: new Date("2020-09-01"),
+			endDate: new Date("2025-08-31"),
 			location: "Courbevoie, France",
 			achievements: [
 				"Specialized in Data Science and AI",
@@ -369,8 +393,8 @@ export const cards: Card[] = [
 		experienceDetails: {
 			company: "Ecole de Management Léonard de Vinci",
 			position: "Master's Degree in Management",
-			startDate: "September 2020",
-			endDate: "August 2025",
+			startDate: new Date("2020-09-01"),
+			endDate: new Date("2025-08-31"),
 			location: "Courbevoie, France",
 			achievements: [
 				"Specialized in Corporate Finance",
@@ -382,60 +406,44 @@ export const cards: Card[] = [
 	},
 	{
 		id: "experience-5",
-		title: "SNCF Réseau",
+		title: "Research Engineer Intern",
 		description:
 			"Master's degree (MSc) in management, specializing in Corporate Finance",
 		type: CardType.EXPERIENCE,
 		rarity: CardRarity.RARE,
 		imageUrl:
 			"https://files.appli-intramuros.com/img/news/3199/de54a5130b71968927729fd9da1f8a42_travaux-sn.jpg",
-		tags: [
-			"Management",
-			"Finance",
-			"Accounting",
-			"Formation",
-			"Corporate Finance",
-			"Analysis",
-			"Business",
-		],
+		tags: ["Internship", "Engineering"],
 		experienceDetails: {
-			company: "Ecole de Management Léonard de Vinci",
-			position: "Master's Degree in Management",
-			startDate: "September 2020",
-			endDate: "August 2025",
-			location: "Courbevoie, France",
+			company: "SNCF Réseau",
+			position: "Research Engineer Intern",
+			startDate: new Date("2022-06-07"),
+			endDate: new Date("2022-08-10"),
+			location: "Saint-Denis, France",
 			achievements: [
-				"Specialized in Corporate Finance",
-				"Completed projects in financial analysis and accounting",
-				"Participated in business case competitions",
-				"Gained experience in financial modeling and valuation techniques",
+				"Made an inventory of the standards used by type of conductor",
+				"Identified canceled standards and researched alternative standards",
+				"Specified test types and sanctions for technical validation by type of conductor",
+				"Synthesized (e.g.: Excel table) the standards and the technical validation tests by type of conductor",
+				"Mapped out the gathered information in a Word document shared and used by the whole research section",
 			],
 		},
 	},
 	{
 		id: "experience-6",
-		title: "Stellantis",
-		description:
-			"Master's degree (MSc) in management, specializing in Corporate Finance",
+		title: "Data Analyst Junior Connected Vehicle",
+		description: "",
 		type: CardType.EXPERIENCE,
 		rarity: CardRarity.RARE,
 		imageUrl:
 			"https://www.largus.fr/images/styles/max_1300x1300/public/images/01-logo-stellantis.jpg?itok=onTwqeH3",
-		tags: [
-			"Management",
-			"Finance",
-			"Accounting",
-			"Formation",
-			"Corporate Finance",
-			"Analysis",
-			"Business",
-		],
+		tags: ["Internship", "Data Science", "Python", "Power BI", "Data Analysis"],
 		experienceDetails: {
-			company: "Ecole de Management Léonard de Vinci",
-			position: "Master's Degree in Management",
-			startDate: "September 2020",
-			endDate: "August 2025",
-			location: "Courbevoie, France",
+			company: "Stellantis",
+			position: "Data Analyst Intern",
+			startDate: new Date("2024-04-01"),
+			endDate: new Date("2024-08-09"),
+			location: "Poissy, France",
 			achievements: [
 				"Specialized in Corporate Finance",
 				"Completed projects in financial analysis and accounting",
@@ -462,7 +470,7 @@ export const decks = [
 		coverImage:
 			"https://images.unsplash.com/photo-1624996752380-8ec242e0f85d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHdlYiUyMGRldnxlbnwwfHwwfHx8MA%3D%3D",
 		description: "A collection showing my frontend development expertise",
-		cards: ["skill-1", "project-1", "experience-1"],
+		cards: ["skill-1", "project-1", "project-2", "experience-1"],
 	},
 	{
 		id: "ai-specialist",
@@ -487,5 +495,13 @@ export const decks = [
 			"https://plus.unsplash.com/premium_photo-1661764570116-b1b0a2da783c?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y29ycG9yYXRlJTIwZmluYW5jZXxlbnwwfHwwfHx8MA%3D%3D",
 		description: "A collection showing my management & finance expertise",
 		cards: ["experience-4"],
+	},
+	{
+		id: "game-design",
+		name: "Game Design & Development",
+		coverImage:
+			"https://images.unsplash.com/photo-1556438064-2d7646166914?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2FtZSUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
+		description: "A collection showing my game design expertise",
+		cards: ["project-4", "experience-1"],
 	},
 ];

@@ -40,8 +40,8 @@ export interface Card {
 	experienceDetails?: {
 		company: string;
 		position: string;
-		startDate: string;
-		endDate: string | "Present";
+		startDate: Date;
+		endDate: Date | "Present";
 		location: string;
 		achievements: string[];
 	};
