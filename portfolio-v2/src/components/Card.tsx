@@ -6,6 +6,7 @@ import {
 	CardRarity,
 	CardType as CardTypeEnum,
 } from "../data/types";
+import { STATS } from "../utils/constants";
 
 interface CardProps {
 	card: CardType;
@@ -255,7 +256,7 @@ const CardRarityBadge = styled.div<{ rarity: CardRarity }>`
 const CardStats = styled.div`
 	display: flex;
 	justify-content: center;
-	gap: var(--spacing-xs);
+	gap: var(--spacing-md);
 	margin-top: auto;
 	padding: 5px;
 	background: rgba(0, 0, 0, 0.3);
@@ -365,15 +366,19 @@ const CardComponent: React.FC<CardProps> = ({
 				<CardTitle>{card.title}</CardTitle>
 				<CardDescription>{card.description}</CardDescription>
 				<CardStats>
-					<StatItem type="power">
-						<StatIcon>⚔️</StatIcon> {powerStat}
+					{Object.entries(card.stats).map(([key, value]) => (
+						<StatItem
+							key={key}
+							data-tooltip-id={`stats-${card.id}`}
+							data-tooltip-content={
+								STATS[key as keyof typeof STATS].description
+							}
+							type={key}
+						>
+							<StatIcon>{STATS[key as keyof typeof STATS].icon}</StatIcon>{" "}
+							{value}
 					</StatItem>
-					<StatItem type="value">
-						<StatIcon>💎</StatIcon> {valueStat}
-					</StatItem>
-					<StatItem type="time">
-						<StatIcon>⏳</StatIcon> {timeStat}
-					</StatItem>
+					))}
 				</CardStats>
 			</CardContent>
 		</CardContainer>

@@ -40,6 +40,11 @@ export const cards: Card[] = [
 				"Responsive design",
 			],
 		},
+		stats: {
+			creativity: 5,
+			impact: 2,
+			difficulty: 4,
+		},
 	},
 	{
 		id: "project-2",
@@ -75,6 +80,11 @@ export const cards: Card[] = [
 				"Product management",
 			],
 		},
+		stats: {
+			creativity: 4,
+			impact: 1,
+			difficulty: 3,
+		},
 	},
 	{
 		id: "project-3",
@@ -104,6 +114,11 @@ export const cards: Card[] = [
 			technologies: ["Python", "HuggingFace", "Bootstrap", "Puppeteer"],
 			role: "Developer & Designer",
 			outcomes: ["Web scraping", "Data analysis"],
+		},
+		stats: {
+			creativity: 3,
+			impact: 1,
+			difficulty: 2,
 		},
 	},
 	{
@@ -141,6 +156,11 @@ export const cards: Card[] = [
 				"Pet care simulation",
 			],
 		},
+		stats: {
+			creativity: 4,
+			impact: 1,
+			difficulty: 2,
+		},
 	},
 	{
 		id: "project-5",
@@ -166,6 +186,11 @@ export const cards: Card[] = [
 				"User authentication with JWT",
 				"Internationalization (i18n)",
 			],
+		},
+		stats: {
+			creativity: 2,
+			impact: 4,
+			difficulty: 3,
 		},
 	},
 	{
@@ -211,6 +236,11 @@ export const cards: Card[] = [
 				"Webhook integration",
 			],
 		},
+		stats: {
+			creativity: 2,
+			impact: 4,
+			difficulty: 3,
+		},
 	},
 	{
 		id: "project-7",
@@ -241,6 +271,11 @@ export const cards: Card[] = [
 				"Team-based strategy game",
 			],
 		},
+		stats: {
+			creativity: 5,
+			impact: 1,
+			difficulty: 4,
+		},
 	},
 
 	// Skill Cards
@@ -257,6 +292,11 @@ export const cards: Card[] = [
 			proficiency: 5,
 			yearsOfExperience: 3,
 			relatedProjects: ["project-1", "project-2"],
+		},
+		stats: {
+			mastery: 3,
+			usageFrequency: 4,
+			comboPower: 4,
 		},
 	},
 	{
@@ -275,6 +315,11 @@ export const cards: Card[] = [
 			yearsOfExperience: 2,
 			relatedProjects: ["project-1"],
 		},
+		stats: {
+			mastery: 3,
+			usageFrequency: 3,
+			comboPower: 4,
+		},
 	},
 	{
 		id: "skill-3",
@@ -291,6 +336,11 @@ export const cards: Card[] = [
 			yearsOfExperience: 10,
 			relatedProjects: ["project-1", "project-2"],
 		},
+		stats: {
+			mastery: 3,
+			usageFrequency: 2,
+			comboPower: 2,
+		},
 	},
 	{
 		id: "skill-4",
@@ -305,6 +355,11 @@ export const cards: Card[] = [
 			proficiency: 5,
 			yearsOfExperience: 10,
 			relatedProjects: ["project-1", "project-2"],
+		},
+		stats: {
+			mastery: 3,
+			usageFrequency: 1,
+			comboPower: 2,
 		},
 	},
 
@@ -341,6 +396,11 @@ export const cards: Card[] = [
 				"Mentored junior developers and conducted code reviews",
 			],
 		},
+		stats: {
+			collaboration: 5,
+			impact: 4,
+			growth: 3,
+		},
 	},
 	{
 		id: "experience-3",
@@ -371,6 +431,11 @@ export const cards: Card[] = [
 				"Participated in hackathons and coding competitions",
 				"Gained experience in software development and engineering principles",
 			],
+		},
+		stats: {
+			collaboration: 3,
+			impact: 2,
+			growth: 4,
 		},
 	},
 	{
@@ -403,6 +468,11 @@ export const cards: Card[] = [
 				"Gained experience in financial modeling and valuation techniques",
 			],
 		},
+		stats: {
+			collaboration: 4,
+			impact: 2,
+			growth: 2,
+		},
 	},
 	{
 		id: "experience-5",
@@ -428,6 +498,11 @@ export const cards: Card[] = [
 				"Mapped out the gathered information in a Word document shared and used by the whole research section",
 			],
 		},
+		stats: {
+			collaboration: 2,
+			impact: 3,
+			growth: 1,
+		},
 	},
 	{
 		id: "experience-6",
@@ -450,6 +525,11 @@ export const cards: Card[] = [
 				"Participated in business case competitions",
 				"Gained experience in financial modeling and valuation techniques",
 			],
+		},
+		stats: {
+			collaboration: 3,
+			impact: 2,
+			growth: 2,
 		},
 	},
 ];

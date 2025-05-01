@@ -11,6 +11,35 @@ export enum CardRarity {
 	LEGENDARY = "legendary",
 }
 
+export enum Stats {
+	CREATIVITY = "creativity",
+	IMPACT = "impact",
+	DIFFICULTY = "difficulty",
+	MASTERY = "mastery",
+	USAGE = "usageFrequency",
+	COMBO = "comboPower",
+	COLLABORATION = "collaboration",
+	GROWTH = "growth",
+}
+
+export interface SkillStats {
+	[Stats.MASTERY]: number; // 1-5,
+	[Stats.USAGE]: number; // 1-5
+	[Stats.COMBO]: number; // 1-5
+}
+
+export interface ProjectStats {
+	[Stats.CREATIVITY]: number; // 1-5
+	[Stats.IMPACT]: number; // 1-5
+	[Stats.DIFFICULTY]: number; // 1-5
+}
+
+export interface ExperienceStats {
+	[Stats.COLLABORATION]: number; // 1-5
+	[Stats.IMPACT]: number; // 1-5
+	[Stats.GROWTH]: number; // 1-5
+}
+
 export interface Card {
 	id: string;
 	title: string;
@@ -45,6 +74,9 @@ export interface Card {
 		location: string;
 		achievements: string[];
 	};
+
+	// Properties for stats
+	stats: ProjectStats | SkillStats | ExperienceStats;
 }
 
 export interface Deck {
