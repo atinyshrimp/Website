@@ -191,7 +191,6 @@ const DeckList: React.FC<DeckListProps> = ({
 		<DeckListContainer>
 			<ToolbarContainer>
 				<ToolbarButton onClick={onNewDeck}>New Deck</ToolbarButton>
-				<ToolbarButton onClick={onImportDeck}>Import Deck</ToolbarButton>
 				<ToolbarButton active={true}>All Decks</ToolbarButton>
 			</ToolbarContainer>
 
