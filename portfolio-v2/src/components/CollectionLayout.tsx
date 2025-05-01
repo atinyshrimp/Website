@@ -28,7 +28,7 @@ const TabButton = styled.button<{ active: boolean }>`
 	width: 100%;
 	padding: var(--spacing-md);
 	background-color: ${({ active }) =>
-		active ? "rgba(86, 204, 242, 0.2)" : "transparent"};
+		active ? "rgba(193, 86, 242, 0.2)" : "transparent"};
 	border: none;
 	border-left: 4px solid
 		${({ active }) => (active ? "var(--color-accent)" : "transparent")};
@@ -41,7 +41,7 @@ const TabButton = styled.button<{ active: boolean }>`
 	transition: all 0.2s ease;
 
 	&:hover {
-		background-color: rgba(86, 204, 242, 0.1);
+		background-color: rgba(193, 86, 242, 0.1);
 		color: var(--color-text-primary);
 	}
 `;
