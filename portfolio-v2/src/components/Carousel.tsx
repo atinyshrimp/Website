@@ -6,7 +6,7 @@ const CarouselContainer = styled.div`
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	height: 20rem;
+	height: 25rem;
 `;
 
 const CarouselWrapper = styled(motion.div)`

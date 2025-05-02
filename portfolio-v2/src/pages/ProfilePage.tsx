@@ -478,22 +478,77 @@ const Achievement = styled(motion.div)<AchievementProps>`
 `;
 
 const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
-	background: rgba(0, 0, 0, 0.3);
+	background: rgba(0, 0, 0, 0.7);
 	border-radius: var(--radius-sm);
 	margin-bottom: var(--spacing-md);
-	border: 1px solid rgba(255, 255, 255, 0.1);
+	border: 2px solid transparent;
+	border-image: linear-gradient(135deg, var(--color-accent), #56ccf2) 1;
 	background-image: url(${(props) => props.image});
 	background-size: cover;
 	position: relative;
 	overflow: hidden;
 	transition: all 0.3s ease-in-out;
-	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 4px 15px rgba(86, 204, 242, 0.3);
 	width: 15rem;
-	height: 20rem;
+	height: 25rem;
+
+	/* Cyberpunk angular frame */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: 1px solid transparent;
+		border-image: linear-gradient(135deg, var(--color-accent), #56ccf2) 1;
+		clip-path: polygon(
+			0 0,
+			100% 0,
+			100% 15px,
+			calc(100% - 15px) 30px,
+			100% 45px,
+			100% 100%,
+			0 100%,
+			0 calc(100% - 15px),
+			15px calc(100% - 30px),
+			0 calc(100% - 45px)
+		);
+		z-index: 4;
+		pointer-events: none;
+	}
+
+	/* Digital scanline effect */
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: repeating-linear-gradient(
+			to bottom,
+			transparent 0px,
+			transparent 1px,
+			rgba(32, 202, 255, 0.03) 2px,
+			rgba(32, 202, 255, 0.03) 3px
+		);
+		pointer-events: none;
+		z-index: 5;
+		opacity: 0.3;
+	}
 
 	&:hover {
 		transform: translateY(-5px);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+		box-shadow: 0 10px 25px rgba(86, 204, 242, 0.4);
+
+		.card-overlay {
+			background: rgba(0, 0, 0, 0.65);
+		}
+
+		.interest-badge {
+			transform: translateY(-3px);
+		}
 	}
 
 	.interest-icon {
@@ -502,47 +557,6 @@ const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
 
 	&:hover .interest-icon {
 		transform: scale(1.2);
-	}
-`;
-
-const ViewAllButton = styled(Link)`
-	display: block;
-	text-align: center;
-	margin-top: var(--spacing-md);
-	color: var(--color-accent);
-	font-size: 0.9rem;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	position: relative;
-	width: fit-content;
-	margin: var(--spacing-md) auto 0;
-	padding: var(--spacing-xs) var(--spacing-md);
-	border: 1px solid rgba(86, 204, 242, 0.3);
-	border-radius: var(--radius-sm);
-	overflow: hidden;
-
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: -100%;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(
-			90deg,
-			transparent,
-			rgba(86, 204, 242, 0.2),
-			transparent
-		);
-		transition: left 0.5s ease;
-	}
-
-	&:hover {
-		border-color: var(--color-accent);
-
-		&::before {
-			left: 100%;
-		}
 	}
 `;
 
@@ -1327,11 +1341,13 @@ const ProfilePage: React.FC = () => {
 								},
 								{
 									id: 7,
-									name: "Travel",
-									details: "Visited plenaty of countries in Europe and Asia",
-									highlight: "ADVENTURER",
+									name: "Grave of the Fireflies",
+									details:
+										"Best Studio Ghibli movie (I like to cry apparently)",
+									highlight: "FAV",
 									color: "linear-gradient(135deg, #3a0ca3, #f72585)",
-									icon: "✈️",
+									image:
+										"https://m.media-amazon.com/images/I/71DxYiB0N0L._AC_UF894,1000_QL80_.jpg",
 								},
 								{
 									id: 8,
@@ -1350,14 +1366,6 @@ const ProfilePage: React.FC = () => {
 									animate={{ opacity: 1, x: 0 }}
 									transition={{ duration: 0.3 }}
 									image={interest.image}
-									style={{
-										// background: interest.color,
-										position: "relative",
-										overflow: "hidden",
-										borderRadius: "12px",
-										marginBottom: "16px",
-										padding: "0",
-									}}
 								>
 									<div
 										className="card-overlay"
@@ -1367,7 +1375,9 @@ const ProfilePage: React.FC = () => {
 											left: 0,
 											right: 0,
 											bottom: 0,
-											background: "rgba(0,0,0,0.5)",
+											background: "rgba(0,0,0,0.2)",
+											backgroundImage:
+												"linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%)",
 											zIndex: 1,
 										}}
 									></div>
@@ -1378,20 +1388,51 @@ const ProfilePage: React.FC = () => {
 											position: "absolute",
 											top: "12px",
 											right: "12px",
-											background: "rgba(255,215,0,0.9)",
+											background: "rgba(86, 204, 242, 0.3)",
 											padding: "4px 12px",
-											borderRadius: "20px",
+											borderRadius: "0",
 											fontSize: "0.7rem",
 											fontWeight: "bold",
-											color: "#000",
+											color: "#fff",
 											zIndex: 3,
 											letterSpacing: "0.5px",
-											boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+											clipPath: "polygon(0 0, 100% 0, 95% 100%, 0 100%)",
+											boxShadow: "0 0 10px rgba(86, 204, 242, 0.4)",
+											border: "1px solid rgba(86, 204, 242, 0.7)",
+											backdropFilter: "blur(4px)",
+											transition: "all 0.3s ease",
 										}}
 									>
 										{interest.highlight}
 									</div>
 
+									{/* glitch lines for more cyberpunk feel */}
+									<div
+										style={{
+											position: "absolute",
+											top: "50%",
+											left: "0",
+											height: "1px",
+											width: "100%",
+											background: "rgba(86, 204, 242, 0.5)",
+											zIndex: 2,
+											opacity: 0.3,
+										}}
+									></div>
+									<div
+										style={{
+											position: "absolute",
+											top: "30%",
+											left: "0",
+											height: "2px",
+											width: "30%",
+											background: "rgba(86, 204, 242, 0.6)",
+											zIndex: 2,
+											opacity: 0.4,
+										}}
+									></div>
+
+									{/* Interest details */}
 									<div
 										style={{
 											padding: "20px",
@@ -1401,29 +1442,21 @@ const ProfilePage: React.FC = () => {
 											justifyContent: "flex-end",
 											position: "absolute",
 											bottom: 0,
+											left: 0,
+											right: 0,
 											zIndex: 2,
 										}}
 									>
-										{/* <div
-											className="interest-icon"
-											style={{
-												fontSize: "2.5rem",
-												marginBottom: "10px",
-												textShadow: "0 2px 10px rgba(0,0,0,0.4)",
-											}}
-										>
-											{interest.icon}
-										</div>
- */}
 										<div
 											className="interest-title"
 											style={{
 												fontSize: "1.2rem",
 												fontWeight: "bold",
 												color: "white",
-												textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+												textShadow: "0 0 10px rgba(86, 204, 242, 0.8)",
 												letterSpacing: "1px",
 												marginBottom: "2px",
+												textTransform: "uppercase",
 											}}
 										>
 											{interest.name}
@@ -1434,53 +1467,18 @@ const ProfilePage: React.FC = () => {
 											style={{
 												color: "rgba(255,255,255,0.9)",
 												fontSize: "0.85rem",
-												marginBottom: "15px",
-												textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+												textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+												borderLeft: "2px solid rgba(86, 204, 242, 0.7)",
+												paddingLeft: "8px",
 											}}
 										>
 											{interest.details}
 										</div>
-
-										{/* <div
-											style={{
-												display: "flex",
-												gap: "10px",
-												marginTop: "5px",
-											}}
-										>
-											<ActionButton
-												style={{
-													margin: "0",
-													background: "rgba(255,255,255,0.25)",
-													border: "1px solid rgba(255,255,255,0.5)",
-													padding: "8px 16px",
-													fontSize: "0.8rem",
-												}}
-												onClick={() => window.open(`/interests/${interest.id}`)}
-											>
-												EXPLORE
-											</ActionButton>
-
-											<ActionButton
-												variant="secondary"
-												style={{
-													margin: "0",
-													background: "rgba(0,0,0,0.4)",
-													border: "1px solid rgba(255,255,255,0.2)",
-													padding: "8px 16px",
-													fontSize: "0.8rem",
-												}}
-											>
-												CONNECT
-											</ActionButton>
-										</div> */}
 									</div>
 								</InterestCard>
 							))}
 							itemsPerPage={4}
 						/>
-
-						{/* <ViewAllButton to="/interests">View All Interests</ViewAllButton> */}
 					</ProfileCard>
 
 					<ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
