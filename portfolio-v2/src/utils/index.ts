@@ -5,7 +5,7 @@ const birthDate = new Date("2003-01-27T10:27:00Z").getTime(); // UTC+2 Europe/Pa
  * @param {Date|string} date - The date to convert. Can be a Date object or the string "Present".
  * @returns {string|null} - The formatted date string or null if an error occurs.
  */
-export const getStringFromDate = (date) => {
+export const getStringFromDate = (date: Date | string): string | null => {
 	try {
 		if (date === null || date === undefined)
 			throw new Error("Invalid date input");
@@ -14,7 +14,10 @@ export const getStringFromDate = (date) => {
 
 		if (date === "Present" || date > new Date()) return "Present";
 
-		const options = { year: "numeric", month: "long" };
+		const options: Intl.DateTimeFormatOptions = {
+			year: "numeric",
+			month: "long",
+		};
 		return new Date(date).toLocaleDateString("en-US", options);
 	} catch (error) {
 		console.error("Error in getStringFromDate:", error);
@@ -22,15 +25,15 @@ export const getStringFromDate = (date) => {
 	}
 };
 
-export const getCurrentXP = () => {
-	const today = new Date().getTime();
-	const lastBirthday = new Date(birthDate).setFullYear(
-		new Date().getFullYear()
+export const getCurrentXP = (): number => {
+	const today = new Date();
+	const lastBirthday: Date = new Date(
+		new Date(birthDate).setFullYear(new Date().getFullYear())
 	);
-	if (lastBirthday > new Date()) {
+	if (lastBirthday > today) {
 		lastBirthday.setFullYear(lastBirthday.getFullYear() - 1);
 	}
-	const progressInMilliseconds = today - lastBirthday;
+	const progressInMilliseconds = today.getTime() - lastBirthday.getTime();
 	const progressInDays = Math.floor(
 		progressInMilliseconds / (1000 * 60 * 60 * 24)
 	);
@@ -40,21 +43,18 @@ export const getCurrentXP = () => {
 	);
 };
 
-export const getCurrentLevel = () => {
+export const getCurrentLevel = (): number => {
 	const today = new Date().getTime();
-	console.log("Today:", today);
-	console.log("Birth Date:", birthDate);
 	const ageInMilliseconds = today - birthDate;
 	const ageInYears = Math.floor(
 		ageInMilliseconds / (1000 * 60 * 60 * 24 * 365)
 	);
-	console.log("Age in years:", ageInYears);
 	return Math.floor(ageInYears);
 };
 
 export const getXPToNextLevel = () => {
 	let nextBirthday = new Date(birthDate).setFullYear(new Date().getFullYear());
-	if (nextBirthday < new Date()) {
+	if (nextBirthday < new Date().getTime()) {
 		nextBirthday = new Date(birthDate).setFullYear(
 			new Date().getFullYear() + 1
 		);
@@ -67,9 +67,9 @@ export const getXPToNextLevel = () => {
 };
 
 const getNumberOfDaysInYear = () => {
-	const year = new Date().getFullYear();
+	const year: number = new Date().getFullYear();
 	// Check if the year is divisible by 4 and not divisible by 100, or divisible by 400
-	const isLeap = (year) =>
+	const isLeap = (year: number) =>
 		year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
 	return isLeap(year) ? 366 : 365;
 };
