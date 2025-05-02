@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import FuturisticFrame from "../assets/avatar-frame.svg";
@@ -14,6 +14,11 @@ interface ProgressBarProps {
 
 interface AchievementProps {
 	unlocked: boolean;
+}
+
+interface FormFieldProps {
+	valid?: boolean;
+	error?: boolean;
 }
 
 const PageTitle = styled.h1`
@@ -618,10 +623,367 @@ const MainContent = styled.main<{ fullWidth?: boolean }>`
 	position: relative;
 `;
 
+const SocialButtonsContainer = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: var(--spacing-md);
+	margin: var(--spacing-md) 0;
+`;
+
+const SocialButton = styled.a`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	border-radius: 12px;
+	background: rgba(0, 0, 0, 0.3);
+	border: 1px solid var(--color-border);
+	color: var(--color-text-primary);
+	transition: all 0.3s ease;
+	position: relative;
+	overflow: hidden;
+
+	&:hover {
+		border-color: var(--color-accent);
+		transform: translateY(-3px);
+		box-shadow: 0 0 15px rgba(86, 204, 242, 0.3);
+
+		&::after {
+			transform: scale(2);
+			opacity: 0;
+		}
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 5px;
+		height: 5px;
+		background: var(--color-accent);
+		opacity: 0.5;
+		border-radius: 50%;
+		transform: translate(-50%, -50%);
+		transition: all 0.5s ease;
+	}
+
+	svg {
+		width: 24px;
+		height: 24px;
+		fill: currentColor;
+	}
+`;
+
+const ActionButton = styled.button<{ variant?: "primary" | "secondary" }>`
+	padding: var(--spacing-sm) var(--spacing-md);
+	background: ${({ variant }) =>
+		variant === "primary"
+			? "rgba(86, 204, 242, 0.2)"
+			: "rgba(231, 76, 60, 0.2)"};
+	border: 1px solid
+		${({ variant }) =>
+			variant === "primary" ? "var(--color-accent)" : "var(--color-skill)"};
+	color: var(--color-text-primary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: 600;
+	font-size: 0.9rem;
+	clip-path: polygon(
+		0 0,
+		100% 0,
+		100% calc(100% - 8px),
+		calc(100% - 8px) 100%,
+		0 100%
+	);
+	transition: all 0.3s ease;
+	margin: var(--spacing-sm) 0;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+
+	&:hover {
+		background-color: ${({ variant }) =>
+			variant === "primary"
+				? "rgba(86, 204, 242, 0.3)"
+				: "rgba(231, 76, 60, 0.3)"};
+		box-shadow: 0 0 10px
+			${({ variant }) =>
+				variant === "primary"
+					? "rgba(86, 204, 242, 0.3)"
+					: "rgba(231, 76, 60, 0.3)"};
+		transform: translateY(-2px);
+	}
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			${({ variant }) =>
+				variant === "primary"
+					? "rgba(86, 204, 242, 0.2)"
+					: "rgba(231, 76, 60, 0.2)"},
+			transparent
+		);
+		transition: left 0.7s ease;
+	}
+
+	&:hover::before {
+		left: 100%;
+	}
+`;
+
+const ButtonContainer = styled.div`
+	display: flex;
+	position: relative;
+	justify-content: center;
+	gap: var(--spacing-md);
+	margin-top: var(--spacing-md);
+`;
+
+const ModalOverlay = styled(motion.div)`
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.75);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 100;
+`;
+
+const ModalContent = styled(motion.div)`
+	position: relative;
+	background: #0d1117;
+	width: 450px;
+	max-width: 90%;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	box-shadow: 0 0 30px rgba(86, 204, 242, 0.15);
+	padding: var(--spacing-lg);
+	max-height: 90vh;
+	overflow-y: auto;
+
+	/* Cyberpunk angular frame */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: 2px solid transparent;
+		border-image: linear-gradient(135deg, var(--color-accent), #56ccf2) 1;
+		clip-path: polygon(
+			0 0,
+			100% 0,
+			100% 20px,
+			calc(100% - 20px) 40px,
+			100% 60px,
+			100% 100%,
+			0 100%,
+			0 calc(100% - 20px),
+			20px calc(100% - 40px),
+			0 calc(100% - 60px)
+		);
+		pointer-events: none;
+	}
+`;
+
+const ModalTitle = styled.h3`
+	text-align: center;
+	font-size: 1.3rem;
+	margin-bottom: var(--spacing-md);
+	color: var(--color-accent);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	position: relative;
+	padding-bottom: var(--spacing-xs);
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 25%;
+		width: 50%;
+		height: 1px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			var(--color-accent),
+			transparent
+		);
+	}
+`;
+
+const ModalCloseButton = styled.button`
+	position: absolute;
+	top: var(--spacing-md);
+	right: var(--spacing-md);
+	background: rgba(0, 0, 0, 0.3);
+	border: 1px solid var(--color-border);
+	color: var(--color-text-secondary);
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.2rem;
+	cursor: pointer;
+	z-index: 10;
+	transition: all 0.3s ease;
+
+	&:hover {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+	}
+`;
+
+const ContactForm = styled.form`
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-md);
+`;
+
+const FormField = styled.div<FormFieldProps>`
+	margin-bottom: var(--spacing-sm);
+	display: flex;
+	flex-direction: column;
+
+	label {
+		font-size: 0.9rem;
+		color: var(--color-text-primary);
+		margin-bottom: var(--spacing-xs);
+	}
+
+	input,
+	textarea {
+		padding: var(--spacing-sm);
+		border: 1px solid
+			${(props) =>
+				props.error
+					? "var(--color-skill)"
+					: props.valid
+					? "var(--color-project)"
+					: "var(--color-border)"};
+		border-radius: var(--radius-sm);
+		background: rgba(0, 0, 0, 0.3);
+		color: var(--color-text-primary);
+		font-size: 0.9rem;
+
+		&:focus {
+			outline: none;
+			border-color: var(--color-accent);
+		}
+	}
+
+	.error-message {
+		font-size: 0.8rem;
+		color: var(--color-skill);
+		margin-top: var(--spacing-xs);
+	}
+`;
+
+const TextArea = styled.textarea<FormFieldProps>`
+	min-height: 120px;
+	resize: vertical;
+`;
+
+const SubmitButton = styled.button`
+	width: 100%;
+	padding: var(--spacing-md);
+	background-color: rgba(86, 204, 242, 0.2);
+	border: 1px solid var(--color-accent);
+	color: var(--color-text-primary);
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	font-weight: 600;
+	font-size: 0.9rem;
+	clip-path: polygon(
+		0 0,
+		100% 0,
+		100% calc(100% - 8px),
+		calc(100% - 8px) 100%,
+		0 100%
+	);
+	transition: all 0.3s ease;
+	cursor: pointer;
+	margin-top: var(--spacing-sm);
+
+	&:hover {
+		background-color: rgba(86, 204, 242, 0.3);
+		box-shadow: 0 0 10px rgba(86, 204, 242, 0.3);
+		transform: translateY(-2px);
+	}
+`;
+
+const SocialPopover = styled(motion.div)`
+	position: absolute;
+	top: calc(100% + 15px);
+	left: 50%;
+	transform: translateX(-100%) !important;
+	background: rgba(0, 0, 0, 0.8);
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-sm);
+	padding: var(--spacing-xs);
+	z-index: 50;
+	min-width: 220px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+
+	/* Cyberpunk angular frame */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: 1px solid transparent;
+		border-image: linear-gradient(135deg, var(--color-accent), #56ccf2) 1;
+		clip-path: polygon(
+			0 0,
+			100% 0,
+			100% 15px,
+			calc(100% - 15px) 30px,
+			100% 45px,
+			100% 100%,
+			0 100%,
+			0 calc(100% - 15px),
+			15px calc(100% - 30px),
+			0 calc(100% - 45px)
+		);
+		pointer-events: none;
+	}
+
+	/* Arrow pointing to button */
+	&::after {
+		content: "";
+		position: absolute;
+		top: -8px;
+		left: 50%;
+		transform: translateX(-50%) rotate(45deg);
+		width: 16px;
+		height: 16px;
+		background: rgba(0, 0, 0, 0.8);
+		border-left: 1px solid var(--color-border);
+		border-top: 1px solid var(--color-border);
+	}
+`;
+
 const ProfilePage: React.FC = () => {
 	// Mock data - in a real app this would come from API/state
 	const userData = {
-		username: "CardMaster42",
+		username: "atinyshrimp",
 		title: "Legendary Collector",
 		avatar: "🧙",
 		level: getCurrentLevel(),
@@ -649,7 +1011,115 @@ const ProfilePage: React.FC = () => {
 			{ id: 2, name: "Forest Spirits", cards: 40, winRate: "65%" },
 			{ id: 3, name: "Elemental Mages", cards: 38, winRate: "59%" },
 		],
+		recentActivity: [
+			{
+				id: 1,
+				time: "2h ago",
+				description: "Added a new card to Mystic Dragons deck",
+			},
+			{
+				id: 2,
+				time: "1d ago",
+				description: "Won a match against ElitePlayer99",
+			},
+			{
+				id: 3,
+				time: "3d ago",
+				description: "Unlocked the Collector achievement",
+			},
+		],
 	};
+
+	const [showSocialPopover, setShowSocialPopover] = useState(false);
+	const [showFriendRequestModal, setShowFriendRequestModal] = useState(false);
+	const [contactForm, setContactForm] = useState({
+		name: "",
+		email: "",
+		subject: "",
+		message: "",
+	});
+	const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+
+	const guildButtonRef = useRef<HTMLButtonElement>(null);
+	const socialPopoverRef = useRef<HTMLDivElement>(null);
+
+	const handleContactFormChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	) => {
+		const { name, value } = e.target;
+		setContactForm({
+			...contactForm,
+			[name]: value,
+		});
+
+		// Clear error when user types
+		if (formErrors[name]) {
+			setFormErrors({
+				...formErrors,
+				[name]: "",
+			});
+		}
+	};
+
+	const validateForm = () => {
+		const errors: { [key: string]: string } = {};
+
+		if (!contactForm.name.trim()) {
+			errors.name = "Name is required";
+		}
+
+		if (!contactForm.email.trim()) {
+			errors.email = "Email is required";
+		} else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactForm.email)) {
+			errors.email = "Please enter a valid email";
+		}
+
+		if (!contactForm.message.trim()) {
+			errors.message = "Message is required";
+		}
+
+		return errors;
+	};
+
+	const handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		const errors = validateForm();
+
+		if (Object.keys(errors).length > 0) {
+			setFormErrors(errors);
+			return;
+		}
+
+		// In a real application, you'd send this data to your backend
+		alert("Message sent! I'll get back to you soon.");
+		setContactForm({
+			name: "",
+			email: "",
+			subject: "",
+			message: "",
+		});
+		setShowFriendRequestModal(false);
+	};
+
+	// Close popover when clicking outside
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				socialPopoverRef.current &&
+				!socialPopoverRef.current.contains(event.target as Node) &&
+				guildButtonRef.current &&
+				!guildButtonRef.current.contains(event.target as Node)
+			) {
+				setShowSocialPopover(false);
+			}
+		};
+
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, []);
 
 	return (
 		<MainContent fullWidth>
@@ -665,7 +1135,10 @@ const ProfilePage: React.FC = () => {
 					<ProfileCard>
 						<AvatarFrame>
 							<Avatar>
-								<img src="https://avatars.githubusercontent.com/u/99140907?v=4&size=64" />
+								<img
+									src="https://avatars.githubusercontent.com/u/99140907?v=4&size=64"
+									alt="Github Avatar"
+								/>
 							</Avatar>
 							<img
 								src={FuturisticFrame}
@@ -683,6 +1156,72 @@ const ProfilePage: React.FC = () => {
 						</AvatarFrame>
 						<Username>{userData.username}</Username>
 						<Title>{userData.title}</Title>
+
+						<ButtonContainer>
+							<ActionButton
+								ref={guildButtonRef}
+								variant="primary"
+								onClick={() => setShowSocialPopover(!showSocialPopover)}
+							>
+								Join My Guild
+							</ActionButton>
+
+							{showSocialPopover && (
+								<SocialPopover
+									ref={socialPopoverRef}
+									initial={{ opacity: 0, y: -10 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -10 }}
+									transition={{ type: "spring", duration: 0.3 }}
+								>
+									<SocialButtonsContainer>
+										<SocialButton
+											href="https://www.linkedin.com/in/joyce-lapilus"
+											target="_blank"
+											aria-label="LinkedIn"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 448 512"
+											>
+												<path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
+											</svg>
+										</SocialButton>
+										<SocialButton
+											href="https://github.com/atinyshrimp"
+											target="_blank"
+											aria-label="GitHub"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 496 512"
+											>
+												<path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
+											</svg>
+										</SocialButton>
+										<SocialButton
+											href="https://atinyshrimp.itch.io"
+											target="_blank"
+											aria-label="Itch.io"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 512 512"
+											>
+												<path d="M71.9 34.8C50.2 47.7 7.4 96.8 7 109.7v21.3c0 27.1 25.3 50.8 48.3 50.8 27.6 0 50.5-22.9 50.5-50 0 27.1 22.2 50 49.8 50s49-22.9 49-50c0 27.1 23.6 50 51.2 50h.5c27.6 0 51.2-22.9 51.2-50 0 27.1 21.5 50 49 50s49.8-22.9 49.8-50c0 27.1 23 50 50.5 50 23 0 48.3-23.8 48.3-50.8v-21.3c-.4-12.9-43.2-62.1-64.9-75C372.6 32.4 325.8 32 256 32S91.1 33.1 71.9 34.8zm132.3 134.4c-22 38.4-77.9 38.7-99.9 .3-13.2 23.1-43.2 32.1-56 27.7-3.9 40.2-13.7 237.1 17.7 269.2 80 18.7 302.1 18.1 379.8 0 31.7-32.3 21.3-232 17.8-269.2-12.9 4.4-42.9-4.6-56-27.7-22 38.5-77.9 38.1-99.9-.2-7.1 12.5-23.1 28.9-51.8 28.9a57.5 57.5 0 0 1 -51.8-28.9zm-41.6 53.8c16.5 0 31.1 0 49.2 19.8a436.9 436.9 0 0 1 88.2 0C318.2 223 332.9 223 349.3 223c52.3 0 65.2 77.5 83.9 144.5 17.3 62.2-5.5 63.7-34 63.7-42.2-1.6-65.5-32.2-65.5-62.8-39.3 6.4-101.9 8.8-155.6 0 0 30.6-23.3 61.2-65.5 62.8-28.4-.1-51.2-1.6-33.9-63.7 18.7-67 31.6-144.5 83.9-144.5zM256 270.8s-44.4 40.8-52.4 55.2l29-1.2v25.3c0 1.6 21.3 .2 23.3 .2 11.7 .5 23.3 1 23.3-.2v-25.3l29 1.2c-8-14.5-52.4-55.2-52.4-55.2z" />
+											</svg>
+										</SocialButton>
+									</SocialButtonsContainer>
+								</SocialPopover>
+							)}
+
+							<ActionButton
+								variant="secondary"
+								onClick={() => window.open("mailto:joyce.lapilus@gmail.com")}
+							>
+								Send Friend Request
+							</ActionButton>
+						</ButtonContainer>
 
 						<LevelContainer>
 							<LevelHeader>
@@ -704,41 +1243,33 @@ const ProfilePage: React.FC = () => {
 
 						<StatsGrid>
 							<StatCard
-								whileHover={{
-									y: -5,
-									boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
-								}}
-								transition={{ duration: 0.2 }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.3, delay: 0.1 }}
 							>
 								<div className="stat-value">{userData.stats.wins}</div>
 								<div className="stat-label">Wins</div>
 							</StatCard>
 							<StatCard
-								whileHover={{
-									y: -5,
-									boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
-								}}
-								transition={{ duration: 0.2 }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.3, delay: 0.2 }}
 							>
 								<div className="stat-value">{cards.length}</div>
 								<div className="stat-label">Cards</div>
 							</StatCard>
 							<StatCard
-								whileHover={{
-									y: -5,
-									boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
-								}}
-								transition={{ duration: 0.2 }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.3, delay: 0.3 }}
 							>
 								<div className="stat-value">{userData.stats.winRate}</div>
 								<div className="stat-label">Win Rate</div>
 							</StatCard>
 							<StatCard
-								whileHover={{
-									y: -5,
-									boxShadow: "0 5px 15px rgba(0, 0, 0, 0.3)",
-								}}
-								transition={{ duration: 0.2 }}
+								initial={{ opacity: 0, y: 20 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.3, delay: 0.4 }}
 							>
 								<div className="stat-value">{decks.length}</div>
 								<div className="stat-label">Decks</div>
@@ -757,8 +1288,8 @@ const ProfilePage: React.FC = () => {
 								<Achievement
 									key={achievement.id}
 									unlocked={achievement.unlocked}
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
+									initial={{ opacity: 0, scale: 0.8 }}
+									animate={{ opacity: 1, scale: 1 }}
 									transition={{ duration: 0.3 }}
 								>
 									<div className="achievement-icon">{achievement.icon}</div>
@@ -793,34 +1324,106 @@ const ProfilePage: React.FC = () => {
 						<ViewAllButton to="/collection">View All Decks</ViewAllButton>
 					</ProfileCard>
 
-					{/* Recent Activity Section */}
 					<ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
 						<SectionTitle>Recent Activity</SectionTitle>
 						<RecentActivity>
-							<p>
-								<span>Won a match</span> with "Mystic Dragons" deck&nbsp;
-								<span className="time"> (3 hours ago)</span>
-							</p>
-							<p>
-								<span>Added 5 new cards</span> to collection&nbsp;
-								<span className="time"> (yesterday)</span>
-							</p>
-							<p>
-								<span>Created new deck</span> "Elemental Mages"&nbsp;
-								<span className="time"> (2 days ago)</span>
-							</p>
-							<p>
-								<span>Unlocked "Strategist"</span> achievement&nbsp;
-								<span className="time"> (3 days ago)</span>
-							</p>
-							<p>
-								<span>Won 5 matches</span> in a row&nbsp;
-								<span className="time"> (1 week ago)</span>
-							</p>
+							{userData.recentActivity.map((activity) => (
+								<p key={activity.id}>
+									<span className="time">{activity.time}</span>{" "}
+									{activity.description}
+								</p>
+							))}
 						</RecentActivity>
 					</ProfileCard>
 				</div>
 			</ProfileContainer>
+
+			{/* Friend Request Modal */}
+			<AnimatePresence>
+				{showFriendRequestModal && (
+					<ModalOverlay
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1 }}
+						exit={{ opacity: 0 }}
+						onClick={() => setShowFriendRequestModal(false)}
+					>
+						<ModalContent
+							onClick={(e) => e.stopPropagation()}
+							initial={{ y: 50, opacity: 0 }}
+							animate={{ y: 0, opacity: 1 }}
+							exit={{ y: 50, opacity: 0 }}
+							transition={{ type: "spring", damping: 20 }}
+						>
+							<ModalCloseButton
+								onClick={() => setShowFriendRequestModal(false)}
+							>
+								×
+							</ModalCloseButton>
+							<ModalTitle>Send Friend Request</ModalTitle>
+
+							<ContactForm onSubmit={handleSubmit}>
+								<FormField error={!!formErrors.name}>
+									<label htmlFor="name">Your Name</label>
+									<input
+										type="text"
+										id="name"
+										name="name"
+										value={contactForm.name}
+										onChange={handleContactFormChange}
+										placeholder="Enter your name"
+									/>
+									{formErrors.name && (
+										<div className="error-message">{formErrors.name}</div>
+									)}
+								</FormField>
+
+								<FormField error={!!formErrors.email}>
+									<label htmlFor="email">Your Email</label>
+									<input
+										type="email"
+										id="email"
+										name="email"
+										value={contactForm.email}
+										onChange={handleContactFormChange}
+										placeholder="Enter your email"
+									/>
+									{formErrors.email && (
+										<div className="error-message">{formErrors.email}</div>
+									)}
+								</FormField>
+
+								<FormField>
+									<label htmlFor="subject">Subject</label>
+									<input
+										type="text"
+										id="subject"
+										name="subject"
+										value={contactForm.subject}
+										onChange={handleContactFormChange}
+										placeholder="Enter subject"
+									/>
+								</FormField>
+
+								<FormField error={!!formErrors.message}>
+									<label htmlFor="message">Message</label>
+									<TextArea
+										id="message"
+										name="message"
+										value={contactForm.message}
+										onChange={handleContactFormChange}
+										placeholder="Enter your message"
+									/>
+									{formErrors.message && (
+										<div className="error-message">{formErrors.message}</div>
+									)}
+								</FormField>
+
+								<SubmitButton type="submit">Send Request</SubmitButton>
+							</ContactForm>
+						</ModalContent>
+					</ModalOverlay>
+				)}
+			</AnimatePresence>
 		</MainContent>
 	);
 };
