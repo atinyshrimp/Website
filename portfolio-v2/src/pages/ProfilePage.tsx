@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
+import Carousel from "../components/Carousel";
 import FuturisticFrame from "../assets/avatar-frame.svg";
+import BlueberryMuffinsImage from "../assets/IMG_8350.webp";
+import MooncakesImage from "../assets/IMG_8351.webp";
+
 import { cards, decks } from "../data/cardData";
 import { getCurrentLevel, getCurrentXP, getXPToNextLevel } from "../utils";
 
@@ -473,76 +477,31 @@ const Achievement = styled(motion.div)<AchievementProps>`
 	}
 `;
 
-const DeckPreview = styled(motion.div)`
+const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
 	background: rgba(0, 0, 0, 0.3);
 	border-radius: var(--radius-sm);
-	padding: var(--spacing-sm);
-	margin-bottom: var(--spacing-sm);
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border: 1px solid var(--color-border);
+	margin-bottom: var(--spacing-md);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	background-image: url(${(props) => props.image});
+	background-size: cover;
 	position: relative;
 	overflow: hidden;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+	width: 15rem;
+	height: 20rem;
 
 	&:hover {
-		background: rgba(0, 0, 0, 0.4);
-		border-color: var(--color-accent);
+		transform: translateY(-5px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 	}
 
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: -100%;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(
-			90deg,
-			transparent,
-			rgba(86, 204, 242, 0.1),
-			transparent
-		);
-		transition: left 0.5s ease;
+	.interest-icon {
+		transition: transform 0.3s ease;
 	}
 
-	&:hover::before {
-		left: 100%;
-	}
-
-	.deck-info {
-		flex: 1;
-	}
-
-	.deck-title {
-		font-weight: bold;
-		margin-bottom: 4px;
-	}
-
-	.deck-stats {
-		font-size: 0.8rem;
-		color: var(--color-text-secondary);
-	}
-
-	.deck-action {
-		color: var(--color-accent);
-		font-size: 0.9rem;
-		position: relative;
-
-		&::after {
-			content: "";
-			position: absolute;
-			bottom: -2px;
-			left: 0;
-			width: 0;
-			height: 1px;
-			background: var(--color-accent);
-			transition: width 0.3s ease;
-		}
-
-		&:hover::after {
-			width: 100%;
-		}
+	&:hover .interest-icon {
+		transform: scale(1.2);
 	}
 `;
 
@@ -1163,7 +1122,7 @@ const ProfilePage: React.FC = () => {
 								variant="primary"
 								onClick={() => setShowSocialPopover(!showSocialPopover)}
 							>
-								Join My Guild
+								Join Guild
 							</ActionButton>
 
 							{showSocialPopover && (
@@ -1302,30 +1261,230 @@ const ProfilePage: React.FC = () => {
 
 				<div>
 					<ProfileCard>
-						<SectionTitle>Favorite Decks</SectionTitle>
-						{userData.favoriteDecks.map((deck) => (
-							<DeckPreview
-								key={deck.id}
-								initial={{ opacity: 0, x: -20 }}
-								animate={{ opacity: 1, x: 0 }}
-								transition={{ duration: 0.3 }}
-							>
-								<div className="deck-info">
-									<div className="deck-title">{deck.name}</div>
-									<div className="deck-stats">
-										{deck.cards} cards • {deck.winRate} win rate
+						<SectionTitle>Featured Items</SectionTitle>
+						<Carousel
+							items={[
+								{
+									id: 1,
+									name: "Room No 1117",
+									details: "Newest album from ATEEZ, my favorite K-pop group",
+									highlight: "INCOMING",
+									color: "linear-gradient(135deg, #ff0092, #ffbde6)",
+									image:
+										"https://image.static.bstage.in/cdn-cgi/image/metadata=none,dpr=2,width=640/voszjachlrh/2824efd5-106b-4667-adc3-44fb41cbafff/c0faf6cf-8e38-4e64-84a5-a49233c748eb/ori.jpg",
+									alt: "ATEEZ",
+									icon: "🎵",
+								},
+								{
+									id: 2,
+									name: "Jojo's Bizarre Adventure",
+									details: "We're getting Steel Ball Run anime 😭",
+									highlight: "FAV",
+									color: "linear-gradient(135deg, #6236ff, #9fb0ff)",
+									image:
+										"https://m.media-amazon.com/images/M/MV5BMzIyNzY4NTMtNmVhYS00OWFhLTkwMWMtOGFkNTdmNWU2ZDdiXkEyXkFqcGc@._V1_.jpg",
+									icon: "🌸",
+								},
+								{
+									id: 6,
+									name: "The Sims",
+									details:
+										"First game I've ever played (The Sims 3 are the best)",
+									highlight: "CORE MEMORY",
+									color: "linear-gradient(135deg, #ff006e, #d0f4de)",
+									image:
+										"https://m.media-amazon.com/images/I/71DLhfD9DlL._AC_UF1000,1000_QL80_.jpg",
+									icon: "🎮",
+								},
+								{
+									id: 4,
+									name: "Blueberry Creamcheese Muffins",
+									details: "Latest creation",
+									highlight: "MASTER CHEF",
+									color: "linear-gradient(135deg, #e85d04, #faa307)",
+									image: BlueberryMuffinsImage,
+									icon: "🍰",
+								},
+								{
+									id: 9,
+									name: "Red Bean & Lotus Paste Mooncakes",
+									details: "Favorite creation of mine, for Mid-Autumn Festival",
+									highlight: "MASTER CHEF",
+									color: "linear-gradient(135deg, #e85d04, #faa307)",
+									image: MooncakesImage,
+									icon: "🍰",
+								},
+								{
+									id: 5,
+									name: "Volleyball",
+									details:
+										"Power spiker position and team vice-captain in high school",
+									highlight: "MVP PLAYER",
+									color: "linear-gradient(135deg, #38b000, #9ef01a)",
+									image:
+										"https://images.unsplash.com/photo-1686753767715-37cb0c34212c?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fHZvbGxleWJhbGx8ZW58MHx8MHx8fDI%3D",
+									icon: "🏐",
+								},
+								{
+									id: 7,
+									name: "Travel",
+									details: "Visited plenaty of countries in Europe and Asia",
+									highlight: "ADVENTURER",
+									color: "linear-gradient(135deg, #3a0ca3, #f72585)",
+									icon: "✈️",
+								},
+								{
+									id: 8,
+									name: "Orchestra class",
+									details: "Played trumpet for 3 years in middle school",
+									highlight: "MUSICIAN",
+									color: "linear-gradient(135deg, #7209b7, #3f37c9)",
+									image:
+										"https://images.unsplash.com/photo-1740904258428-e33f0605b781?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG9yY2hlc3RyYSUyMHRydW1wZXR8ZW58MHx8MHx8fDA%3D",
+									icon: "🎶",
+								},
+							].map((interest) => (
+								<InterestCard
+									key={interest.id}
+									initial={{ opacity: 0, x: -20 }}
+									animate={{ opacity: 1, x: 0 }}
+									transition={{ duration: 0.3 }}
+									image={interest.image}
+									style={{
+										// background: interest.color,
+										position: "relative",
+										overflow: "hidden",
+										borderRadius: "12px",
+										marginBottom: "16px",
+										padding: "0",
+									}}
+								>
+									<div
+										className="card-overlay"
+										style={{
+											position: "absolute",
+											top: 0,
+											left: 0,
+											right: 0,
+											bottom: 0,
+											background: "rgba(0,0,0,0.5)",
+											zIndex: 1,
+										}}
+									></div>
+
+									<div
+										className="interest-badge"
+										style={{
+											position: "absolute",
+											top: "12px",
+											right: "12px",
+											background: "rgba(255,215,0,0.9)",
+											padding: "4px 12px",
+											borderRadius: "20px",
+											fontSize: "0.7rem",
+											fontWeight: "bold",
+											color: "#000",
+											zIndex: 3,
+											letterSpacing: "0.5px",
+											boxShadow: "0 2px 10px rgba(0,0,0,0.2)",
+										}}
+									>
+										{interest.highlight}
 									</div>
-								</div>
-								<Link to={`/decks/${deck.id}`} className="deck-action">
-									View →
-								</Link>
-							</DeckPreview>
-						))}
-						<ViewAllButton to="/collection">View All Decks</ViewAllButton>
+
+									<div
+										style={{
+											padding: "20px",
+											display: "flex",
+											flexDirection: "column",
+											alignItems: "flex-start",
+											justifyContent: "flex-end",
+											position: "absolute",
+											bottom: 0,
+											zIndex: 2,
+										}}
+									>
+										{/* <div
+											className="interest-icon"
+											style={{
+												fontSize: "2.5rem",
+												marginBottom: "10px",
+												textShadow: "0 2px 10px rgba(0,0,0,0.4)",
+											}}
+										>
+											{interest.icon}
+										</div>
+ */}
+										<div
+											className="interest-title"
+											style={{
+												fontSize: "1.2rem",
+												fontWeight: "bold",
+												color: "white",
+												textShadow: "0 2px 4px rgba(0,0,0,0.5)",
+												letterSpacing: "1px",
+												marginBottom: "2px",
+											}}
+										>
+											{interest.name}
+										</div>
+
+										<div
+											className="interest-details"
+											style={{
+												color: "rgba(255,255,255,0.9)",
+												fontSize: "0.85rem",
+												marginBottom: "15px",
+												textShadow: "0 1px 2px rgba(0,0,0,0.5)",
+											}}
+										>
+											{interest.details}
+										</div>
+
+										{/* <div
+											style={{
+												display: "flex",
+												gap: "10px",
+												marginTop: "5px",
+											}}
+										>
+											<ActionButton
+												style={{
+													margin: "0",
+													background: "rgba(255,255,255,0.25)",
+													border: "1px solid rgba(255,255,255,0.5)",
+													padding: "8px 16px",
+													fontSize: "0.8rem",
+												}}
+												onClick={() => window.open(`/interests/${interest.id}`)}
+											>
+												EXPLORE
+											</ActionButton>
+
+											<ActionButton
+												variant="secondary"
+												style={{
+													margin: "0",
+													background: "rgba(0,0,0,0.4)",
+													border: "1px solid rgba(255,255,255,0.2)",
+													padding: "8px 16px",
+													fontSize: "0.8rem",
+												}}
+											>
+												CONNECT
+											</ActionButton>
+										</div> */}
+									</div>
+								</InterestCard>
+							))}
+							itemsPerPage={4}
+						/>
+
+						{/* <ViewAllButton to="/interests">View All Interests</ViewAllButton> */}
 					</ProfileCard>
 
 					<ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
-						<SectionTitle>Recent Activity</SectionTitle>
+						<SectionTitle>Latest Updates</SectionTitle>
 						<RecentActivity>
 							{userData.recentActivity.map((activity) => (
 								<p key={activity.id}>
