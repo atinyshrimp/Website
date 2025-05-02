@@ -4,13 +4,6 @@ export enum CardType {
 	EXPERIENCE = "experience",
 }
 
-export enum CardRarity {
-	COMMON = "common",
-	RARE = "rare",
-	EPIC = "epic",
-	LEGENDARY = "legendary",
-}
-
 export enum Stats {
 	CREATIVITY = "creativity",
 	IMPACT = "impact",
@@ -45,7 +38,6 @@ export interface Card {
 	title: string;
 	description: string;
 	type: CardType;
-	rarity: CardRarity;
 	imageUrl?: string;
 	tags: string[];
 	links?: { label: string; url: string }[];

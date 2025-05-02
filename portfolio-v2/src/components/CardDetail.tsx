@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import { getStringFromDate } from "../utils";
-import { Card, CardRarity, CardType as CardTypeEnum } from "../data/types";
+
+import { stats } from "../data/cardData";
+import { Card, CardType as CardTypeEnum } from "../data/types";
 
 interface CardDetailProps {
 	card: Card;
@@ -11,7 +13,6 @@ interface CardDetailProps {
 }
 
 const DetailContainer = styled.div<{
-	rarity: CardRarity;
 	cardType: CardTypeEnum;
 }>`
 	display: flex;
@@ -151,32 +152,6 @@ const CardType = styled.div<{ cardType: CardTypeEnum }>`
 	}};
 	color: white;
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-`;
-
-const CardRarityText = styled.div<{ rarity: CardRarity }>`
-	display: inline-block;
-	margin-left: var(--spacing-sm);
-	padding: 4px 10px;
-	font-size: 0.7rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: ${({ rarity }) => {
-		switch (rarity) {
-			case CardRarity.COMMON:
-				return "var(--color-common)";
-			case CardRarity.RARE:
-				return "var(--color-rare)";
-			case CardRarity.EPIC:
-				return "var(--color-epic)";
-			case CardRarity.LEGENDARY:
-				return "var(--color-legendary)";
-			default:
-				return "var(--color-common)";
-		}
-	}};
-	background-color: rgba(0, 0, 0, 0.3);
-	clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 50%);
 `;
 
 const CardDescription = styled.p`
@@ -490,7 +465,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
 	const valueStat = getValueStat();
 
 	return (
-		<DetailContainer rarity={card.rarity} cardType={card.type}>
+		<DetailContainer cardType={card.type}>
 			<CardHeader>
 				<CardImage imageUrl={card.imageUrl} />
 			</CardHeader>
@@ -498,7 +473,6 @@ const CardDetail: React.FC<CardDetailProps> = ({
 			<CardInfo>
 				<div>
 					<CardType cardType={card.type}>{card.type}</CardType>
-					<CardRarityText rarity={card.rarity}>{card.rarity}</CardRarityText>
 				</div>
 
 				<CardTitle>{card.title}</CardTitle>
@@ -511,22 +485,22 @@ const CardDetail: React.FC<CardDetailProps> = ({
 				</TagsContainer>
 
 				<StatsContainer>
-					<StatItem>
-						<StatLabel>Power</StatLabel>
-						<StatValue>⚔️ {powerStat}</StatValue>
-					</StatItem>
-					<StatItem>
-						<StatLabel>Value</StatLabel>
-						<StatValue>💎 {valueStat}</StatValue>
-					</StatItem>
-					<StatItem>
-						<StatLabel>Time</StatLabel>
-						<StatValue>⏳ {timeStat}</StatValue>
-					</StatItem>
+					{Object.entries(card.stats).map(([key, value]) => {
+						const statKey = key as keyof typeof stats;
+						return (
+							<StatItem key={key}>
+								<StatLabel>{stats[statKey].label}</StatLabel>
+								<StatValue>{`${stats[statKey].icon} ${value}`}</StatValue>
+							</StatItem>
+						);
+					})}
 					<StatItem highlight={true}>
 						<StatLabel>Overall</StatLabel>
 						<StatValue>
-							★ {Math.floor((powerStat + valueStat + timeStat) / 3)}
+							★{" "}
+							{Math.floor(
+								Object.values(card.stats).reduce((acc, val) => acc + val, 0) / 3
+							)}
 						</StatValue>
 					</StatItem>
 				</StatsContainer>

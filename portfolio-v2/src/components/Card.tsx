@@ -3,12 +3,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
 
-import {
-	Card as CardType,
-	CardRarity,
-	CardType as CardTypeEnum,
-} from "../data/types";
-import { STATS } from "../utils/constants";
+import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
+import { stats } from "../data/cardData";
 
 interface CardProps {
 	card: CardType;
@@ -18,7 +14,6 @@ interface CardProps {
 }
 
 const CardContainer = styled(motion.div)<{
-	rarity: CardRarity;
 	cardType: CardTypeEnum;
 	isSelected?: boolean;
 	isInDeck?: boolean;
@@ -44,20 +39,7 @@ const CardContainer = styled(motion.div)<{
 		right: 0;
 		bottom: 0;
 		border: 2px solid transparent;
-		border-image: ${({ rarity, cardType }) => {
-			const primaryColor = (() => {
-				switch (rarity) {
-					case CardRarity.LEGENDARY:
-						return "#f1c40f";
-					case CardRarity.EPIC:
-						return "#9b59b6";
-					case CardRarity.RARE:
-						return "#3498db";
-					default:
-						return "#6e7271";
-				}
-			})();
-
+		border-image: ${({ cardType }) => {
 			const secondaryColor = (() => {
 				switch (cardType) {
 					case CardTypeEnum.PROJECT:
@@ -71,7 +53,7 @@ const CardContainer = styled(motion.div)<{
 				}
 			})();
 
-			return `linear-gradient(135deg, ${primaryColor}, ${secondaryColor}) 1`;
+			return `linear-gradient(135deg, #3498db, ${secondaryColor}) 1`;
 		}};
 		clip-path: polygon(
 			0 0,
@@ -224,37 +206,6 @@ const CardTypeTag = styled.div<{ cardType: CardTypeEnum }>`
 	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 `;
 
-const CardRarityBadge = styled.div<{ rarity: CardRarity }>`
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	width: 24px;
-	height: 24px;
-	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 0.7rem;
-	font-weight: bold;
-	color: white;
-	z-index: 10;
-	background-color: ${({ rarity }) => {
-		switch (rarity) {
-			case CardRarity.COMMON:
-				return "var(--color-common)";
-			case CardRarity.RARE:
-				return "var(--color-rare)";
-			case CardRarity.EPIC:
-				return "var(--color-epic)";
-			case CardRarity.LEGENDARY:
-				return "var(--color-legendary)";
-			default:
-				return "var(--color-common)";
-		}
-	}};
-	box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-`;
-
 const CardStats = styled.div`
 	display: flex;
 	justify-content: center;
@@ -297,15 +248,9 @@ const CardComponent: React.FC<CardProps> = ({
 	isSelected,
 	isInDeck,
 }) => {
-	// Get the first letter of rarity for the badge
-	const getRarityLetter = (rarity: CardRarity): string => {
-		return rarity.charAt(0).toUpperCase();
-	};
-
 	return (
 		<>
 			<CardContainer
-				rarity={card.rarity}
 				cardType={card.type}
 				isSelected={isSelected}
 				isInDeck={isInDeck}
@@ -318,10 +263,8 @@ const CardComponent: React.FC<CardProps> = ({
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.3 }}
+				className={card.isFeatured ? "foil" : ""}
 			>
-				<CardRarityBadge rarity={card.rarity}>
-					{getRarityLetter(card.rarity)}
-				</CardRarityBadge>
 				<CardTypeTag cardType={card.type}>{card.type}</CardTypeTag>
 				<CardImage imageUrl={card.imageUrl} />
 				<CardContent>
@@ -333,11 +276,11 @@ const CardComponent: React.FC<CardProps> = ({
 								key={key}
 								data-tooltip-id={`stats-${card.id}`}
 								data-tooltip-content={
-									STATS[key as keyof typeof STATS].description
+									stats[key as keyof typeof stats].description
 								}
 								type={key}
 							>
-								<StatIcon>{STATS[key as keyof typeof STATS].icon}</StatIcon>{" "}
+								<StatIcon>{stats[key as keyof typeof stats].icon}</StatIcon>{" "}
 								{value}
 							</StatItem>
 						))}

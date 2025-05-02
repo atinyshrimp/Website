@@ -1,4 +1,4 @@
-import { Card, CardType, CardRarity } from "./types";
+import { Card, CardType } from "./types";
 
 export const cards: Card[] = [
 	// Project Cards
@@ -8,7 +8,6 @@ export const cards: Card[] = [
 		description:
 			"An interactive portfolio website inspired by card deck builder games",
 		type: CardType.PROJECT,
-		rarity: CardRarity.LEGENDARY,
 		imageUrl:
 			"https://images.unsplash.com/photo-1742743032749-187b17179e0f?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 		tags: [
@@ -52,7 +51,6 @@ export const cards: Card[] = [
 		description:
 			"A full-featured online store with product management and payment processing",
 		type: CardType.PROJECT,
-		rarity: CardRarity.EPIC,
 		imageUrl:
 			"https://github.com/atinyshrimp/lego/blob/master/client/v2/assets/images/bricked_up_logo.png?raw=true",
 		tags: [
@@ -92,7 +90,6 @@ export const cards: Card[] = [
 		description:
 			"A full-featured online store with product management and payment processing",
 		type: CardType.PROJECT,
-		rarity: CardRarity.EPIC,
 		imageUrl:
 			"https://github.com/atinyshrimp/webscraping-ml-project/blob/d7c9e3ad8aeb6fee792deac46b4c0fbb2430780e/static/img/landing_page.png?raw=true",
 		tags: [
@@ -127,7 +124,6 @@ export const cards: Card[] = [
 		description:
 			"A simple pet simulation game where you can take care of your virtual cat",
 		type: CardType.PROJECT,
-		rarity: CardRarity.EPIC,
 		imageUrl:
 			"https://joycelapilus.com/static/media/catsim_thumbnail.506b32b6ebab4307004c.png",
 		tags: [
@@ -168,7 +164,6 @@ export const cards: Card[] = [
 		description:
 			"A logistic platform that allows you to manage your deliveries for events",
 		type: CardType.PROJECT,
-		rarity: CardRarity.EPIC,
 		imageUrl: "https://placehold.co/600x400/2a3990/white/?text=Venulog",
 		tags: ["Frontend", "Backend", "Fullstack", "Node.js", "Express", "Stripe"],
 		links: [
@@ -199,7 +194,6 @@ export const cards: Card[] = [
 		description:
 			"A web application that allows you to manage your medical prescriptions related to menopause",
 		type: CardType.PROJECT,
-		rarity: CardRarity.EPIC,
 		imageUrl:
 			"http://www.midoc.es/cdn/shop/files/Diseno_sin_titulo_-_2025-04-02T111651.217.png?v=1743585811",
 		tags: [
@@ -248,7 +242,6 @@ export const cards: Card[] = [
 		description:
 			"A digital version of the board game Captain Sonar, a strategic team game",
 		type: CardType.PROJECT,
-		rarity: CardRarity.EPIC,
 		imageUrl: "https://jeux.ca/wp-content/uploads/2019/06/Captain-Sonar.jpg",
 		tags: [
 			"Team Management",
@@ -284,7 +277,6 @@ export const cards: Card[] = [
 		title: "React",
 		description: "Building interactive UIs with React and related technologies",
 		type: CardType.SKILL,
-		rarity: CardRarity.EPIC,
 		imageUrl:
 			"https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpluspng.com%2Fimg-png%2Freact-logo-png-react-logo-png-transparent-amp-svg-vector-pluspng-2400x2400.png&f=1&nofb=1&ipt=1cc4c836f28d79730cf5b3fbc49f630732dc5afdb1245c99e8f5944340ea76a0",
 		tags: ["Frontend", "JavaScript", "User Interface (UI)"],
@@ -306,7 +298,6 @@ export const cards: Card[] = [
 		description:
 			"Creating intuitive, accessible, and aesthetically pleasing user experiences",
 		type: CardType.SKILL,
-		rarity: CardRarity.RARE,
 		imageUrl:
 			"https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZmlnbWF8ZW58MHx8MHx8fDA%3D",
 		tags: ["Design", "User Experience", "User Interface"],
@@ -327,7 +318,6 @@ export const cards: Card[] = [
 		description: "Speaking, reading, and writing Japanese",
 		isFeatured: true,
 		type: CardType.SKILL,
-		rarity: CardRarity.LEGENDARY,
 		imageUrl:
 			"https://plus.unsplash.com/premium_photo-1694475091098-27cea4555469?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8amFwYW5lc2UlMjBsYW5ndWFnZXxlbnwwfHwwfHx8MA%3D%3D",
 		tags: ["Language", "Culture", "Communication"],
@@ -347,7 +337,6 @@ export const cards: Card[] = [
 		title: "Korean",
 		description: "Speaking, reading, and writing Korean",
 		type: CardType.SKILL,
-		rarity: CardRarity.LEGENDARY,
 		imageUrl:
 			"https://images.unsplash.com/photo-1640090540877-a9ea2027abbd?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8a29yZWFuJTIwbGFuZ3VhZ2V8ZW58MHx8MHx8fDA%3D",
 		tags: ["Language", "Culture", "Communication"],
@@ -371,7 +360,6 @@ export const cards: Card[] = [
 			"Led a team of frontend developers building complex web applications",
 		isFeatured: true,
 		type: CardType.EXPERIENCE,
-		rarity: CardRarity.LEGENDARY,
 		imageUrl:
 			"https://bank.cellar-c2.services.clever-cloud.com/file/assets/edb8d352c855fbd4e7e1496b10b059b0/lestud_logo%20%281%29.jpeg",
 		tags: [
@@ -408,7 +396,6 @@ export const cards: Card[] = [
 		description:
 			"Master's degree (MSc) in engineering, specializing in Data Science and AI",
 		type: CardType.EXPERIENCE,
-		rarity: CardRarity.RARE,
 		imageUrl:
 			"https://www.esilv.fr/ecole-ingenieur/logos/logo_esilv_png_couleur.png",
 		tags: [
@@ -444,7 +431,6 @@ export const cards: Card[] = [
 		description:
 			"Master's degree (MSc) in management, specializing in Corporate Finance",
 		type: CardType.EXPERIENCE,
-		rarity: CardRarity.RARE,
 		imageUrl: "https://www.emlv.fr/wordpress/logos/logo-emlv-couleur.png",
 		tags: [
 			"Management",
@@ -480,7 +466,6 @@ export const cards: Card[] = [
 		description:
 			"Master's degree (MSc) in management, specializing in Corporate Finance",
 		type: CardType.EXPERIENCE,
-		rarity: CardRarity.RARE,
 		imageUrl:
 			"https://files.appli-intramuros.com/img/news/3199/de54a5130b71968927729fd9da1f8a42_travaux-sn.jpg",
 		tags: ["Internship", "Engineering"],
@@ -509,7 +494,6 @@ export const cards: Card[] = [
 		title: "Data Analyst Junior Connected Vehicle",
 		description: "",
 		type: CardType.EXPERIENCE,
-		rarity: CardRarity.RARE,
 		imageUrl:
 			"https://www.largus.fr/images/styles/max_1300x1300/public/images/01-logo-stellantis.jpg?itok=onTwqeH3",
 		tags: ["Internship", "Data Science", "Python", "Power BI", "Data Analysis"],
@@ -534,6 +518,48 @@ export const cards: Card[] = [
 	},
 ];
 
+export const stats = {
+	creativity: {
+		icon: "🎨",
+		label: "Creativity",
+		description: "Originality, expression, idea generation",
+	},
+	impact: {
+		icon: "💥",
+		label: "Impact",
+		description: "Tangible outcome or influence",
+	},
+	difficulty: {
+		icon: "🧠",
+		label: "Difficulty",
+		description: "Problem-solving or technical challenge",
+	},
+	mastery: {
+		icon: "🧠",
+		label: "Mastery",
+		description: "Expertise level with the skill/tool",
+	},
+	usageFrequency: {
+		icon: "🔁",
+		label: "Usage Frequency",
+		description: "How often this is part of my workflow",
+	},
+	comboPower: {
+		icon: "🔗",
+		label: "Combo Power",
+		description: "How well this works with other tools",
+	},
+	collaboration: {
+		icon: "🤝",
+		label: "Collaboration",
+		description: "Teamwork, communication, cross-discipline work",
+	},
+	growth: {
+		icon: "📈",
+		label: "Growth",
+		description: "Personal/professional development gained",
+	},
+};
 export const getCardsByType = (type: CardType): Card[] => {
 	return cards.filter((card) => card.type === type);
 };
