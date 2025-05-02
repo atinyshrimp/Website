@@ -16,6 +16,7 @@ import {
 	getXPToNextLevel,
 	getTimeSince,
 } from "../utils";
+import Footer from "../components/Footer";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -1587,6 +1588,7 @@ const ProfilePage: React.FC = () => {
 			</AnimatePresence>
 
 			<Tooltip id="achievement" place="top" />
+			<Footer />
 		</MainContent>
 	);
 };
