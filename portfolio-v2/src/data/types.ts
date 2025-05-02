@@ -86,3 +86,11 @@ export interface Deck {
 	description: string;
 	coverImage?: string; // URL or path to the cover image
 }
+
+export interface Achievement {
+	slug: string;
+	icon: string;
+	title: string;
+	description: string;
+	unlocked: boolean;
+}

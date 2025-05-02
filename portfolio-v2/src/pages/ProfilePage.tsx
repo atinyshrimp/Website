@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 
 import Carousel from "../components/Carousel";
 import FuturisticFrame from "../assets/avatar-frame.svg";
@@ -9,6 +9,7 @@ import BlueberryMuffinsImage from "../assets/IMG_8350.webp";
 import MooncakesImage from "../assets/IMG_8351.webp";
 
 import { cards, decks } from "../data/cardData";
+import { achievements } from "../data/profileData";
 import { getCurrentLevel, getCurrentXP, getXPToNextLevel } from "../utils";
 
 // Define prop types for styled components
@@ -971,14 +972,7 @@ const ProfilePage: React.FC = () => {
 			favoriteDeck: "Mystic Dragons",
 			winRate: "64.7%",
 		},
-		achievements: [
-			{ id: 1, name: "First Win", icon: "🏆", unlocked: true },
-			{ id: 2, name: "Collector", icon: "📚", unlocked: true },
-			{ id: 3, name: "Strategist", icon: "🧠", unlocked: true },
-			{ id: 4, name: "Deckbuilder", icon: "🛠️", unlocked: true },
-			{ id: 5, name: "Champion", icon: "👑", unlocked: false },
-			{ id: 6, name: "Legend", icon: "⭐", unlocked: false },
-		],
+		achievements,
 		favoriteDecks: [
 			{ id: 1, name: "Mystic Dragons", cards: 42, winRate: "78%" },
 			{ id: 2, name: "Forest Spirits", cards: 40, winRate: "65%" },
@@ -1259,14 +1253,17 @@ const ProfilePage: React.FC = () => {
 						<AchievementsList>
 							{userData.achievements.map((achievement) => (
 								<Achievement
-									key={achievement.id}
+									key={achievement.slug}
 									unlocked={achievement.unlocked}
 									initial={{ opacity: 0, scale: 0.8 }}
 									animate={{ opacity: 1, scale: 1 }}
 									transition={{ duration: 0.3 }}
+									data-tooltip-id="achievement"
+									data-tooltip-content={achievement.description}
+									data-tooltip-hidden={!achievement.unlocked}
 								>
 									<div className="achievement-icon">{achievement.icon}</div>
-									<div className="achievement-name">{achievement.name}</div>
+									<div className="achievement-name">{achievement.title}</div>
 								</Achievement>
 							))}
 						</AchievementsList>
@@ -1581,6 +1578,8 @@ const ProfilePage: React.FC = () => {
 					</ModalOverlay>
 				)}
 			</AnimatePresence>
+
+			<Tooltip id="achievement" place="top" />
 		</MainContent>
 	);
 };
