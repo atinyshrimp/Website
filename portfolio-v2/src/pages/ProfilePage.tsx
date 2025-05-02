@@ -9,8 +9,13 @@ import BlueberryMuffinsImage from "../assets/IMG_8350.webp";
 import MooncakesImage from "../assets/IMG_8351.webp";
 
 import { cards, decks } from "../data/cardData";
-import { achievements } from "../data/profileData";
-import { getCurrentLevel, getCurrentXP, getXPToNextLevel } from "../utils";
+import { achievements, getRecentActivities } from "../data/profileData";
+import {
+	getCurrentLevel,
+	getCurrentXP,
+	getXPToNextLevel,
+	getTimeSince,
+} from "../utils";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -572,7 +577,7 @@ const RecentActivity = styled.div`
 		line-height: 1.5;
 
 		&::before {
-			content: "•";
+			content: "• ";
 			margin-right: var(--spacing-xs);
 			color: var(--color-accent);
 		}
@@ -580,7 +585,7 @@ const RecentActivity = styled.div`
 
 	span {
 		color: var(--color-text-primary);
-		margin-right: var(--spacing-xs);
+		margin-left: var(--spacing-xs);
 	}
 
 	.time {
@@ -1481,10 +1486,12 @@ const ProfilePage: React.FC = () => {
 					<ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
 						<SectionTitle>Latest Updates</SectionTitle>
 						<RecentActivity>
-							{userData.recentActivity.map((activity) => (
-								<p key={activity.id}>
-									<span className="time">{activity.time}</span>{" "}
+							{getRecentActivities().map((activity, index) => (
+								<p key={index}>
 									{activity.description}
+									<span className="time">{`(${getTimeSince(
+										activity.timestamp
+									)})`}</span>
 								</p>
 							))}
 						</RecentActivity>

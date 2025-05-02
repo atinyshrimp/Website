@@ -87,6 +87,11 @@ export interface Deck {
 	coverImage?: string; // URL or path to the cover image
 }
 
+export interface Activity {
+	description: string;
+	timestamp: Date;
+}
+
 export interface Achievement {
 	slug: string;
 	icon: string;
