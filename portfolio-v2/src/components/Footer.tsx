@@ -116,9 +116,9 @@ const Footer: React.FC = () => {
 					reserved
 				</span>
 				<br />
-				Code is <span className="highlight">open </span>{" "}
-				<span className="glitch" data-glitch="source">
-					source
+				Code is{" "}
+				<span className="glitch" data-glitch="open source">
+					open source
 				</span>{" "}
 				— reuse with credit. <br />
 				<a
