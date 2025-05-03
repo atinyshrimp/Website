@@ -58,7 +58,7 @@ const CollectionPage: React.FC = () => {
 	);
 	const [customDeckDesc, setCustomDeckDesc] = useLocalStorage<string>(
 		"customDeckDesc",
-		"Choose your favorite cards to build your own collection. Added/Deleted cards will only affect this collection."
+		"Added/Deleted cards will only affect this collection."
 	);
 	const [isCardDetailOpen, setIsCardDetailOpen] = useState(false);
 	const [viewMode, setViewMode] = useState<"list" | "editor">("list");
