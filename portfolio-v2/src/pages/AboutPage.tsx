@@ -276,7 +276,7 @@ const FeatureList = styled.ul`
 	z-index: 2;
 `;
 
-const FeatureItem = styled.li`
+const FeatureItem = styled.li<{ icon?: string }>`
 	margin-bottom: var(--spacing-sm);
 	padding-left: var(--spacing-lg);
 	position: relative;
@@ -285,7 +285,7 @@ const FeatureItem = styled.li`
 	line-height: 1.6;
 
 	&::before {
-		content: ">";
+		content: "${(props) => props.icon ?? ">"}";
 		position: absolute;
 		left: 0;
 		color: var(--color-accent);
@@ -376,7 +376,7 @@ const AboutPage: React.FC = () => {
 									{Object.entries(stats).map(
 										([key, value]) =>
 											["creativity", "impact", "difficulty"].includes(key) && (
-												<FeatureItem key={key}>
+												<FeatureItem key={key} icon={value.icon}>
 													<strong>{value.label}</strong>: {value.description}
 												</FeatureItem>
 											)
@@ -394,7 +394,7 @@ const AboutPage: React.FC = () => {
 											["mastery", "usageFrequency", "comboPower"].includes(
 												key
 											) && (
-												<FeatureItem key={key}>
+												<FeatureItem key={key} icon={value.icon}>
 													<strong>{value.label}</strong>: {value.description}
 												</FeatureItem>
 											)
@@ -410,7 +410,7 @@ const AboutPage: React.FC = () => {
 									{Object.entries(stats).map(
 										([key, value]) =>
 											["collaboration", "impact", "growth"].includes(key) && (
-												<FeatureItem key={key}>
+												<FeatureItem key={key} icon={value.icon}>
 													<strong>{value.label}</strong>: {value.description}
 												</FeatureItem>
 											)
