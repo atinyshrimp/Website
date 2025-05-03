@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+
 import Card from "./Card";
 import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
 
@@ -237,6 +238,7 @@ const CardGrid: React.FC<CardGridProps> = ({
 
 			{filteredCards.length > 0 ? (
 				<CardsWrapper>
+					{" "}
 					{filteredCards.map((card) => (
 						<Card
 							key={card.id}

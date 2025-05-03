@@ -228,6 +228,9 @@ const CollectionPage: React.FC = () => {
 						onAddToDeck={() => handleAddToDeck(selectedCard)}
 						onRemoveFromDeck={() => handleRemoveFromDeck(selectedCard)}
 						isInDeck={userDeck.includes(selectedCard.id)}
+						onRelationClick={(projectCard) => {
+							setSelectedCard(projectCard);
+						}}
 					/>
 				)}
 			</ModalDrawer>

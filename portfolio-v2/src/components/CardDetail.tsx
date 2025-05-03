@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { getStringFromDate } from "../utils";
 
-import { stats } from "../data/cardData";
+import { stats, getCardById, getCards } from "../data/cardData";
 import { Card, CardType as CardTypeEnum } from "../data/types";
 
 interface CardDetailProps {
@@ -10,6 +10,7 @@ interface CardDetailProps {
 	onAddToDeck?: () => void;
 	onRemoveFromDeck?: () => void;
 	isInDeck?: boolean;
+	onRelationClick?: (card: Card) => void;
 }
 
 const DetailContainer = styled.div<{
@@ -418,52 +419,179 @@ const ProficiencyFill = styled.div<{ level: number }>`
 	}
 `;
 
+const RelationsList = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing-sm);
+	margin-top: var(--spacing-sm);
+`;
+
+const RelationItem = styled.div<{ type: CardTypeEnum }>`
+	display: flex;
+	align-items: center;
+	gap: var(--spacing-sm);
+	padding: var(--spacing-sm);
+	background: rgba(0, 0, 0, 0.3);
+	border-left: 2px solid
+		var(
+			${({ type }) =>
+				type === CardTypeEnum.PROJECT
+					? "--color-project"
+					: "--color-experience"}
+		);
+	cursor: pointer;
+	transition: all 0.2s ease;
+	position: relative;
+	overflow: hidden;
+
+	/* Cyberpunk hover effect */
+	&:hover {
+		background: ${({ type }) =>
+			type === CardTypeEnum.PROJECT
+				? "rgba(46, 204, 113, 0.15)"
+				: "rgba(46, 164, 204, 0.15)"};
+		transform: translateX(4px);
+
+		&::after {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: linear-gradient(
+				90deg,
+				transparent,
+				${({ type }) =>
+					type === CardTypeEnum.PROJECT
+						? "rgba(46, 204, 113, 0.1)"
+						: "rgba(46, 164, 204, 0.1)"},
+				transparent
+			);
+			animation: scan-line 1s ease-in-out;
+		}
+	}
+
+	@keyframes scan-line {
+		0% {
+			transform: translateX(-100%);
+		}
+		100% {
+			transform: translateX(100%);
+		}
+	}
+`;
+
+const RelationThumbnail = styled.div<{ type: CardTypeEnum; imageUrl?: string }>`
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-sm);
+	background-image: ${({ imageUrl }) =>
+		imageUrl
+			? `url(${imageUrl})`
+			: "linear-gradient(to bottom, #2C3E50, #1A2530)"};
+	background-size: cover;
+	background-position: center;
+	flex-shrink: 0;
+	border: 1px solid
+		var(
+			${({ type }) =>
+				type === CardTypeEnum.PROJECT
+					? "--color-project"
+					: "--color-experience"}
+		);
+`;
+
+const RelationInfo = styled.div`
+	flex: 1;
+`;
+
+const RelationTitle = styled.div`
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--color-text-primary);
+	margin-bottom: 2px;
+`;
+
+const RelationType = styled.div<{ type: CardTypeEnum }>`
+	font-size: 0.7rem;
+
+	.chip {
+		background: ${({ type }) =>
+			type === CardTypeEnum.PROJECT
+				? "rgba(46, 204, 113, 0.2)"
+				: "rgba(46, 164, 204, 0.2)"};
+		color: var(
+			${({ type }) =>
+				type === CardTypeEnum.PROJECT
+					? "--color-project"
+					: "--color-experience"}
+		);
+		padding: 1px 6px;
+		border-radius: 2px;
+		font-size: 0.65rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+`;
+
+const ViewIcon = styled.div<{ type: CardTypeEnum }>`
+	color: var(
+		${({ type }) =>
+			type === CardTypeEnum.PROJECT ? "--color-project" : "--color-experience"}
+	);
+	font-size: 1rem;
+	opacity: 0.7;
+`;
+
+const EmptyState = styled.div`
+	font-size: 0.85rem;
+	color: var(--color-text-secondary);
+	font-style: italic;
+	padding: var(--spacing-sm);
+`;
+
+const getSkillsForRelation = (projectId: string): Card[] => {
+	return getCards().filter(
+		(card) =>
+			card.type === CardTypeEnum.SKILL &&
+			card.skillDetails?.relatedProjects?.includes(projectId)
+	);
+};
+
+// Add these styled components
+
+const SkillTagsContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing-xs);
+	margin-top: var(--spacing-sm);
+`;
+
+const SkillTag = styled.div`
+	background: rgba(231, 76, 60, 0.15);
+	color: var(--color-skill);
+	border: 1px solid rgba(231, 76, 60, 0.3);
+	padding: 4px 10px;
+	border-radius: var(--radius-sm);
+	font-size: 0.8rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: rgba(231, 76, 60, 0.25);
+		transform: translateY(-2px);
+		box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+	}
+`;
+
 const CardDetail: React.FC<CardDetailProps> = ({
 	card,
 	onAddToDeck,
 	onRemoveFromDeck,
 	isInDeck,
+	onRelationClick,
 }) => {
-	// Generate random RPG-like stat values based on card properties
-	const getPowerStat = (): number => {
-		if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
-			return card.skillDetails.proficiency * 15; // Scale proficiency to 0-75
-		} else if (card.type === CardTypeEnum.PROJECT) {
-			return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
-		} else {
-			return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
-		}
-	};
-
-	const getTimeStat = (): number => {
-		if (card.type === CardTypeEnum.SKILL && card.skillDetails) {
-			return card.skillDetails.yearsOfExperience * 10; // 10 points per year
-		} else if (
-			card.type === CardTypeEnum.EXPERIENCE &&
-			card.experienceDetails
-		) {
-			// Approximate duration in years and multiply by 15
-			const duration = card.experienceDetails.endDate === "Present" ? 2 : 1;
-			return duration * 15;
-		} else {
-			return 10 + Math.floor(Math.random() * 50); // Random value between 10-60
-		}
-	};
-
-	const getValueStat = (): number => {
-		if (card.type === CardTypeEnum.PROJECT) {
-			return 50 + Math.floor(Math.random() * 30); // Random value between 50-80
-		} else if (card.type === CardTypeEnum.EXPERIENCE) {
-			return 40 + Math.floor(Math.random() * 40); // Random value between 40-80
-		} else {
-			return 30 + Math.floor(Math.random() * 50); // Random value between 30-80
-		}
-	};
-
-	const powerStat = getPowerStat();
-	const timeStat = getTimeStat();
-	const valueStat = getValueStat();
-
 	return (
 		<DetailContainer cardType={card.type}>
 			<CardHeader>
@@ -541,6 +669,26 @@ const CardDetail: React.FC<CardDetailProps> = ({
 								))}
 							</DetailList>
 						</DetailSection>
+
+						<DetailSection>
+							<SectionTitle>Skills Applied</SectionTitle>
+							{getSkillsForRelation(card.id).length > 0 ? (
+								<SkillTagsContainer>
+									{getSkillsForRelation(card.id).map((skill) => (
+										<SkillTag
+											key={skill.id}
+											onClick={() => onRelationClick && onRelationClick(skill)}
+										>
+											{stats["mastery"].icon} {skill.title}
+										</SkillTag>
+									))}
+								</SkillTagsContainer>
+							) : (
+								<EmptyState>
+									No specific skills listed for this project
+								</EmptyState>
+							)}
+						</DetailSection>
 					</>
 				)}
 
@@ -560,6 +708,40 @@ const CardDetail: React.FC<CardDetailProps> = ({
 									{card.skillDetails.yearsOfExperience} years
 								</DetailItem>
 							</DetailList>
+						</DetailSection>
+
+						<DetailSection>
+							<SectionTitle>Related Exp & Projects</SectionTitle>
+							{card.skillDetails.relatedProjects.length > 0 ? (
+								<RelationsList>
+									{card.skillDetails.relatedProjects.map((projectId) => {
+										const project = getCardById(projectId);
+										return project ? (
+											<RelationItem
+												key={projectId}
+												type={project.type}
+												onClick={() =>
+													onRelationClick && onRelationClick(project)
+												}
+											>
+												<RelationThumbnail
+													type={project.type}
+													imageUrl={project.imageUrl}
+												/>
+												<RelationInfo>
+													<RelationTitle>{project.title}</RelationTitle>
+													<RelationType type={project.type}>
+														<span className="chip">{project.type}</span>
+													</RelationType>
+												</RelationInfo>
+												<ViewIcon type={project.type}>→</ViewIcon>
+											</RelationItem>
+										) : null;
+									})}
+								</RelationsList>
+							) : (
+								<EmptyState>No related projects found</EmptyState>
+							)}
 						</DetailSection>
 					</>
 				)}
@@ -596,6 +778,26 @@ const CardDetail: React.FC<CardDetailProps> = ({
 							<DetailList>
 								<DetailItem>{card.experienceDetails.location}</DetailItem>
 							</DetailList>
+						</DetailSection>
+
+						<DetailSection>
+							<SectionTitle>Skills Applied</SectionTitle>
+							{getSkillsForRelation(card.id).length > 0 ? (
+								<SkillTagsContainer>
+									{getSkillsForRelation(card.id).map((skill) => (
+										<SkillTag
+											key={skill.id}
+											onClick={() => onRelationClick && onRelationClick(skill)}
+										>
+											{stats["mastery"].icon} {skill.title}
+										</SkillTag>
+									))}
+								</SkillTagsContainer>
+							) : (
+								<EmptyState>
+									No specific skills listed for this project
+								</EmptyState>
+							)}
 						</DetailSection>
 
 						<DetailSection>
