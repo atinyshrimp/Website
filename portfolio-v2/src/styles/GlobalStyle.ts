@@ -1,13 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
-  :root {
-    /* Card Rarity Colors */
-    --color-common: #6E7271;
-    --color-rare: #3498db;
-    --color-epic: #9b59b6;
-    --color-legendary: #f1c40f;
-    
+  :root {    
     /* Card Type Colors - Aligned with cyberpunk aesthetic */
     --color-project: #2ecc71;
     --color-skill: #e74c3c;
@@ -170,13 +164,13 @@ const GlobalStyle = createGlobalStyle`
   }
   
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #e74c3c, #56CCF2);
+    background: linear-gradient(to bottom, var(--color-accent), #56CCF2);
     border-radius: 0;
     border: 1px solid var(--color-border);
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #ff5f4c, #81ecff);
+    background: linear-gradient(to bottom, var(--color-accent),rgb(84, 29, 91));
   }
 
   /* Cyberpunk selection */
