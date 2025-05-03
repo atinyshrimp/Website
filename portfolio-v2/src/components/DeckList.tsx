@@ -8,8 +8,6 @@ interface DeckListProps {
 	decks: Deck[];
 	activeDeckId: string;
 	onSelectDeck: (deckId: string) => void;
-	onNewDeck: () => void;
-	onImportDeck: () => void;
 }
 
 const DeckListContainer = styled.div`
@@ -154,8 +152,6 @@ const DeckList: React.FC<DeckListProps> = ({
 	decks,
 	activeDeckId,
 	onSelectDeck,
-	onNewDeck,
-	onImportDeck,
 }) => {
 	// Get the first card image for each deck to use as background
 	const getDeckBackgroundImage = (deck: Deck): string => {
@@ -189,11 +185,6 @@ const DeckList: React.FC<DeckListProps> = ({
 
 	return (
 		<DeckListContainer>
-			<ToolbarContainer>
-				<ToolbarButton onClick={onNewDeck}>New Deck</ToolbarButton>
-				<ToolbarButton active={true}>All Decks</ToolbarButton>
-			</ToolbarContainer>
-
 			<DecksGrid>
 				{decks.map((deck) => {
 					const counts = getCardTypeCounts(deck);

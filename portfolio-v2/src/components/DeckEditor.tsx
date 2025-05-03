@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardType as CardTypeEnum } from "../data/types";
-import { cards as allCards } from "../data/cardData";
+import { getCards } from "../data/cardData";
 import CardGrid from "../components/CardGrid";
 
 interface DeckEditorProps {
@@ -379,8 +379,8 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
 	};
 
 	const filteredCards = filterType
-		? allCards.filter((card) => card.type === filterType)
-		: allCards;
+		? getCards().filter((card) => card.type === filterType)
+		: getCards();
 
 	return (
 		<EditorContainer>

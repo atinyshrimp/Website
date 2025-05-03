@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Card, Deck as DeckType } from "../data/types";
-import { cards as allCards, getCardById, decks } from "../data/cardData";
+import { getCards, getCardById, decks } from "../data/cardData";
 import CardGrid from "../components/CardGrid";
 import CardDetail from "../components/CardDetail";
 import useLocalStorage from "../hooks/useLocalStorage";
@@ -54,11 +54,11 @@ const CollectionPage: React.FC = () => {
 	);
 	const [customDeckName, setCustomDeckName] = useLocalStorage<string>(
 		"customDeckName",
-		"My Custom Collection"
+		"Your Custom Collection"
 	);
 	const [customDeckDesc, setCustomDeckDesc] = useLocalStorage<string>(
 		"customDeckDesc",
-		"Your personal collection of cards"
+		"Choose your favorite cards to build your own collection. Added/Deleted cards will only affect this collection."
 	);
 	const [isCardDetailOpen, setIsCardDetailOpen] = useState(false);
 	const [viewMode, setViewMode] = useState<"list" | "editor">("list");
@@ -138,19 +138,6 @@ const CollectionPage: React.FC = () => {
 		setViewMode("editor");
 	};
 
-	const handleNewDeck = () => {
-		setUserDeck([]);
-		setActiveDeckId("custom");
-		setCustomDeckName("New Deck");
-		setCustomDeckDesc("A new deck collection");
-		setViewMode("editor");
-	};
-
-	const handleImportDeck = () => {
-		// Implementation would go here - could open a file dialog
-		alert("Import functionality would go here");
-	};
-
 	const handleSaveDeck = (name: string, description: string) => {
 		if (activeDeckId === "custom") {
 			setCustomDeckName(name);
@@ -164,11 +151,6 @@ const CollectionPage: React.FC = () => {
 		return cardIds
 			.map((id) => getCardById(id))
 			.filter((card): card is Card => card !== undefined);
-	};
-
-	// Get filtered cards based on active tab
-	const getFilteredCards = () => {
-		return allCards;
 	};
 
 	// Render content based on active tab
@@ -196,8 +178,6 @@ const CollectionPage: React.FC = () => {
 						decks={allDecks}
 						activeDeckId={activeDeckId}
 						onSelectDeck={handleDeckSelect}
-						onNewDeck={handleNewDeck}
-						onImportDeck={handleImportDeck}
 					/>
 				);
 			}
@@ -215,7 +195,7 @@ const CollectionPage: React.FC = () => {
 					</PageHeader>
 
 					<CardGrid
-						cards={getFilteredCards()}
+						cards={getCards()}
 						onSelectCard={handleCardSelect}
 						cardsInDeck={userDeck}
 						onAddToDeck={handleAddToDeck}
