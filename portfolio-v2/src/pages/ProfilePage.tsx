@@ -1449,7 +1449,6 @@ const ProfilePage: React.FC = () => {
 										}}
 									>
 										<div
-											className="interest-title"
 											style={{
 												fontSize: "1.2rem",
 												fontWeight: "bold",
@@ -1464,7 +1463,6 @@ const ProfilePage: React.FC = () => {
 										</div>
 
 										<div
-											className="interest-details"
 											style={{
 												color: "rgba(255,255,255,0.9)",
 												fontSize: "0.85rem",

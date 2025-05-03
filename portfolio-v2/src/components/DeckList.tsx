@@ -55,24 +55,61 @@ const DecksGrid = styled.div`
 
 const DeckCard = styled(motion.div)<{ active: boolean }>`
 	position: relative;
-	height: 400px;
-	border-radius: var(--radius-md);
+	height: 350px;
+	border-radius: var(--radius-sm);
 	overflow: hidden;
 	cursor: pointer;
-	box-shadow: ${({ active }) =>
-		active
-			? "0 0 20px rgba(86, 204, 242, 0.5)"
-			: "0 8px 16px rgba(0, 0, 0, 0.2)"};
-	border: 2px solid
-		${({ active }) => (active ? "var(--color-accent)" : "transparent")};
 	transition: all 0.2s ease;
+
+	/* Cyberpunk angular frame */
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		border: 1px solid transparent;
+		border-image: linear-gradient(135deg, var(--color-accent), #56ccf2) 1;
+		clip-path: polygon(
+			0 0,
+			100% 0,
+			100% 15px,
+			calc(100% - 15px) 30px,
+			100% 45px,
+			100% 100%,
+			0 100%,
+			0 calc(100% - 15px),
+			15px calc(100% - 30px),
+			0 calc(100% - 45px)
+		);
+		z-index: 4;
+		pointer-events: none;
+	}
+
+	/* Digital scanline effect */
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: repeating-linear-gradient(
+			to bottom,
+			transparent 0px,
+			transparent 1px,
+			rgba(32, 202, 255, 0.03) 2px,
+			rgba(32, 202, 255, 0.03) 3px
+		);
+		pointer-events: none;
+		z-index: 5;
+		opacity: 0.3;
+	}
 
 	&:hover {
 		transform: translateY(-5px);
-		box-shadow: ${({ active }) =>
-			active
-				? "0 0 25px rgba(86, 204, 242, 0.6)"
-				: "0 12px 20px rgba(0, 0, 0, 0.3)"};
+		box-shadow: 0 0 25px rgba(86, 204, 242, 0.6);
 	}
 `;
 
@@ -85,7 +122,7 @@ const DeckBackground = styled.div<{ imageUrl: string }>`
 	background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 	background-size: cover;
 	background-position: center;
-	filter: brightness(0.7);
+	filter: brightness(0.5);
 	transition: all 0.3s ease;
 
 	&::after {
@@ -109,15 +146,19 @@ const DeckInfo = styled.div`
 `;
 
 const DeckTitle = styled.h3`
-	font-size: 1.5rem;
+	font-size: 1.2rem;
 	color: var(--color-text-primary);
 	margin-bottom: var(--spacing-sm);
+	text-shadow: 0 0 10px rgba(86, 204, 242, 0.8);
 `;
 
 const DeckDescription = styled.p`
-	font-size: 0.9rem;
 	color: var(--color-text-secondary);
 	margin-bottom: var(--spacing-md);
+	font-size: 0.85rem;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+	border-left: 2px solid rgba(86, 204, 242, 0.7);
+	padding-left: 8px;
 `;
 
 const DeckStats = styled.div`
@@ -133,6 +174,22 @@ const DeckStat = styled.div`
 	background-color: rgba(0, 0, 0, 0.5);
 	padding: var(--spacing-xs) var(--spacing-sm);
 	border-radius: var(--radius-sm);
+	position: relative;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: linear-gradient(
+			to right,
+			transparent,
+			var(--color-accent),
+			transparent
+		);
+	}
 `;
 
 const StatValue = styled.span`
@@ -146,6 +203,29 @@ const StatLabel = styled.span`
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 	color: var(--color-text-secondary);
+`;
+
+// Glitch line elements like in profile page
+const GlitchLine1 = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 1px;
+	width: 100%;
+	background: rgba(86, 204, 242, 0.5);
+	z-index: 6;
+	opacity: 0.3;
+`;
+
+const GlitchLine2 = styled.div`
+	position: absolute;
+	top: 30%;
+	left: 0;
+	height: 2px;
+	width: 30%;
+	background: rgba(86, 204, 242, 0.6);
+	z-index: 6;
+	opacity: 0.4;
 `;
 
 const DeckList: React.FC<DeckListProps> = ({
@@ -219,6 +299,8 @@ const DeckList: React.FC<DeckListProps> = ({
 									</DeckStat>
 								</DeckStats>
 							</DeckInfo>
+							<GlitchLine1 />
+							<GlitchLine2 />
 						</DeckCard>
 					);
 				})}

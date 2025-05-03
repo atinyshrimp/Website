@@ -126,7 +126,7 @@ const CardTitle = styled.h2`
 		left: 0;
 		right: 0;
 		height: 2px;
-		background: linear-gradient(to right, #e74c3c, #56ccf2);
+		background: linear-gradient(to right, rgb(84, 29, 91), #56ccf2);
 	}
 `;
 
@@ -174,8 +174,9 @@ const Tag = styled.span`
 	background-color: rgba(0, 0, 0, 0.3);
 	color: var(--color-text-secondary);
 	position: relative;
-	border-left: 2px solid rgba(86, 204, 242, 0.5);
-	border-right: 2px solid rgba(231, 76, 60, 0.5);
+	clip-path: polygon(0 0, 100% 0, 100% 50%, 90% 100%, 0 100%);
+
+	border: 2px solid rgba(84, 29, 91, 0.5);
 `;
 
 const StatsContainer = styled.div`
@@ -337,14 +338,14 @@ const SectionTitle = styled.h3`
 	display: flex;
 	align-items: center;
 	margin-bottom: var(--spacing-sm);
-	color: #56ccf2;
+	color: var(--color-text-primary);
 	text-transform: uppercase;
 	letter-spacing: 0.05em;
 
 	&::before {
 		content: ">";
 		margin-right: var(--spacing-xs);
-		color: #e74c3c;
+		color: var(--color-accent);
 		font-weight: bold;
 	}
 `;
@@ -404,7 +405,7 @@ const ProficiencyBar = styled.div`
 
 const ProficiencyFill = styled.div<{ level: number }>`
 	width: ${(props) => props.level * 20}%;
-	background: linear-gradient(to right, #e74c3c, #56ccf2);
+	background: linear-gradient(to right, var(--color-accent), #56ccf2);
 	position: relative;
 
 	&::after {
