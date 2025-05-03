@@ -274,7 +274,7 @@ const CardComponent: React.FC<CardProps> = ({
 				isInDeck={isInDeck}
 				onClick={onClick}
 				whileHover={{
-					translateY: -5,
+					y: -5,
 					scale: 1.05,
 					transition: { duration: 0.2 },
 				}}
