@@ -780,25 +780,25 @@ const CardDetail: React.FC<CardDetailProps> = ({
 							</DetailList>
 						</DetailSection>
 
-						<DetailSection>
-							<SectionTitle>Skills Applied</SectionTitle>
-							{getSkillsForRelation(card.id).length > 0 ? (
-								<SkillTagsContainer>
-									{getSkillsForRelation(card.id).map((skill) => (
-										<SkillTag
-											key={skill.id}
-											onClick={() => onRelationClick && onRelationClick(skill)}
-										>
-											{stats["mastery"].icon} {skill.title}
-										</SkillTag>
-									))}
-								</SkillTagsContainer>
-							) : (
-								<EmptyState>
-									No specific skills listed for this project
-								</EmptyState>
-							)}
-						</DetailSection>
+						{getSkillsForRelation(card.id).length > 0 && (
+							<DetailSection>
+								<SectionTitle>Skills Applied</SectionTitle>
+								{
+									<SkillTagsContainer>
+										{getSkillsForRelation(card.id).map((skill) => (
+											<SkillTag
+												key={skill.id}
+												onClick={() =>
+													onRelationClick && onRelationClick(skill)
+												}
+											>
+												{stats["mastery"].icon} {skill.title}
+											</SkillTag>
+										))}
+									</SkillTagsContainer>
+								}
+							</DetailSection>
+						)}
 
 						<DetailSection>
 							<SectionTitle>Key Achievements</SectionTitle>
