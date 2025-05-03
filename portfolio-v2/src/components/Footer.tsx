@@ -92,6 +92,16 @@ const CopyrightText = styled.div`
 			}
 		}
 	}
+
+	a {
+		color: var(--color-accent);
+		text-decoration: none;
+		transition: opacity 0.2s ease;
+
+		&:hover {
+			opacity: 0.8;
+		}
+	}
 `;
 
 const Footer: React.FC = () => {
@@ -101,10 +111,23 @@ const Footer: React.FC = () => {
 		<FooterContainer>
 			<CopyrightText>
 				{`© ${currentYear} • `}
-				<span className="highlight">All Rights</span>{" "}
-				<span className="glitch" data-glitch="Reserved">
-					Reserved
+				<span className="highlight">Some rights</span>{" "}
+				<span className="glitch" data-glitch="reserved">
+					reserved
 				</span>
+				<br />
+				Code is <span className="highlight">open </span>{" "}
+				<span className="glitch" data-glitch="source">
+					source
+				</span>{" "}
+				— reuse with credit. <br />
+				<a
+					href="https://github.com/atinyshrimp/Website"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					View on GitHub
+				</a>
 			</CopyrightText>
 		</FooterContainer>
 	);

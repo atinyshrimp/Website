@@ -98,107 +98,108 @@ const CTAButton = styled(Link)`
 
 const AboutPage: React.FC = () => {
 	return (
-		<PageContainer>
-			<PageTitle
-				initial={{ opacity: 0, y: -20 }}
-				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.5 }}
-			>
-				About the <span className="highlight">Card Portfolio</span>
-			</PageTitle>
+		<>
+			<PageContainer>
+				<PageTitle
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					transition={{ duration: 0.5 }}
+				>
+					About the <span className="highlight">Card Portfolio</span>
+				</PageTitle>
 
-			<Section>
-				<SectionTitle>The Concept</SectionTitle>
-				<Paragraph>
-					Welcome to the portfolio card game! This project reimagines the
-					traditional portfolio website as an interactive card collection,
-					inspired by popular card games like Hearthstone and Legends of
-					Runeterra.
-				</Paragraph>
-				<Paragraph>
-					Instead of scrolling through static pages, you can explore my skills,
-					projects, and experiences as collectible cards that you can browse,
-					filter, and add to your own personal deck. This approach creates a
-					more engaging and personalized way to learn about my work and
-					background.
-				</Paragraph>
-			</Section>
+				<Section>
+					<SectionTitle>The Concept</SectionTitle>
+					<Paragraph>
+						Welcome to the portfolio card game! This project reimagines the
+						traditional portfolio website as an interactive card collection,
+						inspired by popular card games like Hearthstone and Legends of
+						Runeterra.
+					</Paragraph>
+					<Paragraph>
+						Instead of scrolling through static pages, you can explore my
+						skills, projects, and experiences as collectible cards that you can
+						browse, filter, and add to your own personal deck. This approach
+						creates a more engaging and personalized way to learn about my work
+						and background.
+					</Paragraph>
+				</Section>
 
-			<Section>
-				<SectionTitle>How It Works</SectionTitle>
-				<Paragraph>
-					Each card represents a different aspect of my professional profile.
-					Browse through the collection, click on cards to view detailed
-					information, and add your favorites to your deck to create your own
-					personalized view of my portfolio.
-				</Paragraph>
+				<Section>
+					<SectionTitle>How It Works</SectionTitle>
+					<Paragraph>
+						Each card represents a different aspect of my professional profile.
+						Browse through the collection, click on cards to view detailed
+						information, and add your favorites to your deck to create your own
+						personalized view of my portfolio.
+					</Paragraph>
 
-				<CardExplanation>
-					<CardType color="var(--color-project)">
-						<CardTypeTitle>Project Cards</CardTypeTitle>
-						<CardTypeDescription>
-							These cards showcase the notable projects I've worked on,
-							including technologies used, my role, and key outcomes.
-						</CardTypeDescription>
-					</CardType>
+					<CardExplanation>
+						<CardType color="var(--color-project)">
+							<CardTypeTitle>Project Cards</CardTypeTitle>
+							<CardTypeDescription>
+								These cards showcase the notable projects I've worked on,
+								including technologies used, my role, and key outcomes.
+							</CardTypeDescription>
+						</CardType>
 
-					<CardType color="var(--color-skill)">
-						<CardTypeTitle>Skill Cards</CardTypeTitle>
-						<CardTypeDescription>
-							These cards represent my technical and professional skills,
-							including proficiency levels and years of experience.
-						</CardTypeDescription>
-					</CardType>
+						<CardType color="var(--color-skill)">
+							<CardTypeTitle>Skill Cards</CardTypeTitle>
+							<CardTypeDescription>
+								These cards represent my technical and professional skills,
+								including proficiency levels and years of experience.
+							</CardTypeDescription>
+						</CardType>
 
-					<CardType color="var(--color-experience)">
-						<CardTypeTitle>Experience Cards</CardTypeTitle>
-						<CardTypeDescription>
-							These cards highlight my professional experience, including
-							positions held, companies, and key achievements.
-						</CardTypeDescription>
-					</CardType>
-				</CardExplanation>
-			</Section>
+						<CardType color="var(--color-experience)">
+							<CardTypeTitle>Experience Cards</CardTypeTitle>
+							<CardTypeDescription>
+								These cards highlight my professional experience, including
+								positions held, companies, and key achievements.
+							</CardTypeDescription>
+						</CardType>
+					</CardExplanation>
+				</Section>
 
-			<Section>
-				<SectionTitle>Why a Card Game?</SectionTitle>
-				<Paragraph>
-					I created this portfolio format because I wanted to offer a more
-					interactive and engaging way to present my work. The card game
-					metaphor allows you to actively explore and discover different aspects
-					of my skills and experience, rather than simply reading a
-					chronological resume or portfolio.
-				</Paragraph>
-				<Paragraph>
-					Just as in card games where players build decks that reflect their
-					play style and strategy, you can build a "deck" of my skills and
-					experiences that resonates with what you're looking for. It transforms
-					the portfolio viewing experience from passive consumption to active
-					exploration.
-				</Paragraph>
-			</Section>
+				<Section>
+					<SectionTitle>Why a Card Game?</SectionTitle>
+					<Paragraph>
+						I created this portfolio format because I wanted to offer a more
+						interactive and engaging way to present my work. The card game
+						metaphor allows you to actively explore and discover different
+						aspects of my skills and experience, rather than simply reading a
+						chronological resume or portfolio.
+					</Paragraph>
+					<Paragraph>
+						Just as in card games where players build decks that reflect their
+						play style and strategy, you can build a "deck" of my skills and
+						experiences that resonates with what you're looking for. It
+						transforms the portfolio viewing experience from passive consumption
+						to active exploration.
+					</Paragraph>
+				</Section>
 
-			<Section>
-				<SectionTitle>The Technology</SectionTitle>
-				<Paragraph>
-					This portfolio is built with React, TypeScript, Styled Components, and
-					Framer Motion. I focused on creating smooth animations and transitions
-					to enhance the card game feel while maintaining accessibility and
-					performance.
-				</Paragraph>
-				<Paragraph>
-					The project is open source, and you can view the code on GitHub. Feel
-					free to adapt this concept for your own portfolio if you find it
-					inspiring!
-				</Paragraph>
-			</Section>
+				<Section>
+					<SectionTitle>The Technology</SectionTitle>
+					<Paragraph>
+						This portfolio is built with React, TypeScript, Styled Components,
+						and Framer Motion. I focused on creating smooth animations and
+						transitions to enhance the card game feel while maintaining
+						accessibility and performance.
+					</Paragraph>
+					<Paragraph>
+						The project is open source, and you can view the code on GitHub.
+						Feel free to adapt this concept for your own portfolio if you find
+						it inspiring!
+					</Paragraph>
+				</Section>
 
-			<ButtonContainer>
-				<CTAButton to="/collection">Explore the Collection</CTAButton>
-			</ButtonContainer>
-
+				<ButtonContainer>
+					<CTAButton to="/collection">Explore the Collection</CTAButton>
+				</ButtonContainer>
+			</PageContainer>
 			<Footer />
-		</PageContainer>
+		</>
 	);
 };
 
