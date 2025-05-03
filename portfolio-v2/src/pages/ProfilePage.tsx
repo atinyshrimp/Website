@@ -5,6 +5,7 @@ import { Tooltip } from "react-tooltip";
 
 import Carousel from "../components/Carousel";
 import FuturisticFrame from "../assets/avatar-frame.svg";
+import AvatarImage from "../assets/avatar.webp";
 import BlueberryMuffinsImage from "../assets/IMG_8350.webp";
 import MooncakesImage from "../assets/IMG_8351.webp";
 
@@ -1108,10 +1109,7 @@ const ProfilePage: React.FC = () => {
 					<ProfileCard>
 						<AvatarFrame>
 							<Avatar>
-								<img
-									src="https://avatars.githubusercontent.com/u/99140907?v=4&size=64"
-									alt="Github Avatar"
-								/>
+								<img src={AvatarImage} alt="Github Avatar" />
 							</Avatar>
 							<img
 								src={FuturisticFrame}
