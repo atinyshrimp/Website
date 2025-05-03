@@ -3,12 +3,17 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
 
-import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
+import {
+	Card as CardType,
+	CardType as CardTypeEnum,
+	Stats,
+} from "../data/types";
 import { stats } from "../data/cardData";
 
 interface CardProps {
 	card: CardType;
 	onClick?: () => void;
+	isShiny?: boolean;
 	isSelected?: boolean;
 	isInDeck?: boolean;
 }
@@ -24,7 +29,7 @@ const CardContainer = styled(motion.div)<{
 	border-radius: calc(var(--card-border-radius) / 2);
 	overflow: hidden;
 	cursor: pointer;
-	background-color: #0d1117;
+	background-color: var(--color-bg-primary);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
 	transition: all 0.3s ease;
 	transform-style: preserve-3d;
@@ -43,11 +48,11 @@ const CardContainer = styled(motion.div)<{
 			const secondaryColor = (() => {
 				switch (cardType) {
 					case CardTypeEnum.PROJECT:
-						return "#2ecc71";
+						return "var(--color-project)";
 					case CardTypeEnum.SKILL:
-						return "#e74c3c";
+						return "var(--color-skill)";
 					case CardTypeEnum.EXPERIENCE:
-						return "#56ccf2";
+						return "var(--color-experience)";
 					default:
 						return "#3498db";
 				}
@@ -58,14 +63,14 @@ const CardContainer = styled(motion.div)<{
 		clip-path: polygon(
 			0 0,
 			100% 0,
-			100% 20px,
-			calc(100% - 20px) 40px,
-			100% 60px,
+			100% 15px,
+			calc(100% - 15px) 30px,
+			100% 45px,
 			100% 100%,
 			0 100%,
-			0 calc(100% - 20px),
-			20px calc(100% - 40px),
-			0 calc(100% - 60px)
+			0 calc(100% - 15px),
+			15px calc(100% - 30px),
+			0 calc(100% - 45px)
 		);
 		z-index: 5;
 		pointer-events: none;
@@ -129,8 +134,8 @@ const CardImage = styled.div<{ imageUrl?: string }>`
 		height: 100%;
 		background: linear-gradient(
 			135deg,
-			rgba(231, 76, 60, 0.2),
-			rgba(86, 204, 242, 0.2)
+			rgba(148, 49, 38, 0.5),
+			rgba(58, 136, 162, 0.5)
 		);
 		z-index: 2;
 	}
@@ -142,7 +147,7 @@ const CardImage = styled.div<{ imageUrl?: string }>`
 		left: 0;
 		width: 100%;
 		height: 30px;
-		background: linear-gradient(to top, #0d1117, transparent);
+		background: linear-gradient(to top, var(--color-bg-primary), transparent);
 		z-index: 3;
 	}
 `;
@@ -153,7 +158,7 @@ const CardContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	background: linear-gradient(180deg, #0d1117 0%, #121824 100%);
+	background: linear-gradient(180deg, var(--color-bg-primary) 0%, #121824 100%);
 `;
 
 const CardTitle = styled.h3`
@@ -222,18 +227,7 @@ const StatItem = styled.div<{ type: string }>`
 	align-items: center;
 	gap: 3px;
 	font-size: 0.7rem;
-	color: ${({ type }) => {
-		switch (type) {
-			case "power":
-				return "#e74c3c";
-			case "value":
-				return "#2ecc71";
-			case "time":
-				return "#56ccf2";
-			default:
-				return "var(--color-text-secondary)";
-		}
-	}};
+	color: var(--color-text-secondary)";
 	font-weight: 600;
 	text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 `;
@@ -242,11 +236,35 @@ const StatIcon = styled.span`
 	font-size: 0.75rem;
 `;
 
+// Glitch line elements like in profile page
+const GlitchLine1 = styled.div`
+	position: absolute;
+	top: 50%;
+	left: 0;
+	height: 1px;
+	width: 100%;
+	background: rgba(86, 204, 242, 0.5);
+	z-index: 6;
+	opacity: 0.3;
+`;
+
+const GlitchLine2 = styled.div`
+	position: absolute;
+	top: 30%;
+	left: 0;
+	height: 2px;
+	width: 30%;
+	background: rgba(86, 204, 242, 0.6);
+	z-index: 6;
+	opacity: 0.4;
+`;
+
 const CardComponent: React.FC<CardProps> = ({
 	card,
 	onClick,
 	isSelected,
 	isInDeck,
+	isShiny,
 }) => {
 	return (
 		<>
@@ -263,12 +281,18 @@ const CardComponent: React.FC<CardProps> = ({
 				initial={{ opacity: 0, y: 20 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.3 }}
-				className={card.isFeatured ? "foil" : ""}
+				className={isShiny ? "foil" : ""}
 			>
 				<CardTypeTag cardType={card.type}>{card.type}</CardTypeTag>
 				<CardImage imageUrl={card.imageUrl} />
+				{/* Glitch lines */}
+				<GlitchLine1 />
+				<GlitchLine2 />
 				<CardContent>
-					<CardTitle>{card.title}</CardTitle>
+					<CardTitle>
+						{card.isFeatured && "✦ "}
+						{card.title}
+					</CardTitle>
 					<CardDescription>{card.description}</CardDescription>
 					<CardStats>
 						{Object.entries(card.stats).map(([key, value]) => (
@@ -285,7 +309,7 @@ const CardComponent: React.FC<CardProps> = ({
 							</StatItem>
 						))}
 					</CardStats>
-				</CardContent>
+				</CardContent>{" "}
 			</CardContainer>
 			{/* Tooltip for stats */}
 			<Tooltip id={`stats-${card.id}`} place="top" />

@@ -242,6 +242,7 @@ const CardGrid: React.FC<CardGridProps> = ({
 							key={card.id}
 							card={card}
 							onClick={() => onSelectCard?.(card)}
+							isShiny={card.isFeatured}
 							isInDeck={isCardInDeck(card.id)}
 						/>
 					))}

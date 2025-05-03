@@ -1,28 +1,107 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
+.foil::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		125deg,
+		transparent 0%,
+		rgba(255, 255, 255, 0) 35%,
+		rgba(255, 255, 255, 0.25) 45%,
+		rgba(86, 204, 242, 0.45) 50%,
+		rgba(193, 86, 242, 0.35) 55%,
+		rgba(255, 255, 255, 0) 65%,
+		transparent 100%
+	);
+	background-size: 300% 300%;
+	mix-blend-mode: overlay;
+	z-index: 8;
+	pointer-events: none;
+	animation: foil-shimmer 5.5s ease infinite;
+}
+
+/* Additional sparkle effect for corners */
+.foil::after {
+	content: "";
+	position: absolute;
+	top: -10%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(
+		circle at center,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0) 50%
+	);
+	opacity: 0.4;
+	transform: rotate(45deg);
+	z-index: 7;
+	pointer-events: none;
+	animation: sparkle 5s ease-in-out infinite;
+}
+
+/* Glowing border for foil cards */
 .foil {
-  background: linear-gradient(45deg, #fff, #f0f, #0ff, #fff);
-  background-size: 200% 200%;
-  animation: shimmer 2s linear infinite;
+	box-shadow: 0 0 15px rgba(86, 204, 242, 0.6) !important;
+	position: relative;
 }
 
-@keyframes shimmer {
-  0% {
-    background-position: 0 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+@keyframes foil-shimmer {
+	0% {
+		background-position: 0% 0%;
+	}
+	50% {
+		background-position: 100% 100%;
+	}
+	100% {
+		background-position: 0% 0%;
+	}
+}
+
+@keyframes sparkle {
+	0% {
+		opacity: 0.3;
+		transform: rotate(45deg) scale(1);
+	}
+	50% {
+		opacity: 0.5;
+		transform: rotate(65deg) scale(1.1);
+	}
+	100% {
+		opacity: 0.3;
+		transform: rotate(45deg) scale(1);
+	}
+}
+
+/* Special card corner effect for foil cards */
+.foil-corner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	background: linear-gradient(
+		135deg,
+		rgba(86, 204, 242, 1) 0%,
+		transparent 70%
+	);
+	clip-path: polygon(0 0, 100% 0, 0 100%);
+	z-index: 9;
+	opacity: 0.8;
 }
