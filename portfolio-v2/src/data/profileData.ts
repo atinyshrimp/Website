@@ -69,6 +69,11 @@ const recentActivities: Activity[] = [
 	},
 ];
 
+/** Retrieves the most recent activities, sorted by timestamp. If a limit is provided, only the most recent activities up to that limit are returned.
+ *
+ * @param {number} limit - The maximum number of recent activities to retrieve. If 0, all recent activities are returned.
+ * @returns {Activity[]} - An array of recent activities, sorted by timestamp in descending order.
+ */
 export const getRecentActivities = (limit: number = 0): Activity[] => {
 	if (limit > 0) {
 		return recentActivities

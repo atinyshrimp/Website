@@ -560,10 +560,42 @@ export const stats = {
 		description: "Personal/professional development gained",
 	},
 };
-export const getCardsByType = (type: CardType): Card[] => {
-	return cards.filter((card) => card.type === type);
+
+/** Retrieves all cards from the collection.
+ *
+ * @returns {Card[]} Sorted array of all cards
+ */
+export const getCards = (): Card[] => {
+	return cards.sort((a, b) => a.title.localeCompare(b.title));
 };
 
+/** Retrieves all cards of a specific type from the collection.
+ *
+ * @param {CardType} type - The type of cards to retrieve
+ * @returns {Card[]} Sorted array of cards of the specified type
+ */
+export const getFeaturedCards = (): Card[] => {
+	return cards
+		.filter((card) => card.isFeatured)
+		.sort((a, b) => a.title.localeCompare(b.title));
+};
+
+/** Retrieves all cards of a specific type from the collection.
+ *
+ * @param {CardType} type - The type of cards to retrieve
+ * @returns {Card[]} Sorted array of cards of the specified type
+ */
+export const getCardsByType = (type: CardType): Card[] => {
+	return cards
+		.filter((card) => card.type === type)
+		.sort((a, b) => a.title.localeCompare(b.title));
+};
+
+/** Retrieves a card by its ID from the collection.
+ *
+ * @param {string} id - The ID of the card to retrieve
+ * @returns {Card | undefined} The card with the specified ID, or undefined if not found
+ */
 export const getCardById = (id: string): Card | undefined => {
 	return cards.find((card) => card.id === id);
 };
