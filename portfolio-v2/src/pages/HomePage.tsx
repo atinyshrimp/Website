@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { cards as cardsData } from "../data/cardData";
+import { getFeaturedCards } from "../data/cardData";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
 
@@ -78,66 +78,61 @@ const FeaturedCardsTitle = styled.h2`
 	}
 `;
 
-const HomePage: React.FC = () => {
-	// Get featured cards (e.g., first 3 of each type)
-	const featuredCards = cardsData.filter((card) => card.isFeatured);
-
-	return (
-		<>
-			<HeroSection>
-				<HeroTitle
-					initial={{ opacity: 0, y: -30 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 0.6 }}
-				>
-					Welcome to my <span className="highlight">Portfolio</span>
-				</HeroTitle>
-
-				<HeroSubtitle
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 0.6, delay: 0.2 }}
-				>
-					Explore my skills, projects, and experiences in an interactive
-					card-based format inspired by collectible card games.
-				</HeroSubtitle>
-
-				<ButtonContainer>
-					<PrimaryButton to="/collection">View Card Collection</PrimaryButton>
-					<SecondaryButton to="/about">About this Project</SecondaryButton>
-				</ButtonContainer>
-			</HeroSection>
-
-			<FeaturedCardsTitle>
-				Featured <span className="highlight">Cards</span>
-			</FeaturedCardsTitle>
-
-			{/* Display just a few featured cards in a grid */}
-			<div
-				style={{
-					display: "flex",
-					flexDirection: "row",
-					flexWrap: "wrap",
-					gap: "var(--spacing-xl)",
-					marginTop: "var(--spacing-xl)",
-					justifyContent: "center",
-					alignItems: "center",
-					width: "100%",
-					maxWidth: "1400px",
-					margin: "0 auto",
-					padding: "0 var(--spacing-lg)",
-					borderRadius: "var(--radius-lg)",
-					boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-				}}
+const HomePage: React.FC = () => (
+	<>
+		<HeroSection>
+			<HeroTitle
+				initial={{ opacity: 0, y: -30 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6 }}
 			>
-				{featuredCards.map((card) => (
-					<Card key={card.id} card={card} />
-				))}
-			</div>
+				Welcome to my <span className="highlight">Portfolio</span>
+			</HeroTitle>
 
-			<Footer />
-		</>
-	);
-};
+			<HeroSubtitle
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ duration: 0.6, delay: 0.2 }}
+			>
+				Explore my skills, projects, and experiences in an interactive
+				card-based format inspired by collectible card games.
+			</HeroSubtitle>
+
+			<ButtonContainer>
+				<PrimaryButton to="/collection">View Card Collection</PrimaryButton>
+				<SecondaryButton to="/about">About this Project</SecondaryButton>
+			</ButtonContainer>
+		</HeroSection>
+
+		<FeaturedCardsTitle>
+			Featured <span className="highlight">Cards</span>
+		</FeaturedCardsTitle>
+
+		{/* Display just a few featured cards in a grid */}
+		<div
+			style={{
+				display: "flex",
+				flexDirection: "row",
+				flexWrap: "wrap",
+				gap: "var(--spacing-xl)",
+				marginTop: "var(--spacing-xl)",
+				justifyContent: "center",
+				alignItems: "center",
+				width: "100%",
+				maxWidth: "1400px",
+				margin: "0 auto",
+				padding: "0 var(--spacing-lg)",
+				borderRadius: "var(--radius-lg)",
+				boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+			}}
+		>
+			{getFeaturedCards().map((card) => (
+				<Card key={card.id} card={card} />
+			))}
+		</div>
+
+		<Footer />
+	</>
+);
 
 export default HomePage;
