@@ -233,6 +233,7 @@ const RemoveButton = styled.button`
 	font-size: 0.9rem;
 	cursor: pointer;
 	margin-right: 10px;
+	padding: var(--spacing-sm);
 
 	&:hover {
 		background-color: rgba(231, 76, 60, 0.4);

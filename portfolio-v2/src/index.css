@@ -35,30 +35,9 @@ code {
 	pointer-events: none;
 	animation: foil-shimmer 5.5s ease infinite;
 }
-
-/* Additional sparkle effect for corners */
-.foil::after {
-	content: "";
-	position: absolute;
-	top: -10%;
-	left: -50%;
-	width: 200%;
-	height: 200%;
-	background: radial-gradient(
-		circle at center,
-		rgba(255, 255, 255, 0.1) 0%,
-		rgba(255, 255, 255, 0) 50%
-	);
-	opacity: 0.4;
-	transform: rotate(45deg);
-	z-index: 7;
-	pointer-events: none;
-	animation: sparkle 5s ease-in-out infinite;
-}
-
 /* Glowing border for foil cards */
 .foil {
-	box-shadow: 0 0 15px rgba(86, 204, 242, 0.6) !important;
+	/* box-shadow: 0 0 15px rgba(86, 204, 242, 0.6) !important; */
 	position: relative;
 }
 
@@ -71,21 +50,6 @@ code {
 	}
 	100% {
 		background-position: 0% 0%;
-	}
-}
-
-@keyframes sparkle {
-	0% {
-		opacity: 0.3;
-		transform: rotate(45deg) scale(1);
-	}
-	50% {
-		opacity: 0.5;
-		transform: rotate(65deg) scale(1.1);
-	}
-	100% {
-		opacity: 0.3;
-		transform: rotate(45deg) scale(1);
 	}
 }
 
