@@ -3,11 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
 
-import {
-	Card as CardType,
-	CardType as CardTypeEnum,
-	Stats,
-} from "../data/types";
+import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
 import { stats } from "../data/cardData";
 
 interface CardProps {

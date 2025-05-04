@@ -16,37 +16,6 @@ const DeckListContainer = styled.div`
 	gap: var(--spacing-lg);
 `;
 
-const ToolbarContainer = styled.div`
-	display: flex;
-	gap: var(--spacing-sm);
-	margin-bottom: var(--spacing-lg);
-`;
-
-const ToolbarButton = styled.button<{ active?: boolean }>`
-	background-color: ${({ active }) =>
-		active ? "rgba(86, 204, 242, 0.2)" : "rgba(0, 0, 0, 0.4)"};
-	color: ${({ active }) =>
-		active ? "var(--color-text-primary)" : "var(--color-text-secondary)"};
-	border: 1px solid
-		${({ active }) => (active ? "var(--color-accent)" : "var(--color-border)")};
-	padding: var(--spacing-sm) var(--spacing-md);
-	border-radius: var(--radius-sm);
-	font-size: 0.9rem;
-	font-weight: 500;
-	cursor: pointer;
-	transition: all 0.2s ease;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	&:hover {
-		background-color: rgba(86, 204, 242, 0.1);
-		color: var(--color-text-primary);
-	}
-`;
-
 const DecksGrid = styled.div`
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
