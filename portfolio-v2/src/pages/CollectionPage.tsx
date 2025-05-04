@@ -168,7 +168,7 @@ const CollectionPage: React.FC = () => {
 						onSaveDeck={handleSaveDeck}
 						onGoBack={() => setViewMode("list")}
 						onAddToDeck={handleAddToDeck}
-						cardsInDeck={userDeck}
+						cardsInDeck={getActiveDeckCards().map((card) => card.id)}
 						isCustomDeck={activeDeckId === "custom"}
 					/>
 				);

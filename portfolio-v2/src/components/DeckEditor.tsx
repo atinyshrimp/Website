@@ -503,7 +503,7 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
 					onSelectCard={onSelectCard}
 					onAddToDeck={isCustomDeck ? onAddToDeck : undefined}
 					onRemoveFromDeck={isCustomDeck ? onRemoveCard : undefined}
-					cardsInDeck={isCustomDeck ? cardsInDeck : []}
+					cardsInDeck={cardsInDeck}
 					filterType={filterType}
 					onFilterChange={handleFilterChange}
 				/>

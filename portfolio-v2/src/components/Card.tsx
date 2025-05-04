@@ -93,18 +93,10 @@ const CardContainer = styled(motion.div)<{
 	}
 
 	/* Apply different highlight effect when the card is selected or in deck */
-	${({ isSelected, isInDeck, cardType }) =>
+	${({ isSelected, isInDeck }) =>
 		(isSelected || isInDeck) &&
 		`
-    box-shadow: 0 0 25px ${
-			isInDeck
-				? "rgba(86, 204, 242, 0.6)"
-				: cardType === CardTypeEnum.PROJECT
-				? "rgba(46, 204, 113, 0.6)"
-				: cardType === CardTypeEnum.SKILL
-				? "rgba(231, 76, 60, 0.6)"
-				: "rgba(52, 152, 219, 0.6)"
-		};
+    box-shadow: 0 0 25px rgba(208, 52, 219, 0.6);
     transform: translateY(-5px) scale(1.02);
   `}
 `;
