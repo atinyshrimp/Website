@@ -706,7 +706,8 @@ const CardDetail: React.FC<CardDetailProps> = ({
 							<SectionTitle>Years of Experience</SectionTitle>
 							<DetailList>
 								<DetailItem>
-									{card.skillDetails.yearsOfExperience} years
+									{card.skillDetails.yearsOfExperience} year
+									{card.skillDetails.yearsOfExperience > 1 ? "s" : ""}
 								</DetailItem>
 							</DetailList>
 						</DetailSection>
