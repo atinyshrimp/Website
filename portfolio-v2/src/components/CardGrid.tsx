@@ -184,7 +184,11 @@ const CardGrid: React.FC<CardGridProps> = ({
 			return (
 				card.title.toLowerCase().includes(searchLower) ||
 				card.description.toLowerCase().includes(searchLower) ||
-				card.tags.some((tag) => tag.toLowerCase().includes(searchLower))
+				card.tags.some((tag) => tag.toLowerCase().includes(searchLower)) ||
+				(card.type === CardTypeEnum.PROJECT &&
+					card.projectDetails!.technologies.some((tech) =>
+						tech.toLowerCase().includes(searchLower)
+					))
 			);
 		}
 

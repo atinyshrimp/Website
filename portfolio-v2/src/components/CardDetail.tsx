@@ -609,9 +609,11 @@ const CardDetail: React.FC<CardDetailProps> = ({
 				<CardDescription>{card.description}</CardDescription>
 
 				<TagsContainer>
-					{card.tags.map((tag, index) => (
-						<Tag key={index}>{tag}</Tag>
-					))}
+					{card.tags
+						.sort((a, b) => a.localeCompare(b))
+						.map((tag, index) => (
+							<Tag key={index}>{tag}</Tag>
+						))}
 				</TagsContainer>
 
 				<StatsContainer>
@@ -664,10 +666,17 @@ const CardDetail: React.FC<CardDetailProps> = ({
 
 						<DetailSection>
 							<SectionTitle>Technologies</SectionTitle>
-							<DetailList>
-								{card.projectDetails.technologies.map((tech, index) => (
-									<DetailItem key={index}>{tech}</DetailItem>
-								))}
+							<DetailList
+								style={{
+									display: "grid",
+									gridTemplateColumns: "repeat(2, 1fr)",
+								}}
+							>
+								{card.projectDetails.technologies
+									.sort((a, b) => a.localeCompare(b))
+									.map((tech, index) => (
+										<DetailItem key={index}>{tech}</DetailItem>
+									))}
 							</DetailList>
 						</DetailSection>
 
