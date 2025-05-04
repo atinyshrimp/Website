@@ -59,6 +59,11 @@ const PageDescription = styled.p`
 	color: var(--color-text-secondary);
 	margin-bottom: var(--spacing-md);
 	max-width: 800px;
+
+	.highlight {
+		color: var(--color-accent);
+		margin-left: 8px;
+	}
 `;
 
 const ProfileContainer = styled.div`
@@ -638,20 +643,6 @@ const SocialButton = styled.a`
 		}
 	}
 
-	&::after {
-		content: "";
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		width: 5px;
-		height: 5px;
-		background: var(--color-accent);
-		opacity: 0.5;
-		border-radius: 50%;
-		transform: translate(-50%, -50%);
-		transition: all 0.5s ease;
-	}
-
 	svg {
 		width: 24px;
 		height: 24px;
@@ -1103,7 +1094,8 @@ const ProfilePage: React.FC = () => {
 				Player <span className="highlight">Profile</span>
 			</PageTitle>
 			<PageDescription>
-				View player stats, achievements, and favorite decks.
+				Server:<span className="highlight">World Z</span> | Region:
+				<span className="highlight">Europe/Paris</span>
 			</PageDescription>
 
 			<ProfileContainer>
@@ -1503,7 +1495,7 @@ const ProfilePage: React.FC = () => {
 				)}
 			</AnimatePresence>
 
-			<Tooltip id="achievement" place="top" />
+			<Tooltip id="achievement" place="top" style={{ zIndex: 9999 }} />
 			<Footer />
 		</MainContent>
 	);
