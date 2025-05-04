@@ -4,6 +4,7 @@ import { getStringFromDate } from "../utils";
 
 import { stats, getCardById, getCards } from "../data/cardData";
 import { Card, CardType as CardTypeEnum } from "../data/types";
+import { Tooltip } from "react-tooltip";
 
 interface CardDetailProps {
 	card: Card;
@@ -617,13 +618,21 @@ const CardDetail: React.FC<CardDetailProps> = ({
 					{Object.entries(card.stats).map(([key, value]) => {
 						const statKey = key as keyof typeof stats;
 						return (
-							<StatItem key={key}>
+							<StatItem
+								key={key}
+								data-tooltip-id="stats"
+								data-tooltip-content={stats[statKey].description}
+							>
 								<StatLabel>{stats[statKey].label}</StatLabel>
 								<StatValue>{`${stats[statKey].icon} ${value}`}</StatValue>
 							</StatItem>
 						);
 					})}
-					<StatItem highlight={true}>
+					<StatItem
+						highlight={true}
+						data-tooltip-id="stats"
+						data-tooltip-content="Average of all stats"
+					>
 						<StatLabel>Overall</StatLabel>
 						<StatValue>
 							★{" "}
@@ -843,6 +852,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
 					</ButtonsContainer>
 				)}
 			</CardInfo>
+			<Tooltip id="stats" place="top" style={{ zIndex: 9999 }} />
 		</DetailContainer>
 	);
 };
