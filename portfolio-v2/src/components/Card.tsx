@@ -300,7 +300,7 @@ const CardComponent: React.FC<CardProps> = ({
 				</CardContent>{" "}
 			</CardContainer>
 			{/* Tooltip for stats */}
-			<Tooltip id={`stats-${card.id}`} place="top" />
+			<Tooltip id={`stats-${card.id}`} place="top" style={{ zIndex: 9999 }} />
 		</>
 	);
 };
