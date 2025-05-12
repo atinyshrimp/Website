@@ -45,7 +45,6 @@ const GlobalStyle = createGlobalStyle`
     /* Responsive spacing adjustments */
     ${media.lg} {
       --spacing-xl: 1.5rem;
-      --spacing-xxl: 2rem;
       --card-width: 220px;
       --card-height: 270px;
     }
@@ -59,6 +58,14 @@ const GlobalStyle = createGlobalStyle`
     }
 
     ${media.sm} {
+      --spacing-md: 0.75rem;
+      --spacing-lg: 1rem; 
+      --spacing-xl: 1.25rem;
+      --spacing-xxl: 1.5rem;
+      --card-width: 180px;
+      --card-height: 230px;
+    }
+    ${media.phoneLandscape} {
       --spacing-md: 0.75rem;
       --spacing-lg: 1rem; 
       --spacing-xl: 1.25rem;
