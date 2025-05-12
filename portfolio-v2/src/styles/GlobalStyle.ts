@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { media } from "../utils/responsive";
 
 const GlobalStyle = createGlobalStyle`
   :root {    
@@ -40,6 +41,31 @@ const GlobalStyle = createGlobalStyle`
     --card-border-radius: var(--radius-md);
 
     --audiowide-font: 'AudioWide', sans-serif;
+
+    /* Responsive spacing adjustments */
+    ${media.lg} {
+      --spacing-xl: 1.5rem;
+      --spacing-xxl: 2rem;
+      --card-width: 220px;
+      --card-height: 270px;
+    }
+
+    ${media.md} {
+      --spacing-lg: 1.25rem;
+      --spacing-xl: 1.25rem;
+      --spacing-xxl: 1.5rem;
+      --card-width: 200px;
+      --card-height: 250px;
+    }
+
+    ${media.sm} {
+      --spacing-md: 0.75rem;
+      --spacing-lg: 1rem; 
+      --spacing-xl: 1.25rem;
+      --spacing-xxl: 1.5rem;
+      --card-width: 180px;
+      --card-height: 230px;
+    }
   }
   
   * {
@@ -75,6 +101,55 @@ const GlobalStyle = createGlobalStyle`
       background-size: 20px 20px;
     } */
   }
+
+  /* Portrait orientation warning for mobile phones */
+  .orientation-warning {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-bg-primary);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-xl);
+  }
+
+  .orientation-warning h2 {
+    color: var(--color-accent);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .orientation-warning p {
+    max-width: 400px;
+    margin-bottom: var(--spacing-lg);
+  }
+
+  .orientation-warning .icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-accent);
+    animation: rotate 2s infinite;
+  }
+
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(90deg); }
+  }
+
+  /* Show orientation warning only on mobile phones in portrait mode */
+  ${media.phonePortrait} {
+    .orientation-warning {
+      display: flex;
+    }
+    .app-content {
+      display: none;
+    }
+  }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Audiowide', sans-serif;
@@ -83,6 +158,46 @@ const GlobalStyle = createGlobalStyle`
     margin-bottom: var(--spacing-md);
     text-transform: uppercase;
     letter-spacing: 0.05em;
+
+    ${media.md} {
+      letter-spacing: 0.03em;
+    }
+
+    ${media.sm} {
+      letter-spacing: 0.02em;
+    }
+  }
+
+  h1 {
+    font-size: 3rem;
+
+    ${media.lg} {
+      font-size: 2.5rem;
+    }
+
+    ${media.md} {
+      font-size: 2rem;
+    }
+
+    ${media.sm} {
+      font-size: 1.75rem;
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+
+    ${media.lg} {
+      font-size: 1.75rem;
+    }
+
+    ${media.md} {
+      font-size: 1.5rem;
+    }
+
+    ${media.sm} {
+      font-size: 1.25rem;
+    }
   }
   
   a {
@@ -149,6 +264,11 @@ const GlobalStyle = createGlobalStyle`
       &::before {
         display: none;
       }
+    }
+
+    ${media.sm} {
+      font-size: 0.8rem;
+      padding: var(--spacing-xs) var(--spacing-sm);
     }
   }
   
