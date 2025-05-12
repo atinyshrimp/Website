@@ -392,9 +392,11 @@ const HomePage: React.FC = () => (
 
       <CardContainer>
         <CardGrid>
-          {getFeaturedCards().map((card) => (
-            <Card key={card.id} card={card} />
-          ))}
+          {getFeaturedCards()
+            .slice(0, 3)
+            .map((card) => (
+              <Card key={card.id} card={card} />
+            ))}
         </CardGrid>
       </CardContainer>
     </FeaturedCardSection>

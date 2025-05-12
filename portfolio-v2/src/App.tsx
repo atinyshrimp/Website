@@ -88,6 +88,10 @@ const Header = styled.header`
   z-index: 10;
   margin-top: 10px;
 
+  ${media.lg} {
+    padding: 0 var(--spacing-xxl);
+  }
+
   &::before {
     content: "";
     position: absolute;
