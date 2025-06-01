@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
     --color-bg-secondary: #161C24;
     --color-text-primary: #F0F6FC;
     --color-text-secondary: #8B949E;
-    --color-accent:rgb(148, 41, 162);
+    --color-accent: #9429a2;
     --color-border: #30363D;
     
     /* Panel Colors */
