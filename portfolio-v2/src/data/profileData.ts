@@ -58,7 +58,7 @@ const recentActivities: Activity[] = [
   },
   {
     description:
-      'Started end-of-study internship at "Selego" as a full-stack developer',
+      "Started end-of-study internship at Selego as a full-stack developer & data scientist",
     timestamp: new Date("2025-02-10T09:00+0200"),
   },
   {
