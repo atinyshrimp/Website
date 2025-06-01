@@ -685,9 +685,28 @@ const CardDetail: React.FC<CardDetailProps> = ({
             <DetailSection>
               <SectionTitle>Outcomes</SectionTitle>
               <DetailList>
-                {card.projectDetails.outcomes.map((outcome, index) => (
-                  <DetailItem key={index}>{outcome}</DetailItem>
-                ))}
+                {card.projectDetails.outcomes.map((outcome, index) => {
+                  if (typeof outcome === "string") {
+                    return <DetailItem key={index}>{outcome}</DetailItem>;
+                  }
+                  return (
+                    <DetailItem key={index}>
+                      {outcome.label}
+                      {outcome.subpoints && outcome.subpoints.length > 0 && (
+                        <DetailList
+                          style={{
+                            paddingLeft: "var(--spacing-lg)",
+                            marginTop: "var(--spacing-xs)",
+                          }}
+                        >
+                          {outcome.subpoints.map((subpoint, subIndex) => (
+                            <DetailItem key={subIndex}>{subpoint}</DetailItem>
+                          ))}
+                        </DetailList>
+                      )}
+                    </DetailItem>
+                  );
+                })}
               </DetailList>
             </DetailSection>
 
