@@ -20,6 +20,7 @@ import {
   getXPToNextLevel,
   getTimeSince,
 } from "../utils";
+import { media } from "../utils/responsive";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -358,6 +359,10 @@ const StatCard = styled(motion.div)`
     color: var(--color-text-primary);
     position: relative;
     z-index: 2;
+
+    ${media.tabletLandscape} {
+      font-size: 1rem;
+    }
   }
 
   .stat-label {
@@ -367,6 +372,10 @@ const StatCard = styled(motion.div)`
     color: var(--color-text-secondary);
     position: relative;
     z-index: 2;
+
+    ${media.tabletLandscape} {
+      font-size: 0.6rem;
+    }
   }
 `;
 
@@ -507,6 +516,11 @@ const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
   width: 15rem;
   height: 25rem;
 
+  ${media.tabletLandscape} {
+    width: 15rem;
+    height: 15rem;
+  }
+
   /* Cyberpunk angular frame */
   &::before {
     content: "";
@@ -578,6 +592,10 @@ const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
 const RecentActivity = styled.div`
   font-size: 0.9rem;
   color: var(--color-text-secondary);
+
+  ${media.tabletLandscape} {
+    font-size: 0.7rem;
+  }
 
   p {
     margin-bottom: var(--spacing-xs);
@@ -664,6 +682,11 @@ const ActionButton = styled.button<{ variant?: "primary" | "secondary" }>`
   letter-spacing: 0.05em;
   font-weight: 600;
   font-size: 0.9rem;
+
+  ${media.tabletLandscape} {
+    font-size: 0.7rem;
+  }
+
   clip-path: polygon(
     0 0,
     100% 0,
@@ -905,7 +928,7 @@ const SocialPopover = styled(motion.div)`
   position: absolute;
   top: calc(100% + 15px);
   left: 50%;
-  transform: translateX(-100%) !important;
+  transform: translateX(-50%) !important;
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
@@ -945,7 +968,7 @@ const SocialPopover = styled(motion.div)`
     position: absolute;
     top: -8px;
     left: 50%;
-    transform: translateX(-50%) rotate(45deg);
+    transform: translateX(-500%) rotate(45deg);
     width: 16px;
     height: 16px;
     background: rgba(0, 0, 0, 0.8);
@@ -1362,7 +1385,7 @@ const ProfilePage: React.FC = () => {
                   >
                     <div
                       style={{
-                        fontSize: "1.2rem",
+                        fontSize: media.tabletLandscape ? "1rem" : "1.2rem",
                         fontWeight: "bold",
                         color: "white",
                         textShadow: "0 0 10px rgba(86, 204, 242, 0.8)",
@@ -1377,7 +1400,7 @@ const ProfilePage: React.FC = () => {
                     <div
                       style={{
                         color: "rgba(255,255,255,0.9)",
-                        fontSize: "0.85rem",
+                        fontSize: media.tabletLandscape ? "0.75rem" : "0.85rem",
                         textShadow: "0 1px 2px rgba(0,0,0,0.8)",
                         borderLeft: "2px solid rgba(86, 204, 242, 0.7)",
                         paddingLeft: "8px",
