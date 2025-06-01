@@ -143,6 +143,10 @@ const DeckStats = styled.div`
   display: flex;
   gap: var(--spacing-md);
   margin-top: var(--spacing-md);
+
+  ${media.tabletLandscape} {
+    gap: var(--spacing-xs);
+  }
 `;
 
 const DeckStat = styled.div`
@@ -174,6 +178,10 @@ const StatValue = styled.span`
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-text-primary);
+
+  ${media.tabletLandscape} {
+    font-size: 1rem;
+  }
 `;
 
 const StatLabel = styled.span`
@@ -181,6 +189,10 @@ const StatLabel = styled.span`
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-secondary);
+
+  ${media.tabletLandscape} {
+    font-size: 0.5rem;
+  }
 `;
 
 // Glitch line elements like in profile page
