@@ -157,7 +157,6 @@ const EditNameButton = styled.button`
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
   cursor: pointer;
-  margin-top: var(--spacing-xs);
 
   ${media.tabletLandscape} {
     font-size: 0.65rem;
@@ -299,22 +298,6 @@ const CardName = styled.div`
   }
 `;
 
-const CardQuantity = styled.div`
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  font-weight: bold;
-  margin-left: var(--spacing-sm);
-  padding: var(--spacing-xxs) var(--spacing-xs);
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: var(--radius-sm);
-
-  ${media.tabletLandscape} {
-    font-size: 0.7rem;
-    padding: 1px 3px;
-    margin-left: var(--spacing-xs);
-  }
-`;
-
 const RemoveButton = styled.button`
   background: none;
   border: none;
@@ -418,9 +401,7 @@ const ButtonGroup = styled.div`
   margin-top: var(--spacing-md);
 
   ${media.tabletLandscape} {
-    gap: var(--spacing-xxs);
     margin-top: var(--spacing-xs);
-    flex-direction: column;
   }
 `;
 
@@ -562,7 +543,6 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
                 >
                   <CardCostIndicator cardType={card.type as CardTypeEnum} />
                   <CardName>{card.title}</CardName>
-                  <CardQuantity>x{card.quantity}</CardQuantity>
                   {isCustomDeck && (
                     <RemoveButton
                       onClick={(e) => {
@@ -608,21 +588,37 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
                 <StatLabel>Exp</StatLabel>
               </StatItem>
             </DeckStats>
-            {isCustomDeck && (
-              <EditNameButton
-                onClick={() => setIsEditing(true)}
-                style={{ marginBottom: "var(--spacing-sm)", width: "100%" }}
+            <ButtonGroup>
+              {isCustomDeck && (
+                <EditNameButton
+                  onClick={() => setIsEditing(true)}
+                  style={{ width: "100%" }}
+                >
+                  Edit{" "}
+                  <span
+                    style={{
+                      display: `${media.tabletLandscape ? "none" : "inline"}`,
+                    }}
+                  >
+                    Deck Info
+                  </span>
+                </EditNameButton>
+              )}
+              <Button
+                onClick={onExportDeck}
+                variant="primary"
+                style={{ width: "100%" }}
               >
-                Edit Deck Info
-              </EditNameButton>
-            )}
-            <Button
-              onClick={onExportDeck}
-              variant="primary"
-              style={{ width: "100%" }}
-            >
-              Export Deck
-            </Button>
+                Export{" "}
+                <span
+                  style={{
+                    display: `${media.tabletLandscape ? "none" : "inline"}`,
+                  }}
+                >
+                  Deck
+                </span>
+              </Button>
+            </ButtonGroup>
           </DeckPanelFooter>
         )}
       </DeckPanel>
