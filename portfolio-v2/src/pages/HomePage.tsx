@@ -393,6 +393,7 @@ const HomePage: React.FC = () => (
       <CardContainer>
         <CardGrid>
           {getFeaturedCards()
+            .sort(() => Math.random() - 0.5)
             .slice(0, 3)
             .map((card) => (
               <Card key={card.id} card={card} />

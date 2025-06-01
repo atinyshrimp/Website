@@ -96,6 +96,7 @@ export const cards: Card[] = [
   },
   {
     id: "michelin-ml",
+    isFeatured: true,
     title: "Gastronaut",
     description:
       "A platform recommending sustainable MICHELIN restaurants worldwide based on reviews.",
@@ -146,6 +147,7 @@ export const cards: Card[] = [
   },
   {
     id: "catsim",
+    isFeatured: true,
     title: "CatSim",
     description:
       "A simple pet simulation game where you can take care of your virtual cat",
@@ -599,6 +601,7 @@ export const cards: Card[] = [
   },
   {
     id: "unity",
+    isFeatured: true,
     title: "Unity3D",
     description: "Building interactive games using Unity",
     type: CardType.SKILL,
