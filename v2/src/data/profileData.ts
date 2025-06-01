@@ -1,6 +1,6 @@
 import { Achievement, Activity } from "./types";
-import BlueberryMuffinsImage from "../assets/IMG_8350.webp";
-import MooncakesImage from "../assets/IMG_8351.webp";
+import BlueberryMuffinsImage from "../assets/profile/IMG_8350.webp";
+import MooncakesImage from "../assets/profile/IMG_8351.webp";
 
 export const achievements: Achievement[] = [
   {

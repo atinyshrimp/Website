@@ -1,5 +1,5 @@
 import { Card, CardType } from "./types";
-import AutodeskImage from "../assets/dungeon_wireframe.png";
+import AutodeskImage from "../assets/cards/dungeon_wireframe.png";
 import p2ip from "../assets/cards/p2ip.png";
 import avila from "../assets/cards/api_prediction.png";
 import esilvBdd from "../assets/cards/bdd_thumbnail.png";

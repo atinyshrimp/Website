@@ -5,8 +5,8 @@ import { Tooltip } from "react-tooltip";
 
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
-import FuturisticFrame from "../assets/avatar-frame.svg";
-import AvatarImage from "../assets/avatar.webp";
+import FuturisticFrame from "../assets/profile/avatar-frame.svg";
+import AvatarImage from "../assets/profile/avatar.webp";
 
 import { cards, decks } from "../data/cardData";
 import {
