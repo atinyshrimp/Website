@@ -147,7 +147,7 @@ const Carousel: React.FC<CarouselProps> = ({
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 500 : -500,
+      x: direction > 0 ? "100%" : "-100%",
       opacity: 0,
     }),
     center: {
@@ -155,7 +155,7 @@ const Carousel: React.FC<CarouselProps> = ({
       opacity: 1,
     },
     exit: (direction: number) => ({
-      x: direction < 0 ? 500 : -500,
+      x: direction < 0 ? "100%" : "-100%",
       opacity: 0,
     }),
   };
@@ -166,7 +166,7 @@ const Carousel: React.FC<CarouselProps> = ({
   return (
     <>
       <CarouselContainer>
-        <AnimatePresence initial={false} custom={direction}>
+        <AnimatePresence initial={false} custom={direction} mode="popLayout">
           <CarouselWrapper
             key={currentIndex}
             custom={direction}
