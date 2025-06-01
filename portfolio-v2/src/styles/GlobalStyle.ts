@@ -70,8 +70,12 @@ const GlobalStyle = createGlobalStyle`
       --spacing-lg: 1rem; 
       --spacing-xl: 1.25rem;
       --spacing-xxl: 1.5rem;
-      --card-width: 180px;
-      --card-height: 230px;
+      --card-width: 160px;
+      --card-height: 210px;
+    }
+    ${media.tabletLandscape} {
+      --card-width: 170px;
+      --card-height: 220px;
     }
   }
   
