@@ -23,6 +23,7 @@ const CardContainer = styled(motion.div)<{
   position: relative;
   width: var(--card-width);
   height: var(--card-height);
+  min-height: 200px;
   border-radius: calc(var(--card-border-radius) / 2);
   overflow: hidden;
   cursor: pointer;
