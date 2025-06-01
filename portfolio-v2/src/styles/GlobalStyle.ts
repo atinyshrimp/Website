@@ -65,17 +65,13 @@ const GlobalStyle = createGlobalStyle`
       --card-width: 180px;
       --card-height: 230px;
     }
-    ${media.phoneLandscape} {
+    ${media.tabletLandscape} {
       --spacing-md: 0.75rem;
       --spacing-lg: 1rem; 
       --spacing-xl: 1.25rem;
       --spacing-xxl: 1.5rem;
-      --card-width: 160px;
-      --card-height: 210px;
-    }
-    ${media.tabletLandscape} {
-      --card-width: 170px;
-      --card-height: 220px;
+      --card-width: 180px;
+      --card-height: 230px;
     }
   }
   
@@ -149,7 +145,7 @@ const GlobalStyle = createGlobalStyle`
 
   @keyframes rotate {
     0% { transform: rotate(0deg); }
-    100% { transform: rotate(90deg); }
+    100% { transform: rotate(-90deg); translate: 20px 0; }
   }
 
   /* Show orientation warning only on mobile phones in portrait mode */
