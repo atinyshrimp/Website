@@ -3,6 +3,7 @@ import AutodeskImage from "../assets/dungeon_wireframe.png";
 import p2ip from "../assets/cards/p2ip.png";
 import avila from "../assets/cards/api_prediction.png";
 import esilvBdd from "../assets/cards/bdd_thumbnail.png";
+import catsim from "../assets/cards/catsim_thumbnail.png";
 
 export const cards: Card[] = [
   // Project Cards
@@ -152,8 +153,7 @@ export const cards: Card[] = [
     description:
       "A simple pet simulation game where you can take care of your virtual cat",
     type: CardType.PROJECT,
-    imageUrl:
-      "https://joycelapilus.com/static/media/catsim_thumbnail.506b32b6ebab4307004c.png",
+    imageUrl: catsim,
     tags: [
       "Unity",
       "C#",
