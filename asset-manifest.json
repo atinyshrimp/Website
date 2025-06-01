@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/static/css/main.ce272651.css",
-    "main.js": "/static/js/main.a2546623.js",
+    "main.js": "/static/js/main.c10cf39f.js",
     "static/js/453.20815797.chunk.js": "/static/js/453.20815797.chunk.js",
     "static/media/p2ip.png": "/static/media/p2ip.bada885146a0aec65d24.png",
     "static/media/IMG_8351.webp": "/static/media/IMG_8351.2d2bfebc1a6073b41c84.webp",
     "static/media/IMG_8350.webp": "/static/media/IMG_8350.777a803bcd0d6ef701f5.webp",
     "static/media/avatar.webp": "/static/media/avatar.c01cc4de78fcfcf478fc.webp",
     "static/media/dungeon_wireframe.png": "/static/media/dungeon_wireframe.10bea9bf0b78e996aaee.png",
+    "static/media/catsim_thumbnail.png": "/static/media/catsim_thumbnail.506b32b6ebab4307004c.png",
     "static/media/api_prediction.png": "/static/media/api_prediction.f4cadfc354b5ee2cdbd6.png",
     "static/media/avatar-frame.svg": "/static/media/avatar-frame.6dc08242a61b017341e63615d50ced51.svg",
     "static/media/bdd_thumbnail.png": "/static/media/bdd_thumbnail.666365966f736c86303d.png",
     "index.html": "/index.html",
     "main.ce272651.css.map": "/static/css/main.ce272651.css.map",
-    "main.a2546623.js.map": "/static/js/main.a2546623.js.map",
+    "main.c10cf39f.js.map": "/static/js/main.c10cf39f.js.map",
     "453.20815797.chunk.js.map": "/static/js/453.20815797.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ce272651.css",
-    "static/js/main.a2546623.js"
+    "static/js/main.c10cf39f.js"
   ]
 }
