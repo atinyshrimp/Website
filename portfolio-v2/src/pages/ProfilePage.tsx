@@ -1263,6 +1263,25 @@ const ProfilePage: React.FC = () => {
                 <div className="stat-label">Decks</div>
               </StatCard>
             </StatsGrid>
+            <div
+              style={{
+                height: "var(--spacing-md)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "flex-end",
+              }}
+            >
+              <a
+                href="https://www.canva.com/design/DAFz4FS8qYo/dqMLNBEPlr__vOyWSZKP3Q/view?utm_content=DAFz4FS8qYo&utm_campaign=designshare&utm_medium=link&utm_source=editor"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontSize: "0.8rem",
+                }}
+              >
+                Reveal more stats <span>🔍</span>
+              </a>
+            </div>
 
             <MemberSince>
               Member since <span>{userData.joinDate}</span>
