@@ -84,6 +84,7 @@ const ProfileCard = styled.div`
   padding: var(--spacing-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.65);
   overflow: hidden;
+  transform: translate3d(0, 0, 0);
 
   /* Cyberpunk angular frame */
   &::before {
@@ -109,6 +110,7 @@ const ProfileCard = styled.div`
     );
     z-index: 5;
     pointer-events: none;
+    backface-visibility: hidden;
   }
 
   /* Digital scanline effect */
@@ -515,6 +517,7 @@ const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
   box-shadow: 0 4px 15px rgba(86, 204, 242, 0.3);
   width: 15rem;
   height: 25rem;
+  transform: translate3d(0, 0, 0);
 
   ${media.tabletLandscape} {
     width: 15rem;
@@ -545,6 +548,7 @@ const InterestCard = styled(motion.div)<{ image?: string; alt?: string }>`
     );
     z-index: 4;
     pointer-events: none;
+    backface-visibility: hidden;
   }
 
   /* Digital scanline effect */
@@ -769,6 +773,7 @@ const ModalContent = styled(motion.div)`
   padding: var(--spacing-lg);
   max-height: 90vh;
   overflow-y: auto;
+  transform: translate3d(0, 0, 0);
 
   /* Cyberpunk angular frame */
   &::before {
@@ -793,6 +798,7 @@ const ModalContent = styled(motion.div)`
       0 calc(100% - 60px)
     );
     pointer-events: none;
+    backface-visibility: hidden;
   }
 `;
 
@@ -928,7 +934,7 @@ const SocialPopover = styled(motion.div)`
   position: absolute;
   top: calc(100% + 15px);
   left: 50%;
-  transform: translateX(-50%) !important;
+  transform: translate3d(0, 0, 0) translateX(-50%) !important;
   background: rgba(0, 0, 0, 0.8);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
@@ -960,6 +966,7 @@ const SocialPopover = styled(motion.div)`
       0 calc(100% - 45px)
     );
     pointer-events: none;
+    backface-visibility: hidden;
   }
 
   /* Arrow pointing to button */
