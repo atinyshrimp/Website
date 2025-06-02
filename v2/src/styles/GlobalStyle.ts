@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     --color-project: #2ecc71;
     --color-skill: #e74c3c;
     --color-experience: #56ccf2;
+    --color-highlight: #c4cf20;
     
     /* Base Colors - Cyberpunk theme */
     --color-bg-primary: #0D1117;
