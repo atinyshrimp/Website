@@ -98,7 +98,7 @@ const CardContainer = styled(motion.div)<{
     ${({ isSelected, isInDeck }) =>
         (isSelected || isInDeck) &&
         `
-    box-shadow: 0 0 15px var(--color-highlight);
+    box-shadow: 0 0 35px var(--color-highlight);
     transform: translateY(-5px) scale(1.02);
   `}
 `;
