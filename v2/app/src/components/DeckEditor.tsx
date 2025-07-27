@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardType as CardTypeEnum } from "../data/types";
 import { getCards } from "../data/cardData";
-import CardGrid from "../components/CardGrid";
+import CardGrid from "./CardGrid";
 import { media } from "../utils/responsive";
 
 interface DeckEditorProps {

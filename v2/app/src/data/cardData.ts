@@ -1237,7 +1237,7 @@ export const decks = [
     name: "UI/UX Specialist",
     coverImage:
       "https://images.unsplash.com/photo-1602576666092-bf6447a729fc?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dXh8ZW58MHx8MHx8fDA%3D",
-    description: "A collection showing my ui/ux & game design expertise",
+    description: "A collection showing my UI/UX & game design expertise",
     cards: [
       "react",
       "figma",
