@@ -85,7 +85,7 @@ export interface Activity {
 }
 
 export interface Achievement {
-  slug: string;
+  _id: string;
   icon: string;
   title: string;
   description: string;

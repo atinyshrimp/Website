@@ -1,44 +1,5 @@
-import { Achievement, Activity } from "./types";
 import BlueberryMuffinsImage from "../assets/profile/IMG_8350.webp";
 import MooncakesImage from "../assets/profile/IMG_8351.webp";
-
-export const achievements: Achievement[] = [
-  {
-    slug: "first-win",
-    icon: "🏆",
-    title: "First Win",
-    description: "Completed first project",
-    unlocked: true,
-  },
-  {
-    slug: "first-app",
-    icon: "🚀",
-    title: "Launched App",
-    description: "Released my first app to the public",
-    unlocked: true,
-  },
-  {
-    slug: "linguist",
-    icon: "🌐",
-    title: "Certified Linguist",
-    description: "Obtained certification for multiple languages",
-    unlocked: true,
-  },
-  {
-    slug: "arms-of-steel",
-    icon: "💪🏾",
-    title: "Arms of Steel",
-    description: "Made bread from scratch",
-    unlocked: true,
-  },
-  {
-    slug: "buzzing-eardrums",
-    icon: "🎶",
-    title: "Buzzing Eardrums",
-    description: "Went to 5+ concerts in a year",
-    unlocked: true,
-  },
-];
 
 export const interests = [
   {

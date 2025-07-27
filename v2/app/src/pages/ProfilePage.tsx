@@ -9,7 +9,7 @@ import FuturisticFrame from "../assets/profile/avatar-frame.svg";
 import AvatarImage from "../assets/profile/avatar.webp";
 
 import { cards, decks } from "../data/cardData";
-import { achievements, interests } from "../data/profileData";
+import { interests } from "../data/profileData";
 import {
   getCurrentLevel,
   getCurrentXP,
@@ -18,7 +18,7 @@ import {
 } from "../utils";
 import { media } from "../utils/responsive";
 import api from "../services/api";
-import { Activity } from "../data/types";
+import { Activity, Achievement as AchievementType } from "../data/types";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -1000,7 +1000,6 @@ const ProfilePage: React.FC = () => {
       favoriteDeck: "Mystic Dragons",
       winRate: "64.7%",
     },
-    achievements,
     favoriteDecks: [
       { id: 1, name: "Mystic Dragons", cards: 42, winRate: "78%" },
       { id: 2, name: "Forest Spirits", cards: 40, winRate: "65%" },
@@ -1035,6 +1034,7 @@ const ProfilePage: React.FC = () => {
   });
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [achievements, setAchievements] = useState<AchievementType[]>([]);
 
   const guildButtonRef = useRef<HTMLButtonElement>(null);
   const socialPopoverRef = useRef<HTMLDivElement>(null);
@@ -1108,8 +1108,19 @@ const ProfilePage: React.FC = () => {
     }
   };
 
+  const fetchAchievements = async () => {
+    try {
+      const { ok, data, error } = await api.get("/achievements");
+      if (!ok) throw new Error(error);
+      setAchievements(data as AchievementType[]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchActivities();
+    fetchAchievements();
   }, []);
 
   // Close popover when clicking outside
@@ -1311,9 +1322,9 @@ const ProfilePage: React.FC = () => {
           <ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
             <SectionTitle>Achievements</SectionTitle>
             <AchievementsList>
-              {userData.achievements.map((achievement) => (
+              {achievements.map((achievement) => (
                 <Achievement
-                  key={achievement.slug}
+                  key={achievement._id}
                   unlocked={achievement.unlocked}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
