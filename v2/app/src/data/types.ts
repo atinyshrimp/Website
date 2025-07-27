@@ -81,7 +81,7 @@ export interface Deck {
 
 export interface Activity {
   description: string;
-  timestamp: Date;
+  happenedAt: Date;
 }
 
 export interface Achievement {

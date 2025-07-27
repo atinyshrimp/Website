@@ -9,11 +9,7 @@ import FuturisticFrame from "../assets/profile/avatar-frame.svg";
 import AvatarImage from "../assets/profile/avatar.webp";
 
 import { cards, decks } from "../data/cardData";
-import {
-  achievements,
-  getRecentActivities,
-  interests,
-} from "../data/profileData";
+import { achievements, interests } from "../data/profileData";
 import {
   getCurrentLevel,
   getCurrentXP,
@@ -21,6 +17,8 @@ import {
   getTimeSince,
 } from "../utils";
 import { media } from "../utils/responsive";
+import api from "../services/api";
+import { Activity } from "../data/types";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -1036,6 +1034,7 @@ const ProfilePage: React.FC = () => {
     message: "",
   });
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   const guildButtonRef = useRef<HTMLButtonElement>(null);
   const socialPopoverRef = useRef<HTMLDivElement>(null);
@@ -1098,6 +1097,20 @@ const ProfilePage: React.FC = () => {
     });
     setShowFriendRequestModal(false);
   };
+
+  const fetchActivities = async () => {
+    try {
+      const { ok, data, error } = await api.get("/activities");
+      if (!ok) throw new Error(error);
+      setActivities(data as Activity[]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchActivities();
+  }, []);
 
   // Close popover when clicking outside
   useEffect(() => {
@@ -1444,11 +1457,11 @@ const ProfilePage: React.FC = () => {
           <ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
             <SectionTitle>Latest Updates</SectionTitle>
             <RecentActivity>
-              {getRecentActivities().map((activity, index) => (
+              {activities.map((activity, index) => (
                 <p key={index}>
                   {activity.description}
                   <span className="time">{`(${getTimeSince(
-                    activity.timestamp
+                    activity.happenedAt
                   )})`}</span>
                 </p>
               ))}
