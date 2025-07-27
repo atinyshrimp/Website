@@ -91,3 +91,12 @@ export interface Achievement {
   description: string;
   unlocked: boolean;
 }
+
+export interface Interest {
+  _id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  highlight: string;
+  isFeatured: boolean;
+}

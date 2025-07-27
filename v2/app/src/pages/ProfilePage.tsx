@@ -9,7 +9,6 @@ import FuturisticFrame from "../assets/profile/avatar-frame.svg";
 import AvatarImage from "../assets/profile/avatar.webp";
 
 import { cards, decks } from "../data/cardData";
-import { interests } from "../data/profileData";
 import {
   getCurrentLevel,
   getCurrentXP,
@@ -18,7 +17,11 @@ import {
 } from "../utils";
 import { media } from "../utils/responsive";
 import api from "../services/api";
-import { Activity, Achievement as AchievementType } from "../data/types";
+import {
+  Activity,
+  Achievement as AchievementType,
+  Interest as InterestType,
+} from "../data/types";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -1035,6 +1038,7 @@ const ProfilePage: React.FC = () => {
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   const [activities, setActivities] = useState<Activity[]>([]);
   const [achievements, setAchievements] = useState<AchievementType[]>([]);
+  const [interests, setInterests] = useState<InterestType[]>([]);
 
   const guildButtonRef = useRef<HTMLButtonElement>(null);
   const socialPopoverRef = useRef<HTMLDivElement>(null);
@@ -1118,9 +1122,20 @@ const ProfilePage: React.FC = () => {
     }
   };
 
+  const fetchInterests = async () => {
+    try {
+      const { ok, data, error } = await api.get("/interests?isFeatured=true");
+      if (!ok) throw new Error(error);
+      setInterests(data as InterestType[]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   useEffect(() => {
     fetchActivities();
     fetchAchievements();
+    fetchInterests();
   }, []);
 
   // Close popover when clicking outside
@@ -1347,11 +1362,11 @@ const ProfilePage: React.FC = () => {
             <Carousel
               items={interests.map((interest) => (
                 <InterestCard
-                  key={interest.id}
+                  key={interest._id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3 }}
-                  image={interest.image}
+                  image={interest.imageUrl}
                 >
                   <div
                     className="card-overlay"
@@ -1444,7 +1459,7 @@ const ProfilePage: React.FC = () => {
                         textTransform: "uppercase",
                       }}
                     >
-                      {interest.name}
+                      {interest.title}
                     </div>
 
                     <div
@@ -1456,7 +1471,7 @@ const ProfilePage: React.FC = () => {
                         paddingLeft: "8px",
                       }}
                     >
-                      {interest.details}
+                      {interest.description}
                     </div>
                   </div>
                 </InterestCard>

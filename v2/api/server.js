@@ -8,6 +8,7 @@ const cardController = require("./controllers/cards");
 const deckController = require("./controllers/decks");
 const activityController = require("./controllers/activities");
 const achievementController = require("./controllers/achievements");
+const interestController = require("./controllers/interests");
 
 connectDB();
 
@@ -33,6 +34,7 @@ app.use("/cards", cardController);
 app.use("/decks", deckController);
 app.use("/activities", activityController);
 app.use("/achievements", achievementController);
+app.use("/interests", interestController);
 
 /* Global error handler */
 app.use((err, _, res, __) => {
