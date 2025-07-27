@@ -18,7 +18,9 @@ router.get("/", async (req, res) => {
     )
       query.tags = { $in: req.query.tags };
 
-    const cards = await Card.find(query).sort({ title: 1 });
+    const cards = await Card.find(query)
+      .sort({ title: 1 })
+      .populate("skillDetails.relatedProjects");
     const total = await Card.countDocuments(query);
 
     res.status(200).json({ ok: true, data: cards, total });
@@ -45,13 +47,48 @@ router.get("/featured", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/tags", async (_, res) => {
+  try {
+    const tags = await Card.distinct("tags");
+    res.status(200).json({ ok: true, data: tags });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ ok: false, error: "Failed to fetch tags" });
+  }
+});
+
+router.get("/:id/skills", async (req, res) => {
   try {
     const { id } = req.params;
     if (!id)
       return res.status(400).json({ ok: false, error: "Card ID is required" });
 
     const card = await Card.findById(id);
+    if (!card)
+      return res.status(404).json({ ok: false, error: "Card not found" });
+
+    const skills = await Card.find({
+      "skillDetails.relatedProjects": card._id,
+    });
+    if (!skills)
+      return res.status(404).json({ ok: false, error: "Skills not found" });
+
+    res.status(200).json({ ok: true, data: skills });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ ok: false, error: "Failed to fetch skills" });
+  }
+});
+
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    if (!id)
+      return res.status(400).json({ ok: false, error: "Card ID is required" });
+
+    const card = await Card.findById(id).populate(
+      "skillDetails.relatedProjects"
+    );
     if (!card)
       return res.status(404).json({ ok: false, error: "Card not found" });
 

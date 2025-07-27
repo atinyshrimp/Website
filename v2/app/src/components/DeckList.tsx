@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Deck } from "../data/types";
-import { getCardById } from "../data/cardData";
 import { media } from "../utils/responsive";
 
 interface DeckListProps {
@@ -225,9 +224,9 @@ const DeckList: React.FC<DeckListProps> = ({
 }) => {
   // Get the first card image for each deck to use as background
   const getDeckBackgroundImage = (deck: Deck): string => {
-    const firstCard = getCardById(deck.cards[0]);
+    const firstCard = deck.cards[0];
     return (
-      deck?.coverImage ||
+      deck?.imageUrl ||
       firstCard?.imageUrl ||
       "https://placehold.co/600x400?text=NoCover"
     );
@@ -241,10 +240,7 @@ const DeckList: React.FC<DeckListProps> = ({
       experiences: 0,
     };
 
-    deck.cards.forEach((cardId) => {
-      const card = getCardById(cardId);
-      if (!card) return;
-
+    deck.cards.forEach((card) => {
       if (card.type === "project") counts.projects++;
       else if (card.type === "skill") counts.skills++;
       else if (card.type === "experience") counts.experiences++;
@@ -260,15 +256,15 @@ const DeckList: React.FC<DeckListProps> = ({
           const counts = getCardTypeCounts(deck);
           return (
             <DeckCard
-              key={deck.id}
-              active={deck.id === activeDeckId}
-              onClick={() => onSelectDeck(deck.id)}
+              key={deck._id}
+              active={deck._id === activeDeckId}
+              onClick={() => onSelectDeck(deck._id)}
               whileHover={{ y: -5 }}
               whileTap={{ y: 0 }}
             >
               <DeckBackground imageUrl={getDeckBackgroundImage(deck)} />
               <DeckInfo>
-                <DeckTitle>{deck.name}</DeckTitle>
+                <DeckTitle>{deck.title}</DeckTitle>
                 <DeckDescription>{deck.description}</DeckDescription>
                 <DeckStats>
                   <DeckStat>

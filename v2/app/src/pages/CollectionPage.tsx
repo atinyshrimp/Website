@@ -1,241 +1,279 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Card, Deck as DeckType } from "../data/types";
-import { getCards, getCardById, decks } from "../data/cardData";
 import CardGrid from "../components/CardGrid";
 import CardDetail from "../components/CardDetail";
 import useLocalStorage from "../hooks/useLocalStorage";
 import {
-	CollectionLayout,
-	ModalDrawer,
-	TabType,
+  CollectionLayout,
+  ModalDrawer,
+  TabType,
 } from "../components/CollectionLayout";
 import DeckList from "../components/DeckList";
 import DeckEditor from "../components/DeckEditor";
 import Footer from "../components/Footer";
+import api from "../services/api";
 
 const PageHeader = styled.div`
-	margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
 `;
 
 const PageTitle = styled.h1`
-	font-size: 1.8rem;
-	margin-bottom: var(--spacing-sm);
-	display: flex;
-	align-items: center;
-	color: var(--color-text-primary);
+  font-size: 1.8rem;
+  margin-bottom: var(--spacing-sm);
+  display: flex;
+  align-items: center;
+  color: var(--color-text-primary);
 
-	.highlight {
-		color: var(--color-accent);
-		margin-left: 8px;
-	}
+  .highlight {
+    color: var(--color-accent);
+    margin-left: 8px;
+  }
 
-	&::before {
-		content: "🃏";
-		margin-right: var(--spacing-md);
-		font-size: 1.8rem;
-	}
+  &::before {
+    content: "🃏";
+    margin-right: var(--spacing-md);
+    font-size: 1.8rem;
+  }
 `;
 
 const PageDescription = styled.p`
-	font-size: 0.9rem;
-	color: var(--color-text-secondary);
-	margin-bottom: var(--spacing-md);
-	max-width: 800px;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-md);
+  max-width: 800px;
 `;
 
 const CollectionPage: React.FC = () => {
-	const [activeTab, setActiveTab] = useState<TabType>("decks");
-	const [userDeck, setUserDeck] = useLocalStorage<string[]>("userDeck", []);
-	const [selectedCard, setSelectedCard] = useState<Card | null>(null);
-	const [activeDeckId, setActiveDeckId] = useLocalStorage<string>(
-		"activeDeckId",
-		"custom"
-	);
-	const [customDeckName, setCustomDeckName] = useLocalStorage<string>(
-		"customDeckName",
-		"Your Custom Collection"
-	);
-	const [customDeckDesc, setCustomDeckDesc] = useLocalStorage<string>(
-		"customDeckDesc",
-		"Added/Deleted cards will only affect this collection."
-	);
-	const [isCardDetailOpen, setIsCardDetailOpen] = useState(false);
-	const [viewMode, setViewMode] = useState<"list" | "editor">("list");
-	const [viewingDeckCards, setViewingDeckCards] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState<TabType>("decks");
+  const [userDeck, setUserDeck] = useLocalStorage<Card[]>("userDeck", []);
+  const [selectedCard, setSelectedCard] = useState<Card | null>(null);
+  const [activeDeckId, setActiveDeckId] = useLocalStorage<string>(
+    "activeDeckId",
+    "custom"
+  );
+  const [customDeckName, setCustomDeckName] = useLocalStorage<string>(
+    "customDeckName",
+    "Your Custom Collection"
+  );
+  const [customDeckDesc, setCustomDeckDesc] = useLocalStorage<string>(
+    "customDeckDesc",
+    "Added/Deleted cards will only affect this collection."
+  );
+  const [isCardDetailOpen, setIsCardDetailOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<"list" | "editor">("list");
+  const [viewingDeckCards, setViewingDeckCards] = useState<Card[]>([]);
+  const [decks, setDecks] = useState<DeckType[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [cards, setCards] = useState<Card[]>([]);
 
-	// Define a custom deck with the user's cards
-	const customDeck: DeckType = {
-		id: "custom",
-		name: customDeckName,
-		coverImage:
-			"https://images.unsplash.com/photo-1699275303988-4f266a7f119a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNob2ljZSUyMGRlc2t0b3AlMjBjdXJzb3J8ZW58MHx8MHx8fDI%3D",
-		description: customDeckDesc,
-		cards: userDeck,
-	};
+  const getCards = async () => {
+    try {
+      const { ok, data, error } = await api.get(`/cards`);
+      if (!ok) throw new Error(error);
+      setCards(data as Card[]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-	// Combine predefined decks with the custom deck
-	const allDecks = [customDeck, ...decks];
+  const fetchDecks = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const { ok, data, error } = await api.get("/decks");
+      if (!ok) throw new Error(error);
+      setDecks(data as DeckType[]);
+    } catch (error) {
+      console.error("Failed to fetch decks:", error);
+      setError("Failed to load decks");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-	// Get the active deck
-	const activeDeck =
-		allDecks.find((deck) => deck.id === activeDeckId) || customDeck;
+  // Fetch all cards and decks from API
+  useEffect(() => {
+    getCards();
+    fetchDecks();
+  }, []);
 
-	// Update viewing deck cards when active deck changes
-	useEffect(() => {
-		if (activeDeckId !== "custom") {
-			const deck = allDecks.find((d) => d.id === activeDeckId);
-			if (deck) {
-				setViewingDeckCards(deck.cards);
-			}
-		} else {
-			setViewingDeckCards(userDeck);
-		}
-	}, [activeDeckId, userDeck, allDecks]);
+  // Fetch deck cards when active deck changes
+  useEffect(() => {
+    const fetchDeckCards = async () => {
+      if (activeDeckId === "custom") {
+        setViewingDeckCards(userDeck);
+        return;
+      }
 
-	const handleAddToDeck = (card: Card) => {
-		if (!userDeck.includes(card.id)) {
-			setUserDeck([...userDeck, card.id]);
-		}
-		setIsCardDetailOpen(false);
-	};
+      setLoading(true);
+      setError(null);
+      try {
+        const { ok, data, error } = await api.get(`/decks/${activeDeckId}`);
+        if (!ok) throw new Error(error);
 
-	const handleRemoveFromDeck = (card: Card) => {
-		setUserDeck(userDeck.filter((id) => id !== card.id));
-	};
+        const deck = data as DeckType;
+        setViewingDeckCards(deck.cards);
+      } catch (error) {
+        console.error("Failed to fetch deck cards:", error);
+        setViewingDeckCards([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-	const handleExportDeck = () => {
-		const deckData = {
-			name: activeDeck.id === "custom" ? customDeckName : activeDeck.name,
-			description:
-				activeDeck.id === "custom" ? customDeckDesc : activeDeck.description,
-			cards: activeDeck.id === "custom" ? userDeck : activeDeck.cards,
-		};
+    fetchDeckCards();
+  }, [activeDeckId]);
 
-		// Create downloadable JSON file
-		const dataStr = JSON.stringify(deckData, null, 2);
-		const dataUri =
-			"data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
-		const exportName = `${deckData.name
-			.toLowerCase()
-			.replace(/\s+/g, "-")}.json`;
+  // Define a custom deck with the user's cards
+  const customDeck: DeckType = {
+    _id: "custom",
+    title: customDeckName,
+    imageUrl:
+      "https://images.unsplash.com/photo-1699275303988-4f266a7f119a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzJ8fGNob2ljZSUyMGRlc2t0b3AlMjBjdXJzb3J8ZW58MHx8MHx8fDI%3D",
+    description: customDeckDesc,
+    cards: userDeck,
+  };
 
-		const linkElement = document.createElement("a");
-		linkElement.setAttribute("href", dataUri);
-		linkElement.setAttribute("download", exportName);
-		linkElement.click();
-	};
+  // Combine predefined decks with the custom deck
+  const allDecks = [customDeck, ...decks];
 
-	const handleCardSelect = (card: Card) => {
-		setSelectedCard(card);
-		setIsCardDetailOpen(true);
-	};
+  // Get the active deck
+  const activeDeck =
+    activeDeckId === "custom"
+      ? customDeck
+      : decks.find((d) => d._id === activeDeckId) || customDeck;
 
-	const handleDeckSelect = (deckId: string) => {
-		setActiveDeckId(deckId);
+  const handleAddToDeck = (card: Card) => {
+    if (!userDeck.find((c) => c._id === card._id))
+      setUserDeck([...userDeck, card]);
+    setIsCardDetailOpen(false);
+  };
 
-		// Switch to editor view
-		setViewMode("editor");
-	};
+  const handleRemoveFromDeck = (card: Card) => {
+    setUserDeck(userDeck.filter((c) => c._id !== card._id));
+  };
 
-	const handleSaveDeck = (name: string, description: string) => {
-		if (activeDeckId === "custom") {
-			setCustomDeckName(name);
-			setCustomDeckDesc(description);
-		}
-	};
+  const handleExportDeck = () => {
+    const deckData = {
+      name: activeDeck._id === "custom" ? customDeckName : activeDeck.title,
+      description:
+        activeDeck._id === "custom" ? customDeckDesc : activeDeck.description,
+      cards: activeDeck._id === "custom" ? userDeck : activeDeck.cards,
+    };
 
-	// Get full card objects for the active deck cards
-	const getActiveDeckCards = (): Card[] => {
-		const cardIds = activeDeckId === "custom" ? userDeck : viewingDeckCards;
-		return cardIds
-			.map((id) => getCardById(id))
-			.filter((card): card is Card => card !== undefined);
-	};
+    // Create downloadable JSON file
+    const dataStr = JSON.stringify(deckData, null, 2);
+    const dataUri =
+      "data:application/json;charset=utf-8," + encodeURIComponent(dataStr);
+    const exportName = `${deckData.name
+      .toLowerCase()
+      .replace(/\s+/g, "-")}.json`;
 
-	// Render content based on active tab
-	const renderTabContent = () => {
-		if (activeTab === "decks") {
-			if (viewMode === "editor") {
-				return (
-					<DeckEditor
-						cards={getActiveDeckCards()}
-						deckName={activeDeck.name}
-						deckDescription={activeDeck.description}
-						onRemoveCard={handleRemoveFromDeck}
-						onSelectCard={handleCardSelect}
-						onExportDeck={handleExportDeck}
-						onSaveDeck={handleSaveDeck}
-						onGoBack={() => setViewMode("list")}
-						onAddToDeck={handleAddToDeck}
-						cardsInDeck={getActiveDeckCards().map((card) => card.id)}
-						isCustomDeck={activeDeckId === "custom"}
-					/>
-				);
-			} else {
-				return (
-					<DeckList
-						decks={allDecks}
-						activeDeckId={activeDeckId}
-						onSelectDeck={handleDeckSelect}
-					/>
-				);
-			}
-		} else {
-			return (
-				<>
-					<PageHeader>
-						<PageTitle>
-							Card <span className="highlight">Collection</span>
-						</PageTitle>
-						<PageDescription>
-							Browse through all my projects, skills, and experiences. Add cards
-							to your collection to build your own view of my portfolio.
-						</PageDescription>
-					</PageHeader>
+    const linkElement = document.createElement("a");
+    linkElement.setAttribute("href", dataUri);
+    linkElement.setAttribute("download", exportName);
+    linkElement.click();
+  };
 
-					<CardGrid
-						cards={getCards()}
-						onSelectCard={handleCardSelect}
-						cardsInDeck={userDeck}
-						onAddToDeck={handleAddToDeck}
-						onRemoveFromDeck={handleRemoveFromDeck}
-					/>
-				</>
-			);
-		}
-	};
+  const handleCardSelect = (card: Card) => {
+    setSelectedCard(card);
+    setIsCardDetailOpen(true);
+  };
 
-	return (
-		<>
-			<CollectionLayout
-				activeTab={activeTab}
-				onTabChange={setActiveTab}
-				hideSidebar={activeTab === "decks" && viewMode === "editor"}
-			>
-				{renderTabContent()}
+  const handleDeckSelect = (deckId: string) => {
+    setActiveDeckId(deckId);
+    // Switch to editor view
+    setViewMode("editor");
+  };
 
-				<Footer />
-			</CollectionLayout>
+  const handleSaveDeck = (name: string, description: string) => {
+    if (activeDeckId === "custom") {
+      setCustomDeckName(name);
+      setCustomDeckDesc(description);
+    }
+  };
 
-			<ModalDrawer
-				isOpen={isCardDetailOpen}
-				onClose={() => setIsCardDetailOpen(false)}
-			>
-				{selectedCard && (
-					<CardDetail
-						card={selectedCard}
-						onAddToDeck={() => handleAddToDeck(selectedCard)}
-						onRemoveFromDeck={() => handleRemoveFromDeck(selectedCard)}
-						isInDeck={userDeck.includes(selectedCard.id)}
-						onRelationClick={(projectCard) => {
-							setSelectedCard(projectCard);
-						}}
-					/>
-				)}
-			</ModalDrawer>
-		</>
-	);
+  // Render content based on active tab
+  const renderTabContent = () => {
+    if (activeTab === "decks") {
+      if (viewMode === "editor") {
+        return (
+          <DeckEditor
+            deck={activeDeck}
+            onRemoveCard={handleRemoveFromDeck}
+            onSelectCard={handleCardSelect}
+            onExportDeck={handleExportDeck}
+            onSaveDeck={handleSaveDeck}
+            onGoBack={() => setViewMode("list")}
+            onAddToDeck={handleAddToDeck}
+          />
+        );
+      } else {
+        return (
+          <DeckList
+            decks={allDecks}
+            activeDeckId={activeDeckId}
+            onSelectDeck={handleDeckSelect}
+          />
+        );
+      }
+    } else {
+      return (
+        <>
+          <PageHeader>
+            <PageTitle>
+              Card <span className="highlight">Collection</span>
+            </PageTitle>
+            <PageDescription>
+              Browse through all my projects, skills, and experiences. Add cards
+              to your collection to build your own view of my portfolio.
+            </PageDescription>
+          </PageHeader>
+
+          <CardGrid
+            cards={cards}
+            onSelectCard={handleCardSelect}
+            cardsInDeck={userDeck.map((c) => c._id)}
+            onAddToDeck={handleAddToDeck}
+            onRemoveFromDeck={handleRemoveFromDeck}
+          />
+        </>
+      );
+    }
+  };
+
+  return (
+    <>
+      <CollectionLayout
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        hideSidebar={activeTab === "decks" && viewMode === "editor"}
+      >
+        {renderTabContent()}
+
+        <Footer />
+      </CollectionLayout>
+
+      <ModalDrawer
+        isOpen={isCardDetailOpen}
+        onClose={() => setIsCardDetailOpen(false)}
+      >
+        {selectedCard && (
+          <CardDetail
+            card={selectedCard}
+            onAddToDeck={() => handleAddToDeck(selectedCard)}
+            onRemoveFromDeck={() => handleRemoveFromDeck(selectedCard)}
+            isInDeck={!!userDeck.find((c) => c._id === selectedCard._id)}
+            onRelationClick={(projectCard) => {
+              setSelectedCard(projectCard);
+            }}
+          />
+        )}
+      </ModalDrawer>
+    </>
+  );
 };
 
 export default CollectionPage;

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getStringFromDate } from "../utils";
 
-import { stats, getCardById, getCards } from "../data/cardData";
+import { stats } from "../data/cardData";
 import { Card, CardType as CardTypeEnum } from "../data/types";
 import { Tooltip } from "react-tooltip";
+import api from "../services/api";
 
 interface CardDetailProps {
   card: Card;
@@ -553,14 +554,6 @@ const EmptyState = styled.div`
   padding: var(--spacing-sm);
 `;
 
-const getSkillsForRelation = (projectId: string): Card[] => {
-  return getCards().filter(
-    (card) =>
-      card.type === CardTypeEnum.SKILL &&
-      card.skillDetails?.relatedProjects?.includes(projectId)
-  );
-};
-
 // Add these styled components
 
 const SkillTagsContainer = styled.div`
@@ -594,6 +587,22 @@ const CardDetail: React.FC<CardDetailProps> = ({
   isInDeck,
   onRelationClick,
 }) => {
+  const [skills, setSkills] = useState<Card[]>([]);
+
+  async function getSkills() {
+    try {
+      const { ok, data, error } = await api.get(`/cards/${card._id}/skills`);
+      if (!ok) throw new Error(error);
+      setSkills(data as Card[]);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    getSkills();
+  }, [card]);
+
   return (
     <DetailContainer cardType={card.type}>
       <CardHeader>
@@ -712,11 +721,11 @@ const CardDetail: React.FC<CardDetailProps> = ({
 
             <DetailSection>
               <SectionTitle>Skills Applied</SectionTitle>
-              {getSkillsForRelation(card.id).length > 0 ? (
+              {skills.length > 0 ? (
                 <SkillTagsContainer>
-                  {getSkillsForRelation(card.id).map((skill) => (
+                  {skills.map((skill) => (
                     <SkillTag
-                      key={skill.id}
+                      key={skill._id}
                       onClick={() => onRelationClick && onRelationClick(skill)}
                     >
                       {stats["mastery"].icon} {skill.title}
@@ -755,30 +764,27 @@ const CardDetail: React.FC<CardDetailProps> = ({
               <SectionTitle>Related Exp & Projects</SectionTitle>
               {card.skillDetails.relatedProjects.length > 0 ? (
                 <RelationsList>
-                  {card.skillDetails.relatedProjects.map((projectId) => {
-                    const project = getCardById(projectId);
-                    return project ? (
-                      <RelationItem
-                        key={projectId}
+                  {card.skillDetails.relatedProjects.map((project) => (
+                    <RelationItem
+                      key={project._id}
+                      type={project.type}
+                      onClick={() =>
+                        onRelationClick && onRelationClick(project)
+                      }
+                    >
+                      <RelationThumbnail
                         type={project.type}
-                        onClick={() =>
-                          onRelationClick && onRelationClick(project)
-                        }
-                      >
-                        <RelationThumbnail
-                          type={project.type}
-                          imageUrl={project.imageUrl}
-                        />
-                        <RelationInfo>
-                          <RelationTitle>{project.title}</RelationTitle>
-                          <RelationType type={project.type}>
-                            <span className="chip">{project.type}</span>
-                          </RelationType>
-                        </RelationInfo>
-                        <ViewIcon type={project.type}>→</ViewIcon>
-                      </RelationItem>
-                    ) : null;
-                  })}
+                        imageUrl={project.imageUrl}
+                      />
+                      <RelationInfo>
+                        <RelationTitle>{project.title}</RelationTitle>
+                        <RelationType type={project.type}>
+                          <span className="chip">{project.type}</span>
+                        </RelationType>
+                      </RelationInfo>
+                      <ViewIcon type={project.type}>→</ViewIcon>
+                    </RelationItem>
+                  ))}
                 </RelationsList>
               ) : (
                 <EmptyState>No related projects found</EmptyState>
@@ -821,14 +827,14 @@ const CardDetail: React.FC<CardDetailProps> = ({
               </DetailList>
             </DetailSection>
 
-            {getSkillsForRelation(card.id).length > 0 && (
+            {skills.length > 0 && (
               <DetailSection>
                 <SectionTitle>Skills Applied</SectionTitle>
                 {
                   <SkillTagsContainer>
-                    {getSkillsForRelation(card.id).map((skill) => (
+                    {skills.map((skill) => (
                       <SkillTag
-                        key={skill.id}
+                        key={skill._id}
                         onClick={() =>
                           onRelationClick && onRelationClick(skill)
                         }

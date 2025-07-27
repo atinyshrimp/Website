@@ -34,7 +34,7 @@ export interface ExperienceStats {
 }
 
 export interface Card {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   type: CardType;
@@ -54,7 +54,7 @@ export interface Card {
   skillDetails?: {
     proficiency: number; // 1-5
     yearsOfExperience: number;
-    relatedProjects: string[]; // IDs of related project cards
+    relatedProjects: Card[]; // IDs of related project cards
   };
 
   // Properties specific to experiences
@@ -72,11 +72,11 @@ export interface Card {
 }
 
 export interface Deck {
-  id: string;
-  name: string;
-  cards: string[]; // IDs of cards in the deck
+  _id: string;
+  title: string;
+  cards: Card[];
   description: string;
-  coverImage?: string; // URL or path to the cover image
+  imageUrl?: string; // URL or path to the cover image
 }
 
 export interface Activity {

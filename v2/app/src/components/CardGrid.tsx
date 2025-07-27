@@ -344,11 +344,11 @@ const CardGrid: React.FC<CardGridProps> = ({
           {" "}
           {filteredCards.map((card) => (
             <Card
-              key={card.id}
+              key={card._id}
               card={card}
               onClick={() => onSelectCard?.(card)}
               isShiny={card.isFeatured}
-              isInDeck={isCardInDeck(card.id)}
+              isInDeck={isCardInDeck(card._id)}
             />
           ))}
         </CardsWrapper>

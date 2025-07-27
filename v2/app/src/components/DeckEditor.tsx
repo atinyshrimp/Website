@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardType as CardTypeEnum } from "../data/types";
-import { getCards } from "../data/cardData";
+import { Card, CardType as CardTypeEnum, Deck } from "../data/types";
 import CardGrid from "./CardGrid";
 import { media } from "../utils/responsive";
+import api from "../services/api";
 
 interface DeckEditorProps {
-  cards: Card[];
-  deckName: string;
-  deckDescription: string;
+  deck: Deck;
   onRemoveCard: (card: Card) => void;
   onSelectCard: (card: Card) => void;
   onExportDeck: () => void;
   onSaveDeck?: (name: string, description: string) => void;
   onGoBack: () => void;
   onAddToDeck: (card: Card) => void;
-  cardsInDeck: string[];
-  isCustomDeck: boolean;
 }
 
 const EditorContainer = styled.div`
@@ -441,25 +437,25 @@ const DeckPanelFooter = styled.div`
 `;
 
 const DeckEditor: React.FC<DeckEditorProps> = ({
-  cards,
-  deckName,
-  deckDescription,
+  deck,
   onRemoveCard,
   onSelectCard,
   onExportDeck,
   onSaveDeck,
   onGoBack,
   onAddToDeck,
-  cardsInDeck,
-  isCustomDeck,
 }) => {
-  const [name, setName] = useState(deckName);
-  const [description, setDescription] = useState(deckDescription);
+  const [name, setName] = useState(deck.title);
+  const [description, setDescription] = useState(deck.description);
+  const [cards, setCards] = useState<Card[]>([]);
   const [isEditing, setIsEditing] = useState(false);
   const [filterType, setFilterType] = useState<CardTypeEnum | null>(null);
 
-  const aggregatedCards = cards.reduce((acc, card) => {
-    const existing = acc.find((c) => c.id === card.id);
+  const deckCards = deck.cards;
+  const isCustomDeck = deck._id === "custom";
+
+  const aggregatedCards = deckCards.reduce((acc, card) => {
+    const existing = acc.find((c) => c._id === card._id);
     if (existing) {
       existing.quantity += 1;
     } else {
@@ -468,9 +464,11 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
     return acc;
   }, [] as (Card & { quantity: number })[]);
 
-  const projectCount = cards.filter((card) => card.type === "project").length;
-  const skillCount = cards.filter((card) => card.type === "skill").length;
-  const experienceCount = cards.filter(
+  const projectCount = deckCards.filter(
+    (card) => card.type === "project"
+  ).length;
+  const skillCount = deckCards.filter((card) => card.type === "skill").length;
+  const experienceCount = deckCards.filter(
     (card) => card.type === "experience"
   ).length;
 
@@ -485,9 +483,21 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
     setFilterType(type);
   };
 
-  const filteredCards = filterType
-    ? getCards().filter((card) => card.type === filterType)
-    : getCards();
+  const getCards = async () => {
+    try {
+      const { ok, data, error } = await api.get(
+        `/cards${filterType ? `?type=${filterType}` : ""}`
+      );
+      if (!ok) throw new Error(error);
+      setCards(data as Card[]);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getCards();
+  }, [filterType]);
 
   return (
     <EditorContainer>
@@ -534,7 +544,7 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
             {aggregatedCards.length > 0 ? (
               aggregatedCards.map((card) => (
                 <CardItem
-                  key={card.id}
+                  key={card._id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
@@ -547,8 +557,8 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
                     <RemoveButton
                       onClick={(e) => {
                         e.stopPropagation();
-                        const originalCard = cards.find(
-                          (c) => c.id === card.id
+                        const originalCard = deckCards.find(
+                          (c) => c._id === card._id
                         );
                         if (originalCard) onRemoveCard(originalCard);
                       }}
@@ -572,7 +582,7 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
           <DeckPanelFooter>
             <DeckStats>
               <StatItem>
-                <StatValue>{cards.length}</StatValue>
+                <StatValue>{deckCards.length}</StatValue>
                 <StatLabel>Cards</StatLabel>
               </StatItem>
               <StatItem>
@@ -625,12 +635,11 @@ const DeckEditor: React.FC<DeckEditorProps> = ({
 
       <CardsPanel>
         <CardGrid
-          cards={filteredCards}
+          cards={cards}
           onSelectCard={onSelectCard}
           onAddToDeck={isCustomDeck ? onAddToDeck : undefined}
           onRemoveFromDeck={isCustomDeck ? onRemoveCard : undefined}
-          cardsInDeck={cardsInDeck}
-          filterType={filterType}
+          cardsInDeck={isCustomDeck ? deckCards.map((c) => c._id) : []}
           onFilterChange={handleFilterChange}
         />
       </CardsPanel>

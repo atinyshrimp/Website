@@ -27,7 +27,7 @@ const cardSchema = new Schema(
       type: {
         proficiency: { type: Number, required: true },
         yearsOfExperience: { type: Number, required: true },
-        relatedProjects: { type: [String], required: true },
+        relatedProjects: { type: [String], required: true, ref: "Card" },
       },
     },
 

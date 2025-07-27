@@ -8,7 +8,7 @@ import catsim from "../assets/cards/catsim_thumbnail.png";
 export const cards: Card[] = [
   // Project Cards
   {
-    id: "card-portfolio",
+    _id: "card-portfolio",
     title: "Portfolio Card Game",
     description:
       "An interactive portfolio website inspired by card deck builder games",
@@ -52,7 +52,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "lego",
+    _id: "lego",
     title: "Lego Marketplace",
     description:
       "A handy little website to look for lego sets to resell and their potential rentability.",
@@ -96,7 +96,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "michelin-ml",
+    _id: "michelin-ml",
     isFeatured: true,
     title: "Gastronaut",
     description:
@@ -147,7 +147,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "catsim",
+    _id: "catsim",
     isFeatured: true,
     title: "CatSim",
     description:
@@ -199,7 +199,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "selego-venulog",
+    _id: "selego-venulog",
     title: "Venulog",
     description:
       "A logistic platform that allows you to manage your deliveries for events",
@@ -240,7 +240,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "selego-midoc",
+    _id: "selego-midoc",
     title: "MiDoc",
     description:
       "A web application that allows you to manage your medical prescriptions related to menopause.",
@@ -289,7 +289,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "ux-sonar",
+    _id: "ux-sonar",
     title: "Captain Sonar",
     description:
       "A digital version of the board game Captain Sonar, a strategic team game.",
@@ -336,7 +336,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "esilv-p2ip",
+    _id: "esilv-p2ip",
     title: "Book exchange app",
     description:
       "An innovative startup project that has a long-lasting positive impact.",
@@ -377,7 +377,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "avila-bible-classification",
+    _id: "avila-bible-classification",
     title: "Avila Bible Classification Prediction",
     description:
       "A project that uses machine learning to classify the scribes of the Avila Bible, a historical artifact.",
@@ -422,7 +422,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "esilv-bdd",
+    _id: "esilv-bdd",
     title: "Database management app",
     description:
       "A project made to allow a flower shop owner to manage their clients, their storage, and more.",
@@ -489,7 +489,7 @@ export const cards: Card[] = [
 
   // Skill Cards
   {
-    id: "react",
+    _id: "react",
     title: "React",
     description: "Building interactive UIs with React and related technologies",
     type: CardType.SKILL,
@@ -499,13 +499,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 5,
       yearsOfExperience: new Date().getFullYear() - 2024,
-      relatedProjects: [
-        "card-portfolio",
-        "selego-venulog",
-        "selego-midoc",
-        "selego-internship",
-        "lego",
-      ],
+      relatedProjects: [],
     },
     stats: {
       mastery: 3,
@@ -514,7 +508,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "figma",
+    _id: "figma",
     title: "Figma",
     description:
       "Creating intuitive, accessible, and aesthetically pleasing user experiences",
@@ -531,7 +525,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 4,
       yearsOfExperience: 2,
-      relatedProjects: ["lego", "esilv-p2ip", "esilv"],
+      relatedProjects: [],
     },
     stats: {
       mastery: 3,
@@ -540,7 +534,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "japanese",
+    _id: "japanese",
     title: "Japanese",
     description:
       "Speaking, reading, and writing Japanese: passed JLPT N3 in 2024",
@@ -552,7 +546,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 5,
       yearsOfExperience: new Date().getFullYear() - 2020,
-      relatedProjects: ["emlv"],
+      relatedProjects: [],
     },
     stats: {
       mastery: 3,
@@ -561,7 +555,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "skill-4",
+    _id: "skill-4",
     title: "Korean",
     description: "Speaking, reading, and writing Korean",
     type: CardType.SKILL,
@@ -571,7 +565,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 5,
       yearsOfExperience: new Date().getFullYear() - 2017,
-      relatedProjects: ["cau-exchange"],
+      relatedProjects: [],
     },
     stats: {
       mastery: 3,
@@ -580,7 +574,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "language-en",
+    _id: "language-en",
     title: "English",
     description:
       "Speaking, reading, and writing English: TOEFL ITP 640/677 (CEFR C1)",
@@ -591,7 +585,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 5,
       yearsOfExperience: new Date().getFullYear() - 2013,
-      relatedProjects: ["cau-exchange", "esilv", "selego-internship", "emlv"],
+      relatedProjects: [],
     },
     stats: {
       mastery: 3,
@@ -600,7 +594,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "unity",
+    _id: "unity",
     isFeatured: true,
     title: "Unity3D",
     description: "Building interactive games using Unity",
@@ -618,7 +612,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2023,
-      relatedProjects: ["catsim", "ux-sonar", "esilv"],
+      relatedProjects: [],
     },
     stats: {
       mastery: 3,
@@ -627,7 +621,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "unreal-engine",
+    _id: "unreal-engine",
     title: "Unreal Engine",
     description: "Building interactive games using Unreal Engine",
     type: CardType.SKILL,
@@ -642,7 +636,7 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2024,
-      relatedProjects: ["esilv"],
+      relatedProjects: [],
     },
     stats: {
       mastery: 2,
@@ -651,7 +645,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "valuation",
+    _id: "valuation",
     title: "Valuation Techniques",
     description:
       "Experience with DCF, multiples, and precedent transaction methods.",
@@ -662,12 +656,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2024,
-      relatedProjects: ["emlv"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 2, comboPower: 4 },
   },
   {
-    id: "strategy",
+    _id: "strategy",
     title: "Corporate Strategy",
     description:
       "Analyzing and advising on high-level business decisions in alignment with financial goals.",
@@ -678,12 +672,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2023,
-      relatedProjects: ["emlv"],
+      relatedProjects: [],
     },
     stats: { mastery: 2, usageFrequency: 1, comboPower: 3 },
   },
   {
-    id: "accounting",
+    _id: "accounting",
     title: "Accounting",
     description:
       "Understanding financial statements and accounting principles for financial analysis.",
@@ -694,12 +688,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2020,
-      relatedProjects: ["emlv"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 1, comboPower: 2 },
   },
   {
-    id: "excel",
+    _id: "excel",
     title: "Microsoft Excel",
     description:
       "Advanced use of Excel for financial modeling, analysis, and automation.",
@@ -710,12 +704,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 5,
       yearsOfExperience: new Date().getFullYear() - 2020,
-      relatedProjects: ["emlv", "sncf"],
+      relatedProjects: [],
     },
     stats: { mastery: 5, usageFrequency: 5, comboPower: 4 },
   },
   {
-    id: "power-bi",
+    _id: "power-bi",
     title: "Power BI",
     description:
       "Creating interactive dashboards and reports for data visualization.",
@@ -733,12 +727,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 4,
       yearsOfExperience: new Date().getFullYear() - 2023,
-      relatedProjects: ["data-analyst-stellantis", "esilv"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 1, comboPower: 2 },
   },
   {
-    id: "python",
+    _id: "python",
     title: "Python",
     description:
       "Experienced in scripting, data analysis, and building ML pipelines.",
@@ -755,17 +749,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 4,
       yearsOfExperience: new Date().getFullYear() - 2016,
-      relatedProjects: [
-        "michelin-ml",
-        "esilv",
-        "data-analyst-stellantis",
-        "avila-bible-classification",
-      ],
+      relatedProjects: [],
     },
     stats: { mastery: 4, usageFrequency: 4, comboPower: 4 },
   },
   {
-    id: "pandas",
+    _id: "pandas",
     title: "Pandas",
     description: "Data manipulation and transformation in Python for analysis.",
     type: CardType.SKILL,
@@ -774,12 +763,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 4,
       yearsOfExperience: new Date().getFullYear() - 2022,
-      relatedProjects: ["michelin-ml", "esilv", "avila-bible-classification"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 3, comboPower: 3 },
   },
   {
-    id: "ml",
+    _id: "ml",
     title: "Machine Learning (ML)",
     description:
       "Building predictive models using scikit-learn and other libraries.",
@@ -794,12 +783,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2022,
-      relatedProjects: ["michelin-ml", "esilv", "avila-bible-classification"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 3, comboPower: 4 },
   },
   {
-    id: "sql",
+    _id: "sql",
     title: "SQL",
     description: "Querying databases and managing data pipelines.",
     type: CardType.SKILL,
@@ -809,12 +798,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2022,
-      relatedProjects: ["esilv", "data-analyst-stellantis", "esilv-bdd"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 4, comboPower: 3 },
   },
   {
-    id: "3ds-max",
+    _id: "3ds-max",
     title: "Autodesk 3ds Max",
     description: "3D modeling and rendering for game development.",
     type: CardType.SKILL,
@@ -830,12 +819,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 2,
       yearsOfExperience: new Date().getFullYear() - 2024,
-      relatedProjects: ["esilv"],
+      relatedProjects: [],
     },
     stats: { mastery: 2, usageFrequency: 1, comboPower: 2 },
   },
   {
-    id: "adobe-illustrator",
+    _id: "adobe-illustrator",
     title: "Adobe Illustrator",
     description:
       "Creating vector graphics and illustrations using Adobe Illustrator.",
@@ -846,12 +835,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 2,
       yearsOfExperience: new Date().getFullYear() - 2023,
-      relatedProjects: ["esilv", "emlv"],
+      relatedProjects: [],
     },
     stats: { mastery: 2, usageFrequency: 1, comboPower: 2 },
   },
   {
-    id: "davinci-resolve",
+    _id: "davinci-resolve",
     title: "DaVinci Resolve",
     description: "Editing videos using DaVinci Resolve.",
     type: CardType.SKILL,
@@ -861,12 +850,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 2,
       yearsOfExperience: new Date().getFullYear() - 2023,
-      relatedProjects: ["esilv", "ux-sonar", "esilv-p2ip"],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 3, comboPower: 4 },
   },
   {
-    id: "web-dev",
+    _id: "web-dev",
     title: "Web Development",
     description:
       "Building responsive and interactive web applications using HTML, CSS, and JavaScript.",
@@ -877,21 +866,12 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 3,
       yearsOfExperience: new Date().getFullYear() - 2022,
-      relatedProjects: [
-        "esilv",
-        "experience-2",
-        "selego-venulog",
-        "selego-midoc",
-        "avila-bible-classification",
-        "michelin-ml",
-        "lego",
-        "card-portfolio",
-      ],
+      relatedProjects: [],
     },
     stats: { mastery: 3, usageFrequency: 4, comboPower: 4 },
   },
   {
-    id: "c-sharp",
+    _id: "c-sharp",
     title: "C#",
     description: "Building responsive and interactive applications using C#.",
     type: CardType.SKILL,
@@ -907,14 +887,14 @@ export const cards: Card[] = [
     skillDetails: {
       proficiency: 4,
       yearsOfExperience: new Date().getFullYear() - 2021,
-      relatedProjects: ["esilv", "ux-sonar", "esilv-bdd", "catsim"],
+      relatedProjects: [],
     },
     stats: { mastery: 4, usageFrequency: 4, comboPower: 3 },
   },
 
   // Experience Cards
   {
-    id: "selego-internship",
+    _id: "selego-internship",
     title: "Full Stack Developer",
     description:
       "Built complex web applications using React, Node.js, and MongoDB",
@@ -952,7 +932,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "esilv",
+    _id: "esilv",
     title: "ESILV",
     description:
       "Master of Engineering (MEng) in Data Science and Artificial Intelligence",
@@ -988,7 +968,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "cau-exchange",
+    _id: "cau-exchange",
     title: "Exchange Program",
     description:
       "Academic exchange program at Chung-Ang University in South Korea.",
@@ -1016,7 +996,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "emlv",
+    _id: "emlv",
     title: "EMLV",
     description:
       "Master of Science degree (MSc) in management, specializing in Corporate Finance",
@@ -1050,7 +1030,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "sncf",
+    _id: "sncf",
     title: "Research Engineer Intern",
     description:
       "Worked on reviewing the technical standards of electrical conductors for SNCF Réseau",
@@ -1079,7 +1059,7 @@ export const cards: Card[] = [
     },
   },
   {
-    id: "data-analyst-stellantis",
+    _id: "data-analyst-stellantis",
     title: "Data Analyst Intern",
     description: "Worked on data analysis and visualization for Stellantis.",
     type: CardType.EXPERIENCE,
@@ -1193,7 +1173,7 @@ export const getCardsByType = (type: CardType): Card[] => {
  * @returns {Card | undefined} The card with the specified ID, or undefined if not found
  */
 export const getCardById = (id: string): Card | undefined => {
-  return cards.find((card) => card.id === id);
+  return cards.find((card) => card._id === id);
 };
 
 // Pre-defined decks (collections of cards)

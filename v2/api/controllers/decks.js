@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const decks = await Deck.find();
+    const decks = await Deck.find().populate("cards");
     const total = await Deck.countDocuments();
 
     res.status(200).json({ ok: true, data: decks, total });
