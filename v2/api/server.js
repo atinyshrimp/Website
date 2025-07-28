@@ -6,9 +6,6 @@ const CONFIG = require("./config");
 
 const cardController = require("./controllers/cards");
 const deckController = require("./controllers/decks");
-const activityController = require("./controllers/activities");
-const achievementController = require("./controllers/achievements");
-const interestController = require("./controllers/interests");
 const profileController = require("./controllers/profiles");
 
 connectDB();
@@ -33,9 +30,6 @@ app.get("/", (_, res) => res.json({ message: "TCG Portfolio API 🎴" }));
 
 app.use("/cards", cardController);
 app.use("/decks", deckController);
-app.use("/activities", activityController);
-app.use("/achievements", achievementController);
-app.use("/interests", interestController);
 app.use("/profile", profileController);
 
 /* Global error handler */
