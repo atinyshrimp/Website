@@ -127,10 +127,16 @@ const Carousel: React.FC<CarouselProps> = ({
             }
         };
 
-        handleResize(); // Initialize on component mount
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [breakpoints, itemsPerPage, currentItemsPerPage, items]);
+    handleResize(); // Initialize on component mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [breakpoints, itemsPerPage, currentItemsPerPage]); // Removed 'items' from dependency array
+
+  // Separate useEffect to handle items changes
+  useEffect(() => {
+    setPages(createPages(currentItemsPerPage));
+    setCurrentIndex(0); // Reset to first page when items change
+  }, [items, currentItemsPerPage]);
 
     const handlePrev = () => {
         setDirection(-1);
