@@ -1511,26 +1511,10 @@ const ProfilePage: React.FC = () => {
               <StatCard
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.1 }}
-              >
-                <div className="stat-value">{userData.stats.wins}</div>
-                <div className="stat-label">Wins</div>
-              </StatCard>
-              <StatCard
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
                 <div className="stat-value">{cards.length}</div>
                 <div className="stat-label">Cards</div>
-              </StatCard>
-              <StatCard
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.3 }}
-              >
-                <div className="stat-value">{userData.stats.winRate}</div>
-                <div className="stat-label">Win Rate</div>
               </StatCard>
               <StatCard
                 initial={{ opacity: 0, y: 20 }}
