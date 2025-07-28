@@ -1,12 +1,9 @@
 import { SpotifyTrack, SpotifyProfile } from "../types";
 
-// You'll need to set up a Spotify app and get these credentials
-// https://developer.spotify.com/documentation/web-api
 const SPOTIFY_CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID || "";
 const SPOTIFY_CLIENT_SECRET = process.env.REACT_APP_SPOTIFY_CLIENT_SECRET || "";
 const REFRESH_TOKEN = process.env.REACT_APP_SPOTIFY_REFRESH_TOKEN || "";
 
-// For demo purposes, you can use a public API or your own backend
 const SPOTIFY_API_BASE = "https://api.spotify.com/v1";
 
 interface SpotifyApiResponse<T> {
@@ -155,7 +152,6 @@ class SpotifyService {
     return { ok: true, data: mockProfile, error: "" };
   }
 
-  // Real implementation would require user authorization
   async getRecentlyPlayed(): Promise<SpotifyApiResponse<SpotifyTrack[]>> {
     const mockTracks: SpotifyTrack[] = [
       {
@@ -188,4 +184,5 @@ class SpotifyService {
   }
 }
 
-export default new SpotifyService();
+const spotifyService = new SpotifyService();
+export default spotifyService;
