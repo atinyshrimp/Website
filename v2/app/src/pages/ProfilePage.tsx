@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
 
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
 import FuturisticFrame from "../assets/profile/avatar-frame.svg";
-import AvatarImage from "../assets/profile/avatar.webp";
 
-import { cards, decks } from "../data/cardData";
 import {
   getCurrentLevel,
   getCurrentXP,
@@ -18,12 +16,7 @@ import {
 import { media } from "../utils/responsive";
 import api from "../services/api";
 import spotifyService, { SpotifyResponse } from "../services/spotify";
-import {
-  Activity,
-  Achievement as AchievementType,
-  Interest as InterestType,
-  SpotifyProfile,
-} from "../data/types";
+import { Profile, SpotifyProfile } from "../data/types";
 
 // Define prop types for styled components
 interface ProgressBarProps {
@@ -1025,88 +1018,56 @@ const AudioWaveform = styled.div<{ isPlaying: boolean }>`
 `;
 
 const ProfilePage: React.FC = () => {
-  // Mock data - in a real app this would come from API/state
-  const userData = {
-    username: "atinyshrimp",
-    title: "Legendary Collector",
-    avatar: "🧙",
-    level: getCurrentLevel(),
-    xp: getCurrentXP(),
-    xpToNextLevel: getXPToNextLevel(),
-    joinDate: "2003",
-    stats: {
-      wins: 127,
-      losses: 187,
-      cardsCollected: 481,
-      decksCreated: 17,
-      favoriteDeck: "Mystic Dragons",
-      winRate: "64.7%",
-    },
-    favoriteDecks: [
-      { id: 1, name: "Mystic Dragons", cards: 42, winRate: "78%" },
-      { id: 2, name: "Forest Spirits", cards: 40, winRate: "65%" },
-      { id: 3, name: "Elemental Mages", cards: 38, winRate: "59%" },
-    ],
-    recentActivity: [
-      {
-        id: 1,
-        time: "2h ago",
-        description: "Added a new card to Mystic Dragons deck",
-      },
-      {
-        id: 2,
-        time: "1d ago",
-        description: "Won a match against ElitePlayer99",
-      },
-      {
-        id: 3,
-        time: "3d ago",
-        description: "Unlocked the Collector achievement",
-      },
-    ],
-  };
-
   const [showSocialPopover, setShowSocialPopover] = useState(false);
-  const [activities, setActivities] = useState<Activity[]>([]);
-  const [achievements, setAchievements] = useState<AchievementType[]>([]);
-  const [interests, setInterests] = useState<InterestType[]>([]);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [stats, setStats] = useState<{
+    cardsCollected: number;
+    decksCreated: number;
+  }>({
+    cardsCollected: 0,
+    decksCreated: 0,
+  });
   const guildButtonRef = useRef<HTMLButtonElement>(null);
   const socialPopoverRef = useRef<HTMLDivElement>(null);
 
-  const fetchActivities = async () => {
+  const fetchProfile = async () => {
     try {
-      const { ok, data, error } = await api.get("/activities?limit=8");
+      const { ok, data, error } = await api.get("/profile");
       if (!ok) throw new Error(error);
-      setActivities(data as Activity[]);
+      setProfile(data as Profile);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const fetchAchievements = async () => {
+  const fetchStats = async () => {
     try {
-      const { ok, data, error } = await api.get("/achievements");
-      if (!ok) throw new Error(error);
-      setAchievements(data as AchievementType[]);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+      const {
+        ok: okCards,
+        error: errorCards,
+        total: totalCards,
+      } = await api.get("/cards?limit=0");
+      if (!okCards) throw new Error(errorCards);
 
-  const fetchInterests = async () => {
-    try {
-      const { ok, data, error } = await api.get("/interests?isFeatured=true");
-      if (!ok) throw new Error(error);
-      setInterests(data as InterestType[]);
+      const {
+        ok: okDecks,
+        error: errorDecks,
+        total: totalDecks,
+      } = await api.get("/decks?limit=0");
+      if (!okDecks) throw new Error(errorDecks);
+
+      setStats({
+        cardsCollected: totalCards ?? 0,
+        decksCreated: totalDecks ?? 0,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
   useEffect(() => {
-    fetchActivities();
-    fetchAchievements();
-    fetchInterests();
+    fetchProfile();
+    fetchStats();
   }, []);
 
   // Close popover when clicking outside
@@ -1127,6 +1088,12 @@ const ProfilePage: React.FC = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
+  if (!profile) return <div>Loading...</div>;
+
+  const xp = getCurrentXP(profile.dateOfBirth);
+  const xpToNextLevel = getXPToNextLevel(profile.dateOfBirth);
+  const level = getCurrentLevel(profile.dateOfBirth);
 
   return (
     <MainContent fullWidth>
@@ -1151,7 +1118,7 @@ const ProfilePage: React.FC = () => {
           <ProfileCard>
             <AvatarFrame>
               <Avatar>
-                <img src={AvatarImage} alt="Github Avatar" />
+                <img src={profile.avatar} alt="Github Avatar" />
               </Avatar>
               <img
                 src={FuturisticFrame}
@@ -1167,8 +1134,8 @@ const ProfilePage: React.FC = () => {
                 }}
               />
             </AvatarFrame>
-            <Username>{userData.username}</Username>
-            <Title>{userData.title}</Title>
+            <Username>{profile.username}</Username>
+            <Title>{profile.title}</Title>
 
             <ButtonContainer>
               <ActionButton
@@ -1189,7 +1156,7 @@ const ProfilePage: React.FC = () => {
                 >
                   <SocialButtonsContainer>
                     <SocialButton
-                      href="https://www.linkedin.com/in/joyce-lapilus"
+                      href={profile.socials.linkedin}
                       target="_blank"
                       aria-label="LinkedIn"
                     >
@@ -1201,7 +1168,7 @@ const ProfilePage: React.FC = () => {
                       </svg>
                     </SocialButton>
                     <SocialButton
-                      href="https://github.com/atinyshrimp"
+                      href={profile.socials.github}
                       target="_blank"
                       aria-label="GitHub"
                     >
@@ -1213,7 +1180,7 @@ const ProfilePage: React.FC = () => {
                       </svg>
                     </SocialButton>
                     <SocialButton
-                      href="https://atinyshrimp.itch.io"
+                      href={profile.socials.itchio}
                       target="_blank"
                       aria-label="Itch.io"
                     >
@@ -1238,18 +1205,14 @@ const ProfilePage: React.FC = () => {
 
             <LevelContainer>
               <LevelHeader>
-                <span>Level {userData.level}</span>
+                <span>Level {level}</span>
                 <span>
-                  {userData.xp}/{userData.xpToNextLevel} XP
+                  {xp}/{xpToNextLevel} XP
                 </span>
               </LevelHeader>
               <div style={{ position: "relative" }}>
                 <ProgressBarContainer>
-                  <ProgressBar
-                    progress={
-                      (userData.xp / userData.xpToNextLevel) * 100 + "%"
-                    }
-                  />
+                  <ProgressBar progress={(xp / xpToNextLevel) * 100 + "%"} />
                 </ProgressBarContainer>
               </div>
             </LevelContainer>
@@ -1260,7 +1223,7 @@ const ProfilePage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.2 }}
               >
-                <div className="stat-value">{cards.length}</div>
+                <div className="stat-value">{stats.cardsCollected}</div>
                 <div className="stat-label">Cards</div>
               </StatCard>
               <StatCard
@@ -1268,7 +1231,7 @@ const ProfilePage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: 0.4 }}
               >
-                <div className="stat-value">{decks.length}</div>
+                <div className="stat-value">{stats.decksCreated}</div>
                 <div className="stat-label">Decks</div>
               </StatCard>
             </StatsGrid>
@@ -1281,26 +1244,27 @@ const ProfilePage: React.FC = () => {
               }}
             >
               <a
-                href="https://www.canva.com/design/DAFz4FS8qYo/dqMLNBEPlr__vOyWSZKP3Q/view?utm_content=DAFz4FS8qYo&utm_campaign=designshare&utm_medium=link&utm_source=editor"
+                href={profile.resume}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
                   fontSize: "0.8rem",
                 }}
               >
-                Reveal more stats <span>🔍</span>
+                Reveal stats sheet <span>🔍</span>
               </a>
             </div>
 
             <MemberSince>
-              Member since <span>{userData.joinDate}</span>
+              Member since{" "}
+              <span>{new Date(profile.dateOfBirth).getFullYear()}</span>
             </MemberSince>
           </ProfileCard>
 
           <ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
             <SectionTitle>Achievements</SectionTitle>
             <AchievementsList>
-              {achievements.map((achievement) => (
+              {profile.achievements.map((achievement) => (
                 <Achievement
                   key={achievement._id}
                   unlocked={achievement.unlocked}
@@ -1323,7 +1287,7 @@ const ProfilePage: React.FC = () => {
           <ProfileCard>
             <SectionTitle>Featured Items</SectionTitle>
             <Carousel
-              items={interests.map((interest) => (
+              items={profile.interests.map((interest) => (
                 <InterestCard
                   key={interest._id}
                   initial={{ opacity: 0, x: -20 }}
@@ -1446,14 +1410,21 @@ const ProfilePage: React.FC = () => {
           <ProfileCard style={{ marginTop: "var(--spacing-md)" }}>
             <SectionTitle>Latest Updates</SectionTitle>
             <RecentActivity>
-              {activities.map((activity, index) => (
-                <p key={index}>
-                  {activity.description}
-                  <span className="time">{`(${getTimeSince(
-                    activity.happenedAt
-                  )})`}</span>
-                </p>
-              ))}
+              {profile.activities
+                .sort(
+                  (a, b) =>
+                    new Date(b.happenedAt).getTime() -
+                    new Date(a.happenedAt).getTime()
+                )
+                .slice(0, 8)
+                .map((activity, index) => (
+                  <p key={index}>
+                    {activity.description}
+                    <span className="time">{`(${getTimeSince(
+                      activity.happenedAt
+                    )})`}</span>
+                  </p>
+                ))}
             </RecentActivity>
           </ProfileCard>
         </RightColumn>

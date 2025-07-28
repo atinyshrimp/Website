@@ -2,10 +2,11 @@ import "isomorphic-fetch";
 
 const apiURL = "http://localhost:8080";
 
-interface ApiResponse<T> {
+export interface ApiResponse<T> {
   ok: boolean;
   data: T;
   error: string;
+  total?: number;
 }
 
 class api {

@@ -101,6 +101,23 @@ export interface Interest {
   isFeatured: boolean;
 }
 
+export interface Profile {
+  _id: string;
+  username: string;
+  title: string;
+  avatar: string;
+  dateOfBirth: Date;
+  socials: {
+    linkedin: string;
+    github: string;
+    itchio: string;
+  };
+  resume: string;
+  achievements: Achievement[];
+  activities: Activity[];
+  interests: Interest[];
+}
+
 export interface SpotifyTrack {
   id: string;
   name: string;

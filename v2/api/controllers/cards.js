@@ -18,9 +18,11 @@ router.get("/", async (req, res) => {
     )
       query.tags = { $in: req.query.tags };
 
-    const cards = await Card.find(query)
+    let cards = await Card.find(query)
       .sort({ title: 1 })
       .populate("skillDetails.relatedProjects");
+
+    if (req.query.limit) cards = cards.slice(0, parseInt(req.query.limit));
     const total = await Card.countDocuments(query);
 
     res.status(200).json({ ok: true, data: cards, total });

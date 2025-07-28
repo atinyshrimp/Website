@@ -1,5 +1,3 @@
-const birthDate = new Date("2003-01-27T10:27:00Z").getTime(); // UTC+2 Europe/Paris
-
 /**  Converts a date to a string in the format "Month Year" or returns "Present" if the date is in the future.
  *
  * @param {Date|string} date - The date to convert. Can be a Date object or the string "Present".
@@ -29,10 +27,10 @@ export const getStringFromDate = (date: Date | string): string | null => {
  *
  * @returns {number} - The number of days since the last birthday, weighted by the number of days in the year.
  */
-export const getCurrentXP = (): number => {
+export const getCurrentXP = (birthDate: Date): number => {
   const today = new Date();
   const lastBirthday: Date = new Date(
-    new Date(birthDate).setFullYear(new Date().getFullYear())
+    new Date(birthDate).setFullYear(today.getFullYear())
   );
   if (lastBirthday > today) {
     lastBirthday.setFullYear(lastBirthday.getFullYear() - 1);
@@ -43,7 +41,7 @@ export const getCurrentXP = (): number => {
   );
   console.log("Days since last birthday:", progressInDays);
   return Math.floor(
-    (progressInDays * getXPToNextLevel()) / getNumberOfDaysInYear()
+    (progressInDays * getXPToNextLevel(birthDate)) / getNumberOfDaysInYear()
   );
 };
 
@@ -51,9 +49,9 @@ export const getCurrentXP = (): number => {
  *
  * @returns {number} - The current level, which is the number of years since birth.
  */
-export const getCurrentLevel = (): number => {
+export const getCurrentLevel = (birthDate: Date): number => {
   const today = new Date().getTime();
-  const ageInMilliseconds = today - birthDate;
+  const ageInMilliseconds = today - new Date(birthDate).getTime();
   const ageInYears = Math.floor(
     ageInMilliseconds / (1000 * 60 * 60 * 24 * 365)
   );
@@ -65,7 +63,7 @@ export const getCurrentLevel = (): number => {
  * @returns {number} - The number of days until the next birthday, from birthDate.
  * If the next birthday is in the past, it calculates the days until the next birthday in the next year.
  */
-export const getXPToNextLevel = () => {
+export const getXPToNextLevel = (birthDate: Date) => {
   let nextBirthday = new Date(birthDate).setFullYear(new Date().getFullYear());
   if (nextBirthday < new Date().getTime()) {
     nextBirthday = new Date(birthDate).setFullYear(
@@ -74,7 +72,8 @@ export const getXPToNextLevel = () => {
   }
   const nextBirthdayInMilliseconds = nextBirthday;
   const nextBirthdayInDays = Math.floor(
-    (nextBirthdayInMilliseconds - birthDate) / (1000 * 60 * 60 * 24)
+    (nextBirthdayInMilliseconds - new Date(birthDate).getTime()) /
+      (1000 * 60 * 60 * 24)
   );
   return nextBirthdayInDays;
 };
