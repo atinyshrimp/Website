@@ -15,11 +15,12 @@ const CarouselContainer = styled.div`
 `;
 
 const CarouselWrapper = styled(motion.div)`
-    display: flex;
-    flex-grow: 0;
-    width: 100%;
-    height: fit-content;
-    gap: var(--spacing-md);
+  display: flex;
+  flex-grow: 0;
+  width: 100%;
+  height: fit-content;
+  gap: var(--spacing-md);
+  justify-content: center;
 
     @media (max-width: 768px) {
         flex-direction: column;
