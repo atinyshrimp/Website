@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import Footer from "../components/Footer";
 import { breakpoints, media } from "../utils/responsive";
-import { Card as CardType } from "../data/types";
+import { Card as CardType } from "../types";
 import api from "../services/api";
 
 const HeroSection = styled.div`

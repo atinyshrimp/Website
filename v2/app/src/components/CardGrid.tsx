@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { media } from "../utils/responsive"; // Import media queries
 
 import Card from "./Card";
-import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
+import { Card as CardType, CardType as CardTypeEnum } from "../types";
 
 interface CardGridProps {
   cards: CardType[];

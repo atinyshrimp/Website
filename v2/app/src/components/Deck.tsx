@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import type { Card as CardData } from "../data/types";
+import type { Card as CardData } from "../types";
 
 interface DeckProps {
   cards: CardData[];

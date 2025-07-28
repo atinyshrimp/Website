@@ -1,4 +1,4 @@
-import { SpotifyTrack, SpotifyProfile } from "../data/types";
+import { SpotifyTrack, SpotifyProfile } from "../types";
 
 // You'll need to set up a Spotify app and get these credentials
 // https://developer.spotify.com/documentation/web-api

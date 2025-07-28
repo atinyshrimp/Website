@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Tooltip } from "react-tooltip";
 import { media } from "../utils/responsive";
 
-import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
+import { Card as CardType, CardType as CardTypeEnum } from "../types";
 import { STATS } from "../utils/constants";
 
 interface CardProps {

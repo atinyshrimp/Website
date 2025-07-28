@@ -16,7 +16,7 @@ import {
 import { media } from "../utils/responsive";
 import api from "../services/api";
 import spotifyService, { SpotifyResponse } from "../services/spotify";
-import { Profile, SpotifyProfile } from "../data/types";
+import { Profile, SpotifyProfile } from "../types";
 
 // Define prop types for styled components
 interface ProgressBarProps {

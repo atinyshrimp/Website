@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardType as CardTypeEnum, Deck } from "../data/types";
+import { Card, CardType as CardTypeEnum, Deck } from "../types";
 import CardGrid from "./CardGrid";
 import { media } from "../utils/responsive";
 import api from "../services/api";

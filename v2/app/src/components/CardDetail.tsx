@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getStringFromDate } from "../utils";
 
 import { STATS } from "../utils/constants";
-import { Card, CardType as CardTypeEnum } from "../data/types";
+import { Card, CardType as CardTypeEnum } from "../types";
 import { Tooltip } from "react-tooltip";
 import api from "../services/api";
 

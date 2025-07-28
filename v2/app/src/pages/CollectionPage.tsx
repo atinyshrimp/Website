@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { Card, Deck as DeckType } from "../data/types";
+import { Card, Deck as DeckType } from "../types";
 import CardGrid from "../components/CardGrid";
 import CardDetail from "../components/CardDetail";
 import useLocalStorage from "../hooks/useLocalStorage";
