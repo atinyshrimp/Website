@@ -5,7 +5,7 @@ import { Tooltip } from "react-tooltip";
 import { media } from "../utils/responsive";
 
 import { Card as CardType, CardType as CardTypeEnum } from "../data/types";
-import { stats } from "../data/cardData";
+import { STATS } from "../utils/constants";
 
 interface CardProps {
   card: CardType;
@@ -317,11 +317,11 @@ const CardComponent: React.FC<CardProps> = ({
                 key={key}
                 data-tooltip-id={`stats-${card._id}`}
                 data-tooltip-content={
-                  stats[key as keyof typeof stats].description
+                  STATS[key as keyof typeof STATS].description
                 }
                 type={key}
               >
-                <StatIcon>{stats[key as keyof typeof stats].icon}</StatIcon>{" "}
+                <StatIcon>{STATS[key as keyof typeof STATS].icon}</StatIcon>{" "}
                 {value}
               </StatItem>
             ))}

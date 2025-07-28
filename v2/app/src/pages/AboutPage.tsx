@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import { stats } from "../data/cardData";
+import { STATS } from "../utils/constants";
 import { media } from "../utils/responsive";
 const PageContainer = styled.div`
   max-width: 800px;
@@ -385,7 +385,7 @@ const AboutPage: React.FC = () => {
               <CardTypeTitle>Project Stats</CardTypeTitle>
               <CardTypeDescription>
                 <FeatureList>
-                  {Object.entries(stats).map(
+                  {Object.entries(STATS).map(
                     ([key, value]) =>
                       ["creativity", "impact", "difficulty"].includes(key) && (
                         <FeatureItem key={key} icon={value.icon}>
@@ -401,7 +401,7 @@ const AboutPage: React.FC = () => {
               <CardTypeTitle>Skill Stats</CardTypeTitle>
               <CardTypeDescription>
                 <FeatureList>
-                  {Object.entries(stats).map(
+                  {Object.entries(STATS).map(
                     ([key, value]) =>
                       ["mastery", "usageFrequency", "comboPower"].includes(
                         key
@@ -419,7 +419,7 @@ const AboutPage: React.FC = () => {
               <CardTypeTitle>Experience Stats</CardTypeTitle>
               <CardTypeDescription>
                 <FeatureList>
-                  {Object.entries(stats).map(
+                  {Object.entries(STATS).map(
                     ([key, value]) =>
                       ["collaboration", "impact", "growth"].includes(key) && (
                         <FeatureItem key={key} icon={value.icon}>

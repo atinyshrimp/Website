@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { getStringFromDate } from "../utils";
 
-import { stats } from "../data/cardData";
+import { STATS } from "../utils/constants";
 import { Card, CardType as CardTypeEnum } from "../data/types";
 import { Tooltip } from "react-tooltip";
 import api from "../services/api";
@@ -627,15 +627,15 @@ const CardDetail: React.FC<CardDetailProps> = ({
 
         <StatsContainer>
           {Object.entries(card.stats).map(([key, value]) => {
-            const statKey = key as keyof typeof stats;
+            const statKey = key as keyof typeof STATS;
             return (
               <StatItem
                 key={key}
                 data-tooltip-id="stats"
-                data-tooltip-content={stats[statKey].description}
+                data-tooltip-content={STATS[statKey].description}
               >
-                <StatLabel>{stats[statKey].label}</StatLabel>
-                <StatValue>{`${stats[statKey].icon} ${value}`}</StatValue>
+                <StatLabel>{STATS[statKey].label}</StatLabel>
+                <StatValue>{`${STATS[statKey].icon} ${value}`}</StatValue>
               </StatItem>
             );
           })}
@@ -728,7 +728,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
                       key={skill._id}
                       onClick={() => onRelationClick && onRelationClick(skill)}
                     >
-                      {stats["mastery"].icon} {skill.title}
+                      {STATS["mastery"].icon} {skill.title}
                     </SkillTag>
                   ))}
                 </SkillTagsContainer>
@@ -839,7 +839,7 @@ const CardDetail: React.FC<CardDetailProps> = ({
                           onRelationClick && onRelationClick(skill)
                         }
                       >
-                        {stats["mastery"].icon} {skill.title}
+                        {STATS["mastery"].icon} {skill.title}
                       </SkillTag>
                     ))}
                   </SkillTagsContainer>
