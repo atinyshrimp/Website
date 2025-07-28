@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: v2/app/package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd v2/app
+          npm ci
+
+      - name: Build with environment variables
+        run: |
+          cd v2/app
+          npm run build
+        env:
+          REACT_APP_SPOTIFY_CLIENT_ID: ${{ secrets.REACT_APP_SPOTIFY_CLIENT_ID }}
+          REACT_APP_SPOTIFY_CLIENT_SECRET: ${{ secrets.REACT_APP_SPOTIFY_CLIENT_SECRET }}
+          REACT_APP_SPOTIFY_REFRESH_TOKEN: ${{ secrets.REACT_APP_SPOTIFY_REFRESH_TOKEN }}
+          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./v2/app/build
