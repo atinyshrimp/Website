@@ -1328,7 +1328,7 @@ const ProfilePage: React.FC = () => {
 
   const fetchActivities = async () => {
     try {
-      const { ok, data, error } = await api.get("/activities");
+      const { ok, data, error } = await api.get("/activities?limit=8");
       if (!ok) throw new Error(error);
       setActivities(data as Activity[]);
     } catch (error) {
