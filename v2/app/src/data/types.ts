@@ -100,3 +100,23 @@ export interface Interest {
   highlight: string;
   isFeatured: boolean;
 }
+
+export interface SpotifyTrack {
+  id: string;
+  name: string;
+  artists: string[];
+  album: string;
+  albumArtUrl: string;
+  previewUrl?: string;
+  externalUrl: string;
+  duration: number;
+  isPlaying: boolean;
+  progress?: number;
+}
+
+export interface SpotifyProfile {
+  displayName: string;
+  followers: number;
+  profileUrl: string;
+  profileImageUrl?: string;
+}

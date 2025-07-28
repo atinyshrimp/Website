@@ -17,10 +17,12 @@ import {
 } from "../utils";
 import { media } from "../utils/responsive";
 import api from "../services/api";
+import spotifyService, { SpotifyResponse } from "../services/spotify";
 import {
   Activity,
   Achievement as AchievementType,
   Interest as InterestType,
+  SpotifyProfile,
 } from "../data/types";
 
 // Define prop types for styled components
@@ -76,6 +78,39 @@ const ProfileContainer = styled.div`
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
   }
+`;
+
+const HeaderSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-lg);
+  gap: var(--spacing-lg);
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+`;
+
+const HeaderLeft = styled.div`
+  flex: 1;
+`;
+
+const HeaderRight = styled.div`
+  flex: 0 0 auto;
+`;
+
+const LeftColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+`;
+
+const RightColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
 `;
 
 const ProfileCard = styled.div`
@@ -985,6 +1020,196 @@ const SocialPopover = styled(motion.div)`
   }
 `;
 
+const SpotifyCard = styled(motion.div)`
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(
+      135deg,
+      var(--color-accent),
+      var(--color-panel-highlight)
+    )
+    1;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(29, 185, 84, 0.3);
+  max-width: 280px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transform: translate3d(0, 0, 0);
+
+  /* Cyberpunk angular frame */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid transparent;
+    border-image: linear-gradient(
+        135deg,
+        var(--color-panel-border),
+        var(--color-bg-secondary)
+      )
+      1;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 8px,
+      calc(100% - 8px) 16px,
+      100% 24px,
+      100% 100%,
+      0 100%,
+      0 calc(100% - 8px),
+      8px calc(100% - 16px),
+      0 calc(100% - 24px)
+    );
+    pointer-events: none;
+    backface-visibility: hidden;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
+  }
+`;
+
+const TrackInfo = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex: 1;
+
+  .album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid transparent;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .track-details {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+
+    .track-name {
+      font-weight: bold;
+      color: var(--color-text-primary);
+      font-size: 0.75rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      word-wrap: break-word;
+      max-width: 10rem;
+    }
+
+    .artist-name {
+      color: var(--color-text-secondary);
+      font-size: 0.65rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+    }
+
+    .time-info {
+      color: var(--color-text-secondary);
+      font-size: 0.6rem;
+      opacity: 0.8;
+      line-height: 1.2;
+    }
+  }
+`;
+
+const AudioWaveform = styled.div<{ isPlaying: boolean }>`
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  margin-left: auto;
+  position: relative;
+
+  .bar {
+    width: 2px;
+    background: linear-gradient(to top, var(--color-panel-highlight), #1ed760);
+    animation: ${({ isPlaying }) =>
+      isPlaying ? "waveform 1.5s ease-in-out infinite" : "none"};
+    box-shadow: 0 0 4px rgba(29, 185, 84, 0.6);
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to top, transparent, rgba(29, 185, 84, 0.3));
+      border-radius: 1px;
+    }
+
+    &:nth-child(1) {
+      height: 8px;
+      animation-delay: 0s;
+    }
+    &:nth-child(2) {
+      height: 12px;
+      animation-delay: 0.1s;
+    }
+    &:nth-child(3) {
+      height: 6px;
+      animation-delay: 0.2s;
+    }
+    &:nth-child(4) {
+      height: 10px;
+      animation-delay: 0.3s;
+    }
+    &:nth-child(5) {
+      height: 4px;
+      animation-delay: 0.4s;
+    }
+    &:nth-child(6) {
+      height: 8px;
+      animation-delay: 0.5s;
+    }
+    &:nth-child(7) {
+      height: 12px;
+      animation-delay: 0.6s;
+    }
+  }
+
+  @keyframes waveform {
+    0%,
+    100% {
+      transform: scaleY(1);
+      box-shadow: 0 0 4px rgba(29, 185, 84, 0.6);
+    }
+    50% {
+      transform: scaleY(1.5);
+      box-shadow: 0 0 8px rgba(29, 185, 84, 0.8);
+    }
+  }
+`;
+
 const ProfilePage: React.FC = () => {
   // Mock data - in a real app this would come from API/state
   const userData = {
@@ -1039,7 +1264,6 @@ const ProfilePage: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [achievements, setAchievements] = useState<AchievementType[]>([]);
   const [interests, setInterests] = useState<InterestType[]>([]);
-
   const guildButtonRef = useRef<HTMLButtonElement>(null);
   const socialPopoverRef = useRef<HTMLDivElement>(null);
 
@@ -1159,16 +1383,24 @@ const ProfilePage: React.FC = () => {
 
   return (
     <MainContent fullWidth>
-      <PageTitle>
-        Player <span className="highlight">Profile</span>
-      </PageTitle>
-      <PageDescription>
-        Server:<span className="highlight">World Z</span> | Region:
-        <span className="highlight">Europe/Paris</span>
-      </PageDescription>
+      <HeaderSection>
+        <HeaderLeft>
+          <PageTitle>
+            Player <span className="highlight">Profile</span>
+          </PageTitle>
+          <PageDescription>
+            Server:<span className="highlight">World Z</span> | Region:
+            <span className="highlight">Europe/Paris</span>
+          </PageDescription>
+        </HeaderLeft>
+
+        <HeaderRight>
+          <SpotifyNowPlaying />
+        </HeaderRight>
+      </HeaderSection>
 
       <ProfileContainer>
-        <div>
+        <LeftColumn>
           <ProfileCard>
             <AvatarFrame>
               <Avatar>
@@ -1354,9 +1586,9 @@ const ProfilePage: React.FC = () => {
               ))}
             </AchievementsList>
           </ProfileCard>
-        </div>
+        </LeftColumn>
 
-        <div>
+        <RightColumn>
           <ProfileCard>
             <SectionTitle>Featured Items</SectionTitle>
             <Carousel
@@ -1493,7 +1725,7 @@ const ProfilePage: React.FC = () => {
               ))}
             </RecentActivity>
           </ProfileCard>
-        </div>
+        </RightColumn>
       </ProfileContainer>
 
       {/* Friend Request Modal */}
@@ -1586,6 +1818,94 @@ const ProfilePage: React.FC = () => {
       <Tooltip id="achievement" place="top" style={{ zIndex: 9999 }} />
       <Footer />
     </MainContent>
+  );
+};
+
+const SpotifyNowPlaying = () => {
+  const [currentTrack, setCurrentTrack] = useState<SpotifyResponse | null>(
+    null
+  );
+  const [spotifyProfile, setSpotifyProfile] = useState<SpotifyProfile | null>(
+    null
+  );
+
+  const fetchSpotifyData = async () => {
+    try {
+      const [trackResponse, profileResponse] = await Promise.all([
+        spotifyService.getCurrentlyPlaying(),
+        spotifyService.getProfile(),
+      ]);
+
+      if (!trackResponse.ok) throw new Error("Failed to fetch current track");
+      const trackData = await trackResponse.data;
+      setCurrentTrack(trackData);
+
+      if (!profileResponse.ok) throw new Error("Failed to fetch profile");
+      const profileData = await profileResponse.data;
+      setSpotifyProfile(profileData);
+    } catch (error) {
+      console.error("Error fetching Spotify data:", error);
+    }
+  };
+
+  const formatTime = (ms: number): string => {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = Math.floor((ms % 60000) / 1000);
+    return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+  };
+
+  useEffect(() => {
+    setInterval(() => {
+      fetchSpotifyData();
+    }, 1000);
+  }, []);
+
+  if (!currentTrack || !spotifyProfile) return null;
+
+  return (
+    <a
+      href={currentTrack.item?.external_urls.spotify || ""}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <SpotifyCard
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.3 }}
+      >
+        <TrackInfo>
+          <div className="album-art">
+            <img
+              src={currentTrack.item?.album.images[0]?.url || ""}
+              alt={currentTrack.item?.album.name || ""}
+            />
+          </div>
+          <div className="track-details">
+            <div className="track-name">{currentTrack.item?.name || ""}</div>
+            <div className="artist-name">
+              {currentTrack.item?.album.artists
+                ?.map((artist) => artist.name)
+                .join(", ") || ""}
+            </div>
+            {currentTrack.progress_ms && currentTrack.item && (
+              <div className="time-info">
+                {formatTime(currentTrack.progress_ms)} /{" "}
+                {formatTime(currentTrack.item.duration_ms)}
+              </div>
+            )}
+          </div>
+        </TrackInfo>
+
+        <AudioWaveform isPlaying={currentTrack?.is_playing || false}>
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+          <div className="bar" />
+        </AudioWaveform>
+      </SpotifyCard>
+    </a>
   );
 };
 
