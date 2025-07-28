@@ -26,7 +26,9 @@ app.use(
 ); // CORS middleware
 app.use(express.json({ limit: "2mb" })); // body-parser
 
-app.get("/", (_, res) => res.json({ message: "TCG Portfolio API 🎴" }));
+app.get("/", (_, res) =>
+  res.json({ message: "10% of the profits should go to Potocki ☀️" })
+);
 
 app.use("/cards", cardController);
 app.use("/decks", deckController);
