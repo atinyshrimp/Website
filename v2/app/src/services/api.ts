@@ -1,6 +1,6 @@
 import "isomorphic-fetch";
 
-const apiURL = "http://localhost:8080";
+const apiURL = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 export interface ApiResponse<T> {
   ok: boolean;
