@@ -7,16 +7,19 @@ export const getStringFromDate = (date: Date | string): string | null => {
   try {
     if (date === null || date === undefined)
       throw new Error("Invalid date input");
-    if (date !== "Present" && !(date instanceof Date))
-      throw new Error("Date must be a 'Present' or a Date object");
-
-    if (date === "Present" || date > new Date()) return "Present";
+    if (date === "Present") return "Present";
 
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
-      month: "long",
+      month: "short",
     };
-    return new Date(date).toLocaleDateString("en-US", options);
+
+    const dateObj = new Date(date);
+    if (isNaN(dateObj.getTime())) throw new Error("Invalid date input");
+
+    if (dateObj > new Date()) return "Present";
+
+    return dateObj.toLocaleDateString("en-US", options);
   } catch (error) {
     console.error("Error in getStringFromDate:", error);
     return null;
