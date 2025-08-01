@@ -5,7 +5,7 @@ import { Tooltip } from "react-tooltip";
 
 import Carousel from "../components/Carousel";
 import Footer from "../components/Footer";
-import FuturisticFrame from "../assets/profile/avatar-frame.svg";
+import FuturisticFrame from "../assets/avatar-frame.svg";
 
 import {
   getCurrentLevel,
@@ -18,7 +18,6 @@ import api from "../services/api";
 import spotifyService, { SpotifyResponse } from "../services/spotify";
 import { Profile, SpotifyProfile } from "../types";
 
-// Define prop types for styled components
 interface ProgressBarProps {
   progress: string;
 }
