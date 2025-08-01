@@ -802,12 +802,14 @@ const CardDetail: React.FC<CardDetailProps> = ({
               </DetailList>
             </DetailSection>
 
-            <DetailSection>
-              <SectionTitle>Position</SectionTitle>
-              <DetailList>
-                <DetailItem>{card.experienceDetails.position}</DetailItem>
-              </DetailList>
-            </DetailSection>
+            {card.experienceDetails.position && (
+              <DetailSection>
+                <SectionTitle>Position</SectionTitle>
+                <DetailList>
+                  <DetailItem>{card.experienceDetails.position}</DetailItem>
+                </DetailList>
+              </DetailSection>
+            )}
 
             <DetailSection>
               <SectionTitle>Duration</SectionTitle>
