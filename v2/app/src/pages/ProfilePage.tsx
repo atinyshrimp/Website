@@ -1286,122 +1286,126 @@ const ProfilePage: React.FC = () => {
           <ProfileCard>
             <SectionTitle>Featured Items</SectionTitle>
             <Carousel
-              items={profile.interests.map((interest) => (
-                <InterestCard
-                  key={interest._id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                  image={interest.imageUrl}
-                >
-                  <div
-                    className="card-overlay"
-                    style={{
-                      position: "absolute",
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: "rgba(0,0,0,0.2)",
-                      backgroundImage:
-                        "linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%)",
-                      zIndex: 1,
-                    }}
-                  ></div>
-
-                  <div
-                    className="interest-badge"
-                    style={{
-                      position: "absolute",
-                      top: "12px",
-                      right: "12px",
-                      background: "rgba(86, 204, 242, 0.3)",
-                      padding: "4px 12px",
-                      borderRadius: "0",
-                      fontSize: "0.7rem",
-                      fontWeight: "bold",
-                      color: "#fff",
-                      zIndex: 3,
-                      letterSpacing: "0.5px",
-                      clipPath: "polygon(0 0, 100% 0, 95% 100%, 0 100%)",
-                      boxShadow: "0 0 10px rgba(86, 204, 242, 0.4)",
-                      border: "1px solid rgba(86, 204, 242, 0.7)",
-                      backdropFilter: "blur(4px)",
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    {interest.highlight}
-                  </div>
-
-                  {/* glitch lines for more cyberpunk feel */}
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "0",
-                      height: "1px",
-                      width: "100%",
-                      background: "rgba(86, 204, 242, 0.5)",
-                      zIndex: 2,
-                      opacity: 0.3,
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "30%",
-                      left: "0",
-                      height: "2px",
-                      width: "30%",
-                      background: "rgba(86, 204, 242, 0.6)",
-                      zIndex: 2,
-                      opacity: 0.4,
-                    }}
-                  ></div>
-
-                  {/* Interest details */}
-                  <div
-                    style={{
-                      padding: "20px",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "flex-end",
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      zIndex: 2,
-                    }}
+              items={profile.interests
+                .filter((interest) => interest.isFeatured)
+                .map((interest) => (
+                  <InterestCard
+                    key={interest._id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                    image={interest.imageUrl}
                   >
                     <div
+                      className="card-overlay"
                       style={{
-                        fontSize: media.tabletLandscape ? "1rem" : "1.2rem",
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: "rgba(0,0,0,0.2)",
+                        backgroundImage:
+                          "linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 100%)",
+                        zIndex: 1,
+                      }}
+                    ></div>
+
+                    <div
+                      className="interest-badge"
+                      style={{
+                        position: "absolute",
+                        top: "12px",
+                        right: "12px",
+                        background: "rgba(86, 204, 242, 0.3)",
+                        padding: "4px 12px",
+                        borderRadius: "0",
+                        fontSize: "0.7rem",
                         fontWeight: "bold",
-                        color: "white",
-                        textShadow: "0 0 10px rgba(86, 204, 242, 0.8)",
-                        letterSpacing: "1px",
-                        marginBottom: "2px",
-                        textTransform: "uppercase",
+                        color: "#fff",
+                        zIndex: 3,
+                        letterSpacing: "0.5px",
+                        clipPath: "polygon(0 0, 100% 0, 95% 100%, 0 100%)",
+                        boxShadow: "0 0 10px rgba(86, 204, 242, 0.4)",
+                        border: "1px solid rgba(86, 204, 242, 0.7)",
+                        backdropFilter: "blur(4px)",
+                        transition: "all 0.3s ease",
                       }}
                     >
-                      {interest.title}
+                      {interest.highlight}
                     </div>
 
+                    {/* glitch lines for more cyberpunk feel */}
                     <div
                       style={{
-                        color: "rgba(255,255,255,0.9)",
-                        fontSize: media.tabletLandscape ? "0.75rem" : "0.85rem",
-                        textShadow: "0 1px 2px rgba(0,0,0,0.8)",
-                        borderLeft: "2px solid rgba(86, 204, 242, 0.7)",
-                        paddingLeft: "8px",
+                        position: "absolute",
+                        top: "50%",
+                        left: "0",
+                        height: "1px",
+                        width: "100%",
+                        background: "rgba(86, 204, 242, 0.5)",
+                        zIndex: 2,
+                        opacity: 0.3,
+                      }}
+                    ></div>
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: "30%",
+                        left: "0",
+                        height: "2px",
+                        width: "30%",
+                        background: "rgba(86, 204, 242, 0.6)",
+                        zIndex: 2,
+                        opacity: 0.4,
+                      }}
+                    ></div>
+
+                    {/* Interest details */}
+                    <div
+                      style={{
+                        padding: "20px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        justifyContent: "flex-end",
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        zIndex: 2,
                       }}
                     >
-                      {interest.description}
+                      <div
+                        style={{
+                          fontSize: media.tabletLandscape ? "1rem" : "1.2rem",
+                          fontWeight: "bold",
+                          color: "white",
+                          textShadow: "0 0 10px rgba(86, 204, 242, 0.8)",
+                          letterSpacing: "1px",
+                          marginBottom: "2px",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {interest.title}
+                      </div>
+
+                      <div
+                        style={{
+                          color: "rgba(255,255,255,0.9)",
+                          fontSize: media.tabletLandscape
+                            ? "0.75rem"
+                            : "0.85rem",
+                          textShadow: "0 1px 2px rgba(0,0,0,0.8)",
+                          borderLeft: "2px solid rgba(86, 204, 242, 0.7)",
+                          paddingLeft: "8px",
+                        }}
+                      >
+                        {interest.description}
+                      </div>
                     </div>
-                  </div>
-                </InterestCard>
-              ))}
+                  </InterestCard>
+                ))}
               itemsPerPage={4}
             />
           </ProfileCard>
