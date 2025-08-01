@@ -1,15 +1,15 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Joyce's TCG-inspired Portfolio",
+  "short_name": "TCG Portfolio",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/assets/icons/favicon-16x16.png",
+      "sizes": "16x16",
       "type": "image/png"
     },
     {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/assets/icons/favicon-32x32.png",
+      "sizes": "32x32",
       "type": "image/png"
     }
   ],
